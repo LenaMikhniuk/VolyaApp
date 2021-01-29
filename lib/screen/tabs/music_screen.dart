@@ -3,10 +3,10 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:volyaApp/data.dart';
-import 'package:volyaApp/models/music_container.dart';
 import 'package:volyaApp/widgets/music_box.dart';
 
 class MusicScreen extends StatefulWidget {
+  static const routeName = '/music_screen';
   @override
   _MusicScreenState createState() => _MusicScreenState();
 }
@@ -34,6 +34,7 @@ class _MusicScreenState extends State<MusicScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // _player.onPlayerStateChanged()
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -52,7 +53,7 @@ class _MusicScreenState extends State<MusicScreen> {
         color: Colors.purple[100],
         child: PageView(
             // controller: controller,
-            //  onPageChanged: (value) => ,
+            //  onPageChanged: (value) =>
             children: [
               buildPage1(),
               buildPage2(),
@@ -73,7 +74,6 @@ class _MusicScreenState extends State<MusicScreen> {
           image: Data.musicContainers[index].image,
           sound: Data.musicContainers[index].sound,
           onTap: () {
-            // print('_player.state1 - ${_player.state}');
             if (_player.state == AudioPlayerState.PLAYING) {
               if (currentIndex == index) {
                 setState(() {
