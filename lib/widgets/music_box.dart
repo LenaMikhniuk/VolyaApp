@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audioplayers/audio_cache.dart';
 
-class MusicBox extends StatefulWidget {
+class MusicBox extends StatelessWidget {
   final String image;
   final String sound;
   final Function onTap;
@@ -16,27 +16,21 @@ class MusicBox extends StatefulWidget {
   });
 
   @override
-  _MusicBoxState createState() => _MusicBoxState();
-}
-
-class _MusicBoxState extends State<MusicBox> {
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: onTap,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Container(
-          decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circular(10),
-              color: Colors.pink),
-          child: Padding(
-            padding:
-                widget.isSelected ? EdgeInsets.all(3.0) : EdgeInsets.all(0),
+        child: GridTile(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(width: isSelected ? 3 : 0, color: Colors.pink),
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                widget.image,
+                image,
                 fit: BoxFit.cover,
               ),
             ),

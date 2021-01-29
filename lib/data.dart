@@ -1,7 +1,7 @@
 import 'models/music_container.dart';
 
 class Data {
-  static const List<MusicContainer> musicContainer = [
+  static const List<MusicContainer> musicContainers = [
     MusicContainer(
       image: 'assets/images_data/elza.jpg',
       sound: 'sounds/elza.mp3',
@@ -35,19 +35,15 @@ class Data {
       sound: 'sounds/tanec.mp3',
     ),
     MusicContainer(
-      image: 'assets/images_data/avicii.jpg',
-      sound: 'sounds/avicii.mp3',
-    ),
-    MusicContainer(
-      image: 'assets/images_data/chasiki.jpg',
-      sound: 'sounds/chasiki.mp3',
+      image: 'assets/images_data/vesna.jpg',
+      sound: 'sounds/vesna.mp3',
     ),
     MusicContainer(
       image: 'assets/images_data/trolls.jpg',
       sound: 'sounds/feeling.mp3',
     ),
     MusicContainer(
-      image: 'assets/images_data/friends.png',
+      image: 'assets/images_data/friends.jpg',
       sound: 'sounds/friends.mp3',
     ),
     MusicContainer(
@@ -65,6 +61,33 @@ class Data {
     MusicContainer(
       image: 'assets/images_data/lentochka.jpg',
       sound: 'sounds/lentochka.mp3',
+    ),
+  ];
+
+  static const List<MusicContainer> musicContainersPage2 = [
+    MusicContainer(
+      image: 'assets/images_data/avicii.jpg',
+      sound: 'sounds/avicii.mp3',
+    ),
+    MusicContainer(
+      image: 'assets/images_data/stranger.jpg',
+      sound: 'sounds/stranger.mp3',
+    ),
+    MusicContainer(
+      image: 'assets/images_data/tell.jpg',
+      sound: 'sounds/tell.mp3',
+    ),
+    MusicContainer(
+      image: 'assets/images_data/pomogator.jpg',
+      sound: 'sounds/pomogator.mp3',
+    ),
+    MusicContainer(
+      image: 'assets/images_data/chasiki.jpg',
+      sound: 'sounds/chasiki.mp3',
+    ),
+    MusicContainer(
+      image: 'assets/images_data/vintic.jpg',
+      sound: 'sounds/vintik.mp3',
     ),
   ];
 }
