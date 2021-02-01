@@ -1,9 +1,11 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:volyaApp/data.dart';
 import 'package:volyaApp/widgets/music_box.dart';
+
+import '../../shared.dart';
 
 class MusicScreen extends StatefulWidget {
   static const routeName = '/music_screen';
@@ -16,10 +18,18 @@ class _MusicScreenState extends State<MusicScreen> {
   AudioPlayer _player = AudioPlayer();
   int currentIndex;
 
+  // void _next(){
+  //   if (_player.state != null) {
+  //     _player.play;
+  //   } else {
+  //     _currentAssetPosition++;
+  //     _open(_currentAssetPosition);
+  //   }
+  // }
+
   @override
   void initState() {
     super.initState();
-
     _audioCache = AudioCache(fixedPlayer: _player);
   }
 
@@ -34,23 +44,15 @@ class _MusicScreenState extends State<MusicScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // _player.onPlayerStateChanged()
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text(
-            'Music',
-            style: GoogleFonts.overpass(
-              color: Colors.white,
-              fontSize: 45,
-              //fontWeight: FontWeight.bold,
-            ),
-          ),
+          child: Text('Music', style: FontsStyles.appBar),
         ),
-        backgroundColor: Colors.indigo[200],
+        backgroundColor: AppColors.appBarMainColor,
       ),
       body: Container(
-        color: Colors.purple[100],
+        color: AppColors.bodyMainColor,
         child: PageView(
             // controller: controller,
             //  onPageChanged: (value) =>
@@ -73,20 +75,14 @@ class _MusicScreenState extends State<MusicScreen> {
       itemBuilder: (context, index) => MusicBox(
           image: Data.musicContainers[index].image,
           sound: Data.musicContainers[index].sound,
-          onTap: () {
-            if (_player.state == AudioPlayerState.PLAYING) {
-              if (currentIndex == index) {
-                setState(() {
-                  _player.pause();
-                });
-              } else {
-                _audioCache.play(Data.musicContainers[index].sound);
-                setState(() {
-                  currentIndex = index;
-                });
-              }
+          onTap: () async {
+            if (_player.state == AudioPlayerState.PLAYING &&
+                currentIndex == index) {
+              setState(() {
+                _player.pause();
+              });
             } else {
-              _audioCache.play(Data.musicContainers[index].sound);
+              await _audioCache.play(Data.musicContainers[index].sound);
               setState(() {
                 currentIndex = index;
               });

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:audioplayers/audio_cache.dart';
+import 'package:volyaApp/shared.dart';
 
 class MusicBox extends StatelessWidget {
   final String image;
@@ -25,7 +24,8 @@ class MusicBox extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(width: isSelected ? 3 : 0, color: Colors.pink),
+              border: Border.all(
+                  width: isSelected ? 3 : 0, color: AppColors.borderColor),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),

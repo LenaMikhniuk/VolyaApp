@@ -29,34 +29,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Center(
-      //     child: Text(
-      //       'My kid\'s app',
-      //       style: GoogleFonts.acme(
-      //         fontSize: 40,
-      //         color: Colors.purple[200],
-      //       ),
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.indigo,
-      //actions: [],
-      // ),
-      // drawer: AppDrawer(),
       body: _pages[_selectedPageValue],
-      //     Image.asset(
-      //   //add animation
-      //   'assets/images/Olya.jpg',
-      //   fit: BoxFit.cover,
-      //   height: double.infinity,
-      //   width: double.infinity,
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageValue,
-        //backgroundColor: Colors.indigo,
+        unselectedItemColor: Colors.white70,
+        selectedItemColor: Colors.purple,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Colors.indigo,
+            backgroundColor: Colors.indigo[200],
             icon: Icon(Icons.music_note),
             label: 'Music',
           ),
