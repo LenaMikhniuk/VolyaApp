@@ -52,82 +52,34 @@ class _MusicScreenState extends State<MusicScreen> {
         backgroundColor: AppColors.appBarMainColor,
       ),
       body: Container(
-        color: AppColors.bodyMainColor,
-        child: PageView(
-            // controller: controller,
-            //  onPageChanged: (value) =>
-            children: [
-              buildPage1(),
-              buildPage2(),
-            ]),
-      ),
-    );
-  }
-
-  GridView buildPage1() {
-    return GridView.builder(
-      padding: EdgeInsets.all(10),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-      ),
-      itemBuilder: (context, index) => MusicBox(
-          image: Data.musicContainers[index].image,
-          sound: Data.musicContainers[index].sound,
-          onTap: () async {
-            if (_player.state == AudioPlayerState.PLAYING &&
-                currentIndex == index) {
-              setState(() {
-                _player.pause();
-              });
-            } else {
-              await _audioCache.play(Data.musicContainers[index].sound);
-              setState(() {
-                currentIndex = index;
-              });
-            }
-          },
-          isSelected: currentIndex == index &&
-              _player.state == AudioPlayerState.PLAYING),
-      itemCount: Data.musicContainers.length,
-    );
-  }
-
-  GridView buildPage2() {
-    return GridView.builder(
-      padding: EdgeInsets.all(10),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-      ),
-      itemBuilder: (context, index) => MusicBox(
-          image: Data.musicContainersPage2[index].image,
-          sound: Data.musicContainersPage2[index].sound,
-          onTap: () {
-            // print('_player.state1 - ${_player.state}');
-            if (_player.state == AudioPlayerState.PLAYING) {
-              if (currentIndex == index) {
-                setState(() {
-                  _player.pause();
-                });
-              } else {
-                _audioCache.play(Data.musicContainersPage2[index].sound);
-                setState(() {
-                  currentIndex = index;
-                });
-              }
-            } else {
-              _audioCache.play(Data.musicContainersPage2[index].sound);
-              setState(() {
-                currentIndex = index;
-              });
-            }
-          },
-          isSelected: currentIndex == index &&
-              _player.state == AudioPlayerState.PLAYING),
-      itemCount: Data.musicContainersPage2.length,
+          color: AppColors.bodyMainColor,
+          child: GridView.builder(
+            padding: EdgeInsets.all(10),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) => MusicBox(
+                image: Data.musicContainers[index].image,
+                sound: Data.musicContainers[index].sound,
+                onTap: () async {
+                  if (_player.state == AudioPlayerState.PLAYING &&
+                      currentIndex == index) {
+                    setState(() {
+                      _player.pause();
+                    });
+                  } else {
+                    await _audioCache.play(Data.musicContainers[index].sound);
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  }
+                },
+                isSelected: currentIndex == index &&
+                    _player.state == AudioPlayerState.PLAYING),
+            itemCount: Data.musicContainers.length,
+          )),
     );
   }
 }

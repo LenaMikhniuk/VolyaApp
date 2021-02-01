@@ -62,9 +62,6 @@ class Data {
       image: 'assets/images_data/lentochka.jpg',
       sound: 'sounds/lentochka.mp3',
     ),
-  ];
-
-  static const List<MusicContainer> musicContainersPage2 = [
     MusicContainer(
       image: 'assets/images_data/avicii.jpg',
       sound: 'sounds/avicii.mp3',
