@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:volyaApp/screen/tabs/music_screen.dart';
 import 'package:volyaApp/screen/home.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown]).then(
+    (value) => runApp(
+      MyApp(),
+    ),
+  );
+  ;
 }
 
 class MyApp extends StatelessWidget {

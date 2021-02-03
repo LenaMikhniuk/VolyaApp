@@ -24,9 +24,11 @@ class FairytalesItem extends StatelessWidget {
         //splashColor: AppColors.selectedItemColor,
         child: Hero(
           tag: fairytale.image,
-          child: Image.asset(
-            fairytale.image,
-            fit: BoxFit.cover,
+          child: GridTile(
+            child: Image.asset(
+              fairytale.image,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),

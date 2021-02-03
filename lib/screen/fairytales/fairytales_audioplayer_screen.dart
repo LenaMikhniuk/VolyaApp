@@ -31,22 +31,21 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         iconTheme: IconThemeData(
           color: AppColors.appBarTextColorFairytaleScreen,
         ),
         backgroundColor: AppColors.appBarFairytalesAudioPlayerScreen,
-        title: Center(
-          child: FittedBox(
-            fit: BoxFit.cover,
-            child: Text(
-              fairytale.title,
-              style: FontsStyles.appBarFairytalesAudioPlayerScreen,
-            ),
+        title: FittedBox(
+          fit: BoxFit.cover,
+          child: Text(
+            fairytale.title,
+            style: FontsStyles.appBarFairytalesAudioPlayerScreen,
           ),
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Hero(
@@ -58,6 +57,9 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           AudioPlayerButtons(
               fairytale: fairytale, previousIndex: previousIndex),
