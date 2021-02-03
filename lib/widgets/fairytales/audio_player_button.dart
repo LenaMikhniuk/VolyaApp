@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_volume_slider/flutter_volume_slider.dart';
+
 import 'package:volyaApp/models/fairytales.dart';
 import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
 import 'package:volyaApp/shared.dart';
@@ -65,7 +65,7 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
     return Column(
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          GestureDetector(
+          Button(
             onTap: () {
               if (widget.previousIndex != null) {
                 Navigator.of(context).pushReplacement(
@@ -78,27 +78,13 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                 );
               }
             },
-            child: Container(
-              height: 70,
-              width: 70,
-              decoration: ButtonBoxDecoration.boxDecoration.copyWith(
-                color: widget.previousIndex != null
-                    ? AppColors.buttonColor
-                    : AppColors.buttonColor.withOpacity(0.3),
-              ),
-              child: Icon(
-                Icons.skip_previous,
-                size: 70,
-                color: widget.previousIndex != null
-                    ? AppColors.iconButtonColor
-                    : AppColors.iconButtonColor.withOpacity(0.3),
-              ),
-            ),
+            icon: Icons.skip_previous,
+            isActive: widget.previousIndex != null,
           ),
           SizedBox(
             width: 20,
           ),
-          GestureDetector(
+          Button(
             onTap: () async {
               if (_player.state == AudioPlayerState.PLAYING) {
                 await _player.pause();
@@ -108,17 +94,15 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                 setState(() {});
               }
             },
-            child: Container(
-              height: 70,
-              width: 70,
-              decoration: ButtonBoxDecoration.boxDecoration,
-              child: _getIconFromState(_player.state),
-            ),
+            icon: _player.state == AudioPlayerState.PLAYING
+                ? Icons.pause
+                : Icons.play_arrow,
+            isActive: true,
           ),
           SizedBox(
             width: 20,
           ),
-          GestureDetector(
+          Button(
             onTap: () {
               int randomIndex;
 
@@ -128,7 +112,6 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                 randomIndex =
                     Random().nextInt(FairytalesData.fairytales.length);
               }
-              print(randomIndex);
 
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
@@ -140,16 +123,8 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                 ),
               );
             },
-            child: Container(
-              height: 70,
-              width: 70,
-              decoration: ButtonBoxDecoration.boxDecoration,
-              child: Icon(
-                Icons.skip_next,
-                size: 70,
-                color: AppColors.iconButtonColor,
-              ),
-            ),
+            icon: Icons.skip_next,
+            isActive: true,
           ),
         ]),
         SizedBox(
@@ -172,18 +147,38 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
   }
 }
 
-Widget _getIconFromState(AudioPlayerState state) {
-  if (state == AudioPlayerState.PLAYING) {
-    return Icon(
-      Icons.pause,
-      size: 70,
-      color: AppColors.iconButtonColor,
-    );
-  } else {
-    return Icon(
-      Icons.play_arrow,
-      size: 70,
-      color: AppColors.iconButtonColor,
+class Button extends StatelessWidget {
+  const Button({
+    Key key,
+    @required this.onTap,
+    @required this.icon,
+    this.isActive,
+  }) : super(key: key);
+
+  final Function onTap;
+  final IconData icon;
+  final bool isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 70,
+        width: 70,
+        decoration: ButtonBoxDecoration.boxDecoration.copyWith(
+          color: isActive
+              ? AppColors.buttonColor
+              : AppColors.buttonColor.withOpacity(0.3),
+        ),
+        child: Icon(
+          icon,
+          size: 70,
+          color: isActive
+              ? AppColors.iconButtonColor
+              : AppColors.iconButtonColor.withOpacity(0.3),
+        ),
+      ),
     );
   }
 }

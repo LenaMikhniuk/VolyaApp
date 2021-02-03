@@ -13,8 +13,9 @@ class AppColors {
   static const Color appBarTextColorFairytaleScreen = Color(0xff6600ff);
   static const Color buttonColor = Color(0xffe6b5f5);
   static const Color iconButtonColor = Color(0xff6600ff);
-  static const Color sliderActiveColor = Color(0xffB878F6);
-  static const Color sliderInActiveColor = Color(0xffEDCDF5);
+  static const Color sliderActiveColor = Color(0xff6600ff);
+  static const Color sliderInActiveColor = Color(0xffB878F6);
+  static const Color audioplayerScreenMainColor = Color(0xffFAEBFF);
 }
 
 class FontsStyles {

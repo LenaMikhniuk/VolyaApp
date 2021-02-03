@@ -44,26 +44,29 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Hero(
-            tag: fairytale.image,
-            child: Container(
-              height: displayHeight(context) * 0.52,
-              child: Image.asset(
-                fairytale.image,
-                fit: BoxFit.cover,
+      body: Container(
+        color: AppColors.audioplayerScreenMainColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Hero(
+              tag: fairytale.image,
+              child: Container(
+                height: displayHeight(context) * 0.52,
+                child: Image.asset(
+                  fairytale.image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          AudioPlayerButtons(
-              fairytale: fairytale, previousIndex: previousIndex),
-        ],
+            SizedBox(
+              height: 20,
+            ),
+            AudioPlayerButtons(
+                fairytale: fairytale, previousIndex: previousIndex),
+          ],
+        ),
       ),
     );
   }
