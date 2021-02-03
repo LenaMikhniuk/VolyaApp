@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   audioplayers: ^0.17.3
   google_fonts: ^1.1.2
+  
 
 dev_dependencies:
   flutter_test:
@@ -49,9 +50,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images_fairytales/
   
     - assets/images_data/
     - assets/sounds/
+    - assets/sounds_fairytales/
     
   
   #   - images/a_dot_ham.jpeg

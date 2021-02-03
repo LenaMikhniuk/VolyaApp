@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +33,19 @@ class _MusicScreenState extends State<MusicScreen> {
   void initState() {
     super.initState();
     _audioCache = AudioCache(fixedPlayer: _player);
+    _player.onPlayerStateChanged.listen((AudioPlayerState state) {
+      if (state == AudioPlayerState.COMPLETED) {
+        if (currentIndex + 1 < Data.musicContainers.length) {
+          final nextTrackIndex =
+              Random().nextInt(Data.musicContainers.length - 1);
+          _audioCache
+              .play(Data.musicContainers[nextTrackIndex].sound)
+              .then((_) => setState(() {
+                    currentIndex = nextTrackIndex;
+                  }));
+        }
+      }
+    });
   }
 
   @override
@@ -39,8 +54,6 @@ class _MusicScreenState extends State<MusicScreen> {
     _audioCache.clearCache();
     _player.dispose();
   }
-
-  final controller = PageController(initialPage: 1);
 
   @override
   Widget build(BuildContext context) {
@@ -52,34 +65,35 @@ class _MusicScreenState extends State<MusicScreen> {
         backgroundColor: AppColors.appBarMainColor,
       ),
       body: Container(
-          color: AppColors.bodyMainColor,
-          child: GridView.builder(
-            padding: EdgeInsets.all(10),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-            ),
-            itemBuilder: (context, index) => MusicBox(
-                image: Data.musicContainers[index].image,
-                sound: Data.musicContainers[index].sound,
-                onTap: () async {
-                  if (_player.state == AudioPlayerState.PLAYING &&
-                      currentIndex == index) {
-                    setState(() {
-                      _player.pause();
-                    });
-                  } else {
-                    await _audioCache.play(Data.musicContainers[index].sound);
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  }
-                },
-                isSelected: currentIndex == index &&
-                    _player.state == AudioPlayerState.PLAYING),
-            itemCount: Data.musicContainers.length,
-          )),
+        color: AppColors.bodyMainColor,
+        child: GridView.builder(
+          padding: EdgeInsets.all(10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemBuilder: (context, index) => MusicBox(
+              image: Data.musicContainers[index].image,
+              sound: Data.musicContainers[index].sound,
+              onTap: () async {
+                if (_player.state == AudioPlayerState.PLAYING &&
+                    currentIndex == index) {
+                  setState(() {
+                    _player.pause();
+                  });
+                } else {
+                  await _audioCache.play(Data.musicContainers[index].sound);
+                  setState(() {
+                    currentIndex = index;
+                  });
+                }
+              },
+              isSelected: currentIndex == index &&
+                  _player.state == AudioPlayerState.PLAYING),
+          itemCount: Data.musicContainers.length,
+        ),
+      ),
     );
   }
 }
