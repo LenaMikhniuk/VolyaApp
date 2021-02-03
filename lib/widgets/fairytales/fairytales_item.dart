@@ -22,9 +22,12 @@ class FairytalesItem extends StatelessWidget {
           );
         },
         //splashColor: AppColors.selectedItemColor,
-        child: Image.asset(
-          fairytale.image,
-          fit: BoxFit.cover,
+        child: Hero(
+          tag: fairytale.image,
+          child: Image.asset(
+            fairytale.image,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

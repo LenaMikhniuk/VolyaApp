@@ -9,10 +9,12 @@ class AppColors {
   static const Color bottomNavigationBarColor = Color(0xff9fa8da);
   static const Color unselectedItemColor = Color(0xfffff2fe);
   static const Color selectedItemColor = Color(0xfff032ba);
-  static const Color appBarFairytalesAudioPlayerScreen = Color(0xffffffcc);
+  static const Color appBarFairytalesAudioPlayerScreen = Color(0xffE9C3F5);
   static const Color appBarTextColorFairytaleScreen = Color(0xff6600ff);
   static const Color buttonColor = Color(0xffe6b5f5);
   static const Color iconButtonColor = Color(0xff6600ff);
+  static const Color sliderActiveColor = Color(0xffB878F6);
+  static const Color sliderInActiveColor = Color(0xffEDCDF5);
 }
 
 class FontsStyles {
