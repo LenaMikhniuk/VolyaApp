@@ -10,28 +10,39 @@ class FairytalesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => FairytalesAudioPlayerScreen(
-                fairytale: fairytale,
-              ),
-            ),
-          );
-        },
-        //splashColor: AppColors.selectedItemColor,
-        child: Hero(
-          tag: fairytale.image,
-          child: GridTile(
-            child: Image.asset(
-              fairytale.image,
-              fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => FairytalesAudioPlayerScreen(
+              fairytale: fairytale,
             ),
           ),
-        ),
-      ),
+        );
+      },
+      //splashColor: AppColors.selectedItemColor,
+      child: Hero(
+          tag: fairytale.image,
+          child: Container(
+            margin: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.elliptical(90, 45)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.4),
+                  offset: const Offset(0.0, 5.0),
+                  blurRadius: 10.0,
+                  spreadRadius: 1.0,
+                )
+              ],
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                fairytale.image,
+                fit: BoxFit.fill,
+              ),
+            ),
+          )),
     );
   }
 }
