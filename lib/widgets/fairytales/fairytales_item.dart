@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:volyaApp/audioplayer/fairytales_history.dart';
 import 'package:volyaApp/models/fairytales.dart';
 import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
-import 'package:volyaApp/shared.dart';
 
 class FairytalesItem extends StatelessWidget {
   final Fairytale fairytale;
@@ -22,27 +23,28 @@ class FairytalesItem extends StatelessWidget {
       },
       //splashColor: AppColors.selectedItemColor,
       child: Hero(
-          tag: fairytale.image,
-          child: Container(
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.elliptical(90, 45)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.4),
-                  offset: const Offset(0.0, 5.0),
-                  blurRadius: 10.0,
-                  spreadRadius: 1.0,
-                )
-              ],
+        tag: fairytale.image,
+        child: Container(
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.elliptical(90, 45)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                offset: const Offset(0.0, 5.0),
+                blurRadius: 10.0,
+                spreadRadius: 1.0,
+              )
+            ],
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              fairytale.image,
+              fit: BoxFit.fill,
             ),
-            child: ClipOval(
-              child: Image.asset(
-                fairytale.image,
-                fit: BoxFit.fill,
-              ),
-            ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

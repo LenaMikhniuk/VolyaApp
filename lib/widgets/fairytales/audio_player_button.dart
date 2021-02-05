@@ -3,20 +3,20 @@ import 'dart:math';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:volyaApp/audioplayer/fairytales_history.dart';
 
 import 'package:volyaApp/models/fairytales.dart';
 import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
 import 'package:volyaApp/shared.dart';
+
 import 'package:volyaApp/widgets/fairytales/fairytales_data.dart';
 
 class AudioPlayerButtons extends StatefulWidget {
   final Fairytale fairytale;
-  final int previousIndex;
-  //final String sound;
+  final bool isGoingBack;
 
-  //const AudioPlayerButtons({Key key, this.sound}) : super(key: key);
-
-  const AudioPlayerButtons({Key key, this.fairytale, this.previousIndex})
+  const AudioPlayerButtons({Key key, this.fairytale, this.isGoingBack = false})
       : super(key: key);
   @override
   _AudioPlayerButtonsState createState() => _AudioPlayerButtonsState();
@@ -66,21 +66,10 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Button(
-            onTap: () {
-              if (widget.previousIndex != null) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => FairytalesAudioPlayerScreen(
-                      fairytale:
-                          FairytalesData.fairytales[widget.previousIndex],
-                    ),
-                  ),
-                );
-              }
-            },
-            icon: Icons.skip_previous,
-            isActive: widget.previousIndex != null,
-          ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icons.skip_previous),
           SizedBox(
             width: 20,
           ),
@@ -97,7 +86,6 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
             icon: _player.state == AudioPlayerState.PLAYING
                 ? Icons.pause
                 : Icons.play_arrow,
-            isActive: true,
           ),
           SizedBox(
             width: 20,
@@ -113,18 +101,16 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                     Random().nextInt(FairytalesData.fairytales.length);
               }
 
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => FairytalesAudioPlayerScreen(
                     fairytale: FairytalesData.fairytales[randomIndex],
-                    previousIndex:
-                        FairytalesData.fairytales.indexOf(widget.fairytale),
+                    isGoingBack: false,
                   ),
                 ),
               );
             },
             icon: Icons.skip_next,
-            isActive: true,
           ),
         ]),
         SizedBox(
@@ -152,12 +138,10 @@ class Button extends StatelessWidget {
     Key key,
     @required this.onTap,
     @required this.icon,
-    this.isActive,
   }) : super(key: key);
 
   final Function onTap;
   final IconData icon;
-  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -167,16 +151,12 @@ class Button extends StatelessWidget {
         height: 70,
         width: 70,
         decoration: ButtonBoxDecoration.boxDecoration.copyWith(
-          color: isActive
-              ? AppColors.buttonColor
-              : AppColors.buttonColor.withOpacity(0.3),
+          color: AppColors.buttonColor,
         ),
         child: Icon(
           icon,
           size: 70,
-          color: isActive
-              ? AppColors.iconButtonColor
-              : AppColors.iconButtonColor.withOpacity(0.3),
+          color: AppColors.iconButtonColor,
         ),
       ),
     );

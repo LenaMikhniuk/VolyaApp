@@ -4,26 +4,21 @@ import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/fairytales/audio_player_button.dart';
 
 class FairytalesAudioPlayerScreen extends StatelessWidget {
-  // static const routeName = '/audio_player_screen';
   final Fairytale fairytale;
-  final int previousIndex;
+  final bool isGoingBack;
 
-  const FairytalesAudioPlayerScreen(
-      {Key key, this.fairytale, this.previousIndex})
+  const FairytalesAudioPlayerScreen({Key key, this.fairytale, this.isGoingBack})
       : super(key: key);
 
   Size displaySize(BuildContext context) {
-    debugPrint('Size = ' + MediaQuery.of(context).size.toString());
     return MediaQuery.of(context).size;
   }
 
   double displayHeight(BuildContext context) {
-    debugPrint('Height = ' + displaySize(context).height.toString());
     return displaySize(context).height;
   }
 
   double displayWidth(BuildContext context) {
-    debugPrint('Width = ' + displaySize(context).width.toString());
     return displaySize(context).width;
   }
 
@@ -63,8 +58,7 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            AudioPlayerButtons(
-                fairytale: fairytale, previousIndex: previousIndex),
+            AudioPlayerButtons(fairytale: fairytale, isGoingBack: isGoingBack),
           ],
         ),
       ),
