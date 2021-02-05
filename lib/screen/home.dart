@@ -4,6 +4,7 @@ import 'package:volyaApp/screen/fairytales/fairytale_screen.dart';
 import 'package:volyaApp/screen/tabs/music_screen.dart';
 import 'package:volyaApp/screen/tabs/photo_gallery_screen.dart';
 import 'package:volyaApp/screen/tabs/video_screen.dart';
+import 'package:volyaApp/screen/tabs/weather_screen.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/app_drawer.dart';
 
@@ -18,6 +19,7 @@ class _HomeState extends State<Home> {
     FairytaleScreen(),
     VideoScreen(),
     PhotoGalleryScreen(),
+    WeatherScreen(),
   ];
   int _selectedPageValue = 0;
 
@@ -55,6 +57,11 @@ class _HomeState extends State<Home> {
             backgroundColor: AppColors.bottomNavigationBarColor,
             icon: Icon(Icons.photo_camera),
             label: 'Photos',
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: AppColors.bottomNavigationBarColor,
+            icon: Icon(Icons.beach_access),
+            label: 'Weather',
           ),
         ],
         onTap: _selectedPage,

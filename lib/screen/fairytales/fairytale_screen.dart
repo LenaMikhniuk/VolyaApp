@@ -14,6 +14,7 @@ class FairytaleScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: AppColors.appBarMainColor,
+        shadowColor: AppColors.appBarShadowColor,
       ),
       body: Container(color: AppColors.bodyMainColor, child: FairytalesGrid()),
     );

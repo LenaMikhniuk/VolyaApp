@@ -63,6 +63,7 @@ class _MusicScreenState extends State<MusicScreen> {
           child: Text('Music', style: FontsStyles.appBar),
         ),
         backgroundColor: AppColors.appBarMainColor,
+        shadowColor: AppColors.appBarShadowColor,
       ),
       body: Container(
         color: AppColors.bodyMainColor,

@@ -67,19 +67,9 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Button(
             onTap: () {
-              if (widget.previousIndex != null) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => FairytalesAudioPlayerScreen(
-                      fairytale:
-                          FairytalesData.fairytales[widget.previousIndex],
-                    ),
-                  ),
-                );
-              }
+              Navigator.of(context).pop();
             },
             icon: Icons.skip_previous,
-            isActive: widget.previousIndex != null,
           ),
           SizedBox(
             width: 20,
@@ -97,7 +87,6 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
             icon: _player.state == AudioPlayerState.PLAYING
                 ? Icons.pause
                 : Icons.play_arrow,
-            isActive: true,
           ),
           SizedBox(
             width: 20,
@@ -113,18 +102,15 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                     Random().nextInt(FairytalesData.fairytales.length);
               }
 
-              Navigator.of(context).pushReplacement(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => FairytalesAudioPlayerScreen(
                     fairytale: FairytalesData.fairytales[randomIndex],
-                    previousIndex:
-                        FairytalesData.fairytales.indexOf(widget.fairytale),
                   ),
                 ),
               );
             },
             icon: Icons.skip_next,
-            isActive: true,
           ),
         ]),
         SizedBox(
@@ -152,12 +138,10 @@ class Button extends StatelessWidget {
     Key key,
     @required this.onTap,
     @required this.icon,
-    this.isActive,
   }) : super(key: key);
 
   final Function onTap;
   final IconData icon;
-  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -166,18 +150,9 @@ class Button extends StatelessWidget {
       child: Container(
         height: 70,
         width: 70,
-        decoration: ButtonBoxDecoration.boxDecoration.copyWith(
-          color: isActive
-              ? AppColors.buttonColor
-              : AppColors.buttonColor.withOpacity(0.3),
-        ),
-        child: Icon(
-          icon,
-          size: 70,
-          color: isActive
-              ? AppColors.iconButtonColor
-              : AppColors.iconButtonColor.withOpacity(0.3),
-        ),
+        decoration: ButtonBoxDecoration.boxDecoration
+            .copyWith(color: AppColors.buttonColor),
+        child: Icon(icon, size: 70, color: AppColors.iconButtonColor),
       ),
     );
   }

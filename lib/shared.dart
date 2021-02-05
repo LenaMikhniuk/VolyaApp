@@ -16,6 +16,9 @@ class AppColors {
   static const Color sliderActiveColor = Color(0xff6600ff);
   static const Color sliderInActiveColor = Color(0xffB878F6);
   static const Color audioplayerScreenMainColor = Color(0xffFAEBFF);
+  static const Color appBarShadowColor = Color(0xff2B244F);
+  static const Color weatherDataTextColor = Color(0xff2B244F);
+  static const Color iconButtonWeatherColor = Color(0xff6600ff);
 }
 
 class FontsStyles {
@@ -26,6 +29,11 @@ class FontsStyles {
   static TextStyle appBarFairytalesAudioPlayerScreen = GoogleFonts.montserrat(
     color: AppColors.appBarTextColorFairytaleScreen,
     fontSize: 35,
+  );
+
+  static TextStyle weatherData = GoogleFonts.montserrat(
+    color: AppColors.weatherDataTextColor,
+    fontSize: 50,
   );
 }
 

@@ -35,6 +35,7 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
         iconTheme: IconThemeData(
           color: AppColors.appBarTextColorFairytaleScreen,
         ),
+        shadowColor: AppColors.appBarShadowColor,
         backgroundColor: AppColors.appBarFairytalesAudioPlayerScreen,
         title: FittedBox(
           fit: BoxFit.cover,
