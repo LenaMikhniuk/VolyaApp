@@ -5,6 +5,7 @@ import 'package:volyaApp/screen/tabs/music_screen.dart';
 import 'package:volyaApp/screen/tabs/photo_gallery_screen.dart';
 import 'package:volyaApp/screen/tabs/video_screen.dart';
 import 'package:volyaApp/screen/tabs/weather_screen.dart';
+import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/app_drawer.dart';
 

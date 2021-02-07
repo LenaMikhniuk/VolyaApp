@@ -17,8 +17,14 @@ class AppColors {
   static const Color sliderInActiveColor = Color(0xffB878F6);
   static const Color audioplayerScreenMainColor = Color(0xffFAEBFF);
   static const Color appBarShadowColor = Color(0xff2B244F);
-  static const Color weatherDataTextColor = Color(0xff2B244F);
+  static const Color weatherDataTextColor = Color(0xffFAEBFF);
   static const Color iconButtonWeatherColor = Color(0xff6600ff);
+  static const Color textFieldWeatherCity = Color(0xffB878F6);
+  static const Color hintColor = Color(0xff2B244F);
+  static const Color weatherCityFlatButtonTextColor = Color(0xffE9C3F5);
+  static const Color weatherCityFlatButtonColor = Color(0xff2B244F);
+  static const Color cityName = Color(0xffFAEBFF);
+  static const Color containerWeatherScreenColor = Color(0xff6600ff);
 }
 
 class FontsStyles {
@@ -34,6 +40,11 @@ class FontsStyles {
   static TextStyle weatherData = GoogleFonts.montserrat(
     color: AppColors.weatherDataTextColor,
     fontSize: 50,
+  );
+
+  static TextStyle cityName = GoogleFonts.montserrat(
+    color: AppColors.cityName,
+    fontSize: 20,
   );
 }
 
