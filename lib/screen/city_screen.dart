@@ -37,16 +37,22 @@ class _CityScreenState extends State<CityScreen> {
               Container(
                 padding: EdgeInsets.all(20.0),
                 child: TextField(
-                  style: TextStyle(color: AppColors.hintColor),
+                  onSubmitted: (value) {
+                    Navigator.pop(context, cityName);
+                  },
+                  autofocus: true,
+                  cursorColor: Colors.black,
+                  cursorHeight: 25,
+                  style: TextStyle(color: AppColors.hintColor, fontSize: 25),
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColors.textFieldWeatherCity.withOpacity(0.7),
                     icon: Icon(
-                      Icons.location_city,
+                      Icons.place,
                       color: AppColors.iconButtonWeatherColor,
                     ),
                     hintText: 'Enter City Name',
-                    hintStyle: TextStyle(color: Colors.black),
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 25),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(10.0),

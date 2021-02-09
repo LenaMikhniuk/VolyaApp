@@ -10,13 +10,16 @@ void main() {
       MyApp(),
     ),
   );
-  ;
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('fr', 'FR'),
+      ],
       home: Home(),
       routes: {
         MusicScreen.routeName: (context) => MusicScreen(),

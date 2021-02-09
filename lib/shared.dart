@@ -44,7 +44,7 @@ class FontsStyles {
 
   static TextStyle cityName = GoogleFonts.montserrat(
     color: AppColors.cityName,
-    fontSize: 20,
+    fontSize: 35,
   );
 }
 

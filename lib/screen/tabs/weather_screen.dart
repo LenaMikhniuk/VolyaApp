@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:volyaApp/models/forecast_model.dart';
+
 import 'package:volyaApp/screen/city_screen.dart';
 import 'package:volyaApp/services/weather.dart';
 import 'package:volyaApp/shared.dart';
@@ -10,41 +12,64 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  Weather weather = Weather();
-
   int temperature;
   String weatherIcon;
+  String weatherImageName;
   String cityName;
   String weatherMessage;
+  ForecastModel forecastThreeDays;
 
   @override
   void initState() {
     super.initState();
     initialWeater();
+    initialForecast();
   }
 
   void initialWeater() async {
-    final result = await weather.getCurrentLocationWeather();
+    final result = await WeatherService.getCurrentLocationWeather();
     updateUI(result);
+  }
+
+  void initialForecast() async {
+    final resultForecast = await WeatherService.getCurrentLocationForecast();
+    updateForecastWidget(resultForecast);
   }
 
   void updateUI(dynamic weatherData) {
     print(weatherData);
     setState(() {
       if (weatherData == null) {
-        temperature = 0;
-        weatherIcon = 'Error';
-        weatherMessage = 'Unable to get weather data';
-        cityName = '';
+        Image.asset('assets/images/scale_1200.jpg');
         return;
       }
       num temp = weatherData['main']['temp'];
       temperature = temp.toInt();
-      //var condition = weatherData['weather'][0]['id'];
-
+      print(temperature);
+      var condition = weatherData['weather'][0]['id'];
+      weatherImageName = WeatherService.getWeatherImage(condition, temp);
       cityName = weatherData['name'];
+      // date:
+      // DateTime.fromMillisecondsSinceEpoch(['dt'] * 1000, isUtc: true);
     });
   }
+
+  void updateForecastWidget(ForecastModel forecastData) {
+    setState(() {
+      print(temperature);
+      forecastThreeDays = forecastData;
+
+      // var condition = forecastData['weather'][0]['id'];
+      // weatherImageName = weather.getWeatherImage(condition, temp);
+      // cityName = forecastData['name'];
+      // date:
+      // DateTime.fromMillisecondsSinceEpoch(['dt'] * 1000, isUtc: true);
+      // weatherIcon = forecast.getWeatherIcon(condition);
+    });
+  }
+
+  // final DateTime now = DateTime.now();
+  // final DateFormat formatter = DateFormat('EdMM');
 
   @override
   Widget build(BuildContext context) {
@@ -59,131 +84,124 @@ class _WeatherScreenState extends State<WeatherScreen> {
         backgroundColor: AppColors.appBarMainColor,
         shadowColor: AppColors.appBarShadowColor,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(
-                'assets/images/weatherSnow.jpg',
-              ),
-              fit: BoxFit.cover),
-        ),
-        constraints: BoxConstraints.expand(),
-        child: SingleChildScrollView(
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Stack(
+        children: [
+          weatherImageName == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Image.asset(
+                  weatherImageName,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    LocationButton(
-                      iconData: Icons.near_me,
-                      onPressed: () async {
-                        var weatherData =
-                            await weather.getCurrentLocationWeather();
-                        updateUI(weatherData);
-                      },
-                    ),
-                    LocationButton(
-                      iconData: Icons.location_city,
-                      onPressed: () async {
-                        var typedName = await Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => CityScreen(),
-                          ),
-                        );
-                        if (typedName != null) {
-                          var weatherData =
-                              await weather.getCityWeather(typedName);
-                          updateUI(weatherData);
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    weatherColumn(),
-                    Column(
-                      children: [
-                        textContainer(
-                            '${cityName ?? '...'}', FontsStyles.cityName),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        textContainer(
-                          '${temperature ?? '...'} °C',
-                          FontsStyles.weatherData,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              // SizedBox(
-              //   height: 20,
-              // ),
-              // Center(
-              //   child: Text(
-              //     'It\'s time to sladge!',
-              //     style: TextStyle(fontSize: 30),
-              //   ),
-              // )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+              _buildHeader(context),
 
-  Container textContainer(String text, TextStyle style) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.containerWeatherScreenColor.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(3),
-      ),
-      child: Row(
-        children: [
-          Text(
-            text,
-            style: style,
+              // temperature
+              textContainer(
+                '${temperature ?? '...'} °C',
+                FontsStyles.weatherData,
+              ),
+              Expanded(child: weatherColumn()),
+            ],
           ),
         ],
       ),
     );
   }
 
-  Column weatherColumn() {
-    return Column(
+  Widget _buildHeader(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 25, right: 25, top: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          LocationButton(
+            iconData: Icons.near_me,
+            onPressed: () async {
+              var weatherData =
+                  await WeatherService.getCurrentLocationWeather();
+              updateUI(weatherData);
+            },
+          ),
+          textContainer('${cityName ?? '...'}', FontsStyles.cityName),
+          LocationButton(
+            iconData: Icons.place,
+            onPressed: () async {
+              var typedName = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CityScreen(),
+                ),
+              );
+              if (typedName != null) {
+                var weatherData =
+                    await WeatherService.getWeatherByCity(typedName);
+                updateUI(weatherData);
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget textContainer(String text, TextStyle style) {
+    double cwidth = MediaQuery.of(context).size.width * 0.5;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Mon'),
-        weatherBox(Icons.beach_access),
-        Text('Tue'),
-        weatherBox(Icons.beach_access),
-        Text('Wed'),
-        weatherBox(Icons.beach_access),
+        Container(
+            width: cwidth,
+            decoration: BoxDecoration(
+              color: AppColors.containerWeatherScreenColor.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(3),
+            ),
+            //child: Center(
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: style,
+            ) // ),
+            ),
       ],
     );
   }
 
-  Container weatherBox(IconData icon) {
+  Widget weatherColumn() {
+    return SingleChildScrollView(
+      child: Column(
+          children: forecastThreeDays == null
+              ? [Container()]
+              : forecastThreeDays.list
+                  .map((e) => Column(
+                        children: [
+                          Text(e.humanDataByDay),
+                          Text(
+                            e.main.tempToInt,
+                          ),
+                        ],
+                      ))
+                  .skip(1)
+                  .toList()),
+    );
+  }
+
+  Container weatherBox(String weatherIcon) {
+    if (weatherIcon == null) {
+      return Container();
+    }
     return Container(
       color: AppColors.containerWeatherScreenColor.withOpacity(0.6),
       width: 60,
       height: 60,
-      child: Icon(
-        icon,
-        size: 50,
-        color: Colors.white,
+      child: Column(
+        children: [
+          Text('${temperature ?? '...'} °C' + weatherIcon),
+        ],
       ),
     );
   }
