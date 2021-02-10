@@ -1,5 +1,7 @@
 import 'package:volyaApp/models/forecast_item_model.dart';
 import 'package:volyaApp/models/forecast_model.dart';
+import 'package:volyaApp/models/weather_by_geo_model.dart';
+import 'package:volyaApp/models/weather_today.dart';
 import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/services/networkRequest.dart';
 
@@ -8,15 +10,15 @@ const openWeatherMapUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const openForecastMapUrl = 'http://api.openweathermap.org/data/2.5/forecast';
 
 class WeatherService {
-  static Future<dynamic> getWeatherByCity(String cityName) async {
+  static Future<WeatherTodayModel> getWeatherByCity(String cityName) async {
     NetWorkRequest netWorkRequest = NetWorkRequest(
         '$openWeatherMapUrl?q=$cityName&appid=$apiKey&units=metric');
     var weatherData = await netWorkRequest.getData();
     print(weatherData);
-    return weatherData;
+    return WeatherTodayModel.fromJson(weatherData);
   }
 
-  static Future<dynamic> getCurrentLocationWeather() async {
+  static Future<WeatherByGeo> getCurrentLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
 
@@ -24,7 +26,7 @@ class WeatherService {
         '$openWeatherMapUrl?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
     var weatherData = await netWorkRequest.getData();
     print(weatherData);
-    return weatherData;
+    return WeatherByGeo.fromJson(weatherData);
   }
 
   static Future<dynamic> getCityForecast(String cityName) async {

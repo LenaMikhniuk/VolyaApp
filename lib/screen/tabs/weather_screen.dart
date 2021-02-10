@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import 'package:volyaApp/models/forecast_model.dart';
+import 'package:volyaApp/models/weather_by_geo_model.dart';
+import 'package:volyaApp/models/weather_today.dart';
 
 import 'package:volyaApp/screen/city_screen.dart';
-import 'package:volyaApp/services/weather.dart';
+import 'package:volyaApp/services/weather_service.dart';
 import 'package:volyaApp/shared.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -23,7 +25,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     super.initState();
     initialWeater();
-    initialForecast();
+    // initialForecast();
   }
 
   void initialWeater() async {
@@ -36,21 +38,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
     updateForecastWidget(resultForecast);
   }
 
-  void updateUI(dynamic weatherData) {
+  void updateUI(var weatherData) {
     print(weatherData);
     setState(() {
       if (weatherData == null) {
         Image.asset('assets/images/scale_1200.jpg');
         return;
       }
-      num temp = weatherData['main']['temp'];
+      num temp = weatherData.main.temp;
       temperature = temp.toInt();
-      print(temperature);
-      var condition = weatherData['weather'][0]['id'];
+
+      var condition = weatherData.weather[0].id;
       weatherImageName = WeatherService.getWeatherImage(condition, temp);
-      cityName = weatherData['name'];
-      // date:
-      // DateTime.fromMillisecondsSinceEpoch(['dt'] * 1000, isUtc: true);
+      cityName = weatherData.name;
     });
   }
 
@@ -58,18 +58,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
     setState(() {
       print(temperature);
       forecastThreeDays = forecastData;
-
-      // var condition = forecastData['weather'][0]['id'];
-      // weatherImageName = weather.getWeatherImage(condition, temp);
-      // cityName = forecastData['name'];
-      // date:
-      // DateTime.fromMillisecondsSinceEpoch(['dt'] * 1000, isUtc: true);
-      // weatherIcon = forecast.getWeatherIcon(condition);
     });
   }
-
-  // final DateTime now = DateTime.now();
-  // final DateFormat formatter = DateFormat('EdMM');
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +128,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 ),
               );
               if (typedName != null) {
-                var weatherData =
+                WeatherTodayModel weatherData =
                     await WeatherService.getWeatherByCity(typedName);
                 updateUI(weatherData);
               }
