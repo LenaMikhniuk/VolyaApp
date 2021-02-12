@@ -1,5 +1,5 @@
-import 'package:volyaApp/models/forecast_item_model.dart';
-import 'package:volyaApp/models/forecast_model.dart';
+import 'package:volyaApp/models/forecast_by_city_model.dart';
+import 'package:volyaApp/models/forecast_city_items.dart';
 import 'package:volyaApp/models/weather_by_geo_model.dart';
 import 'package:volyaApp/models/weather_today.dart';
 import 'package:volyaApp/services/location.dart';
@@ -18,7 +18,7 @@ class WeatherService {
     return WeatherTodayModel.fromJson(weatherData);
   }
 
-  static Future<WeatherByGeo> getCurrentLocationWeather() async {
+  static Future<WeatherTodayModel> getCurrentLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
 
@@ -26,32 +26,39 @@ class WeatherService {
         '$openWeatherMapUrl?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
     var weatherData = await netWorkRequest.getData();
     print(weatherData);
-    return WeatherByGeo.fromJson(weatherData);
+    return WeatherTodayModel.fromJson(weatherData);
   }
 
-  static Future<dynamic> getCityForecast(String cityName) async {
+  static Future<ForecastByCity> getCityForecast(String cityName) async {
     NetWorkRequest netWorkRequest = NetWorkRequest(
         '$openForecastMapUrl ?q=$cityName&appid=$apiKey&units=metric');
     var forecastData = await netWorkRequest.getData();
     print(forecastData);
-    return forecastData;
+    final cityResult = ForecastByCity.fromJson(forecastData);
+    List<ForecastByCityItems> filteredCityResult = [];
+    for (var index = 0; index < cityResult.list.length; index++) {
+      if (index == 0 || index % 8 == 0) {
+        filteredCityResult.add(cityResult.list[index]);
+      }
+    }
+    return ForecastByCity(list: filteredCityResult);
   }
 
-  static Future<ForecastModel> getCurrentLocationForecast() async {
+  static Future<ForecastByCity> getCurrentLocationForecast() async {
     Location location = Location();
     await location.getCurrentLocation();
     NetWorkRequest netWorkRequest = NetWorkRequest(
         '$openForecastMapUrl?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
     var forecastData = await netWorkRequest.getData();
-    final result = ForecastModel.fromJson(forecastData);
-    List<ForecastItem> filteredResult = [];
+    final result = ForecastByCity.fromJson(forecastData);
+    List<ForecastByCityItems> filteredResult = [];
 
     for (var index = 0; index < result.list.length; index++) {
       if (index == 0 || index % 8 == 0) {
         filteredResult.add(result.list[index]);
       }
     }
-    return ForecastModel(list: filteredResult);
+    return ForecastByCity(list: filteredResult);
   }
 
   static String getWeatherIcon(int condition) {

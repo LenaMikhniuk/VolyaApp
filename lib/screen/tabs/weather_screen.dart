@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:volyaApp/models/forecast_by_city_model.dart';
 
-import 'package:volyaApp/models/forecast_model.dart';
-import 'package:volyaApp/models/weather_by_geo_model.dart';
 import 'package:volyaApp/models/weather_today.dart';
 
 import 'package:volyaApp/screen/city_screen.dart';
@@ -19,13 +18,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
   String weatherImageName;
   String cityName;
   String weatherMessage;
-  ForecastModel forecastThreeDays;
+  ForecastByCity forecastThreeDays;
 
   @override
   void initState() {
     super.initState();
     initialWeater();
-    // initialForecast();
+    //initialForecast();
   }
 
   void initialWeater() async {
@@ -54,7 +53,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     });
   }
 
-  void updateForecastWidget(ForecastModel forecastData) {
+  void updateForecastWidget(ForecastByCity forecastData) {
     setState(() {
       print(temperature);
       forecastThreeDays = forecastData;
@@ -131,6 +130,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 WeatherTodayModel weatherData =
                     await WeatherService.getWeatherByCity(typedName);
                 updateUI(weatherData);
+                // ForecastByCity forecastByCity =
+                //     await WeatherService.getCityForecast(typedName);
+                // updateForecastWidget(forecastByCity);
               }
             },
           ),
@@ -167,11 +169,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
           children: forecastThreeDays == null
               ? [Container()]
               : forecastThreeDays.list
+                  // forecast by city???
                   .map((e) => Column(
                         children: [
-                          Text(e.humanDataByDay),
+                          Text(e.toString()),
                           Text(
-                            e.main.tempToInt,
+                            e.main.toString(),
                           ),
                         ],
                       ))

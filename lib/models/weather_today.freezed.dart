@@ -17,11 +17,14 @@ class _$WeatherTodayModelTearOff {
   const _$WeatherTodayModelTearOff();
 
 // ignore: unused_element
-  _WeatherTodayModel call({num temp, int id, String cityName}) {
+  _WeatherTodayModel call(
+      {List<WeatherByCityCondition> weather,
+      WeatherByCityTemperature main,
+      String name}) {
     return _WeatherTodayModel(
-      temp: temp,
-      id: id,
-      cityName: cityName,
+      weather: weather,
+      main: main,
+      name: name,
     );
   }
 
@@ -37,9 +40,9 @@ const $WeatherTodayModel = _$WeatherTodayModelTearOff();
 
 /// @nodoc
 mixin _$WeatherTodayModel {
-  num get temp;
-  int get id;
-  String get cityName;
+  List<WeatherByCityCondition> get weather;
+  WeatherByCityTemperature get main;
+  String get name;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -51,7 +54,12 @@ abstract class $WeatherTodayModelCopyWith<$Res> {
   factory $WeatherTodayModelCopyWith(
           WeatherTodayModel value, $Res Function(WeatherTodayModel) then) =
       _$WeatherTodayModelCopyWithImpl<$Res>;
-  $Res call({num temp, int id, String cityName});
+  $Res call(
+      {List<WeatherByCityCondition> weather,
+      WeatherByCityTemperature main,
+      String name});
+
+  $WeatherByCityTemperatureCopyWith<$Res> get main;
 }
 
 /// @nodoc
@@ -65,15 +73,27 @@ class _$WeatherTodayModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object temp = freezed,
-    Object id = freezed,
-    Object cityName = freezed,
+    Object weather = freezed,
+    Object main = freezed,
+    Object name = freezed,
   }) {
     return _then(_value.copyWith(
-      temp: temp == freezed ? _value.temp : temp as num,
-      id: id == freezed ? _value.id : id as int,
-      cityName: cityName == freezed ? _value.cityName : cityName as String,
+      weather: weather == freezed
+          ? _value.weather
+          : weather as List<WeatherByCityCondition>,
+      main: main == freezed ? _value.main : main as WeatherByCityTemperature,
+      name: name == freezed ? _value.name : name as String,
     ));
+  }
+
+  @override
+  $WeatherByCityTemperatureCopyWith<$Res> get main {
+    if (_value.main == null) {
+      return null;
+    }
+    return $WeatherByCityTemperatureCopyWith<$Res>(_value.main, (value) {
+      return _then(_value.copyWith(main: value));
+    });
   }
 }
 
@@ -84,7 +104,13 @@ abstract class _$WeatherTodayModelCopyWith<$Res>
           _WeatherTodayModel value, $Res Function(_WeatherTodayModel) then) =
       __$WeatherTodayModelCopyWithImpl<$Res>;
   @override
-  $Res call({num temp, int id, String cityName});
+  $Res call(
+      {List<WeatherByCityCondition> weather,
+      WeatherByCityTemperature main,
+      String name});
+
+  @override
+  $WeatherByCityTemperatureCopyWith<$Res> get main;
 }
 
 /// @nodoc
@@ -100,14 +126,16 @@ class __$WeatherTodayModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object temp = freezed,
-    Object id = freezed,
-    Object cityName = freezed,
+    Object weather = freezed,
+    Object main = freezed,
+    Object name = freezed,
   }) {
     return _then(_WeatherTodayModel(
-      temp: temp == freezed ? _value.temp : temp as num,
-      id: id == freezed ? _value.id : id as int,
-      cityName: cityName == freezed ? _value.cityName : cityName as String,
+      weather: weather == freezed
+          ? _value.weather
+          : weather as List<WeatherByCityCondition>,
+      main: main == freezed ? _value.main : main as WeatherByCityTemperature,
+      name: name == freezed ? _value.name : name as String,
     ));
   }
 }
@@ -116,42 +144,42 @@ class __$WeatherTodayModelCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_WeatherTodayModel implements _WeatherTodayModel {
-  const _$_WeatherTodayModel({this.temp, this.id, this.cityName});
+  const _$_WeatherTodayModel({this.weather, this.main, this.name});
 
   factory _$_WeatherTodayModel.fromJson(Map<String, dynamic> json) =>
       _$_$_WeatherTodayModelFromJson(json);
 
   @override
-  final num temp;
+  final List<WeatherByCityCondition> weather;
   @override
-  final int id;
+  final WeatherByCityTemperature main;
   @override
-  final String cityName;
+  final String name;
 
   @override
   String toString() {
-    return 'WeatherTodayModel(temp: $temp, id: $id, cityName: $cityName)';
+    return 'WeatherTodayModel(weather: $weather, main: $main, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _WeatherTodayModel &&
-            (identical(other.temp, temp) ||
-                const DeepCollectionEquality().equals(other.temp, temp)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.cityName, cityName) ||
+            (identical(other.weather, weather) ||
                 const DeepCollectionEquality()
-                    .equals(other.cityName, cityName)));
+                    .equals(other.weather, weather)) &&
+            (identical(other.main, main) ||
+                const DeepCollectionEquality().equals(other.main, main)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(temp) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(cityName);
+      const DeepCollectionEquality().hash(weather) ^
+      const DeepCollectionEquality().hash(main) ^
+      const DeepCollectionEquality().hash(name);
 
   @JsonKey(ignore: true)
   @override
@@ -165,18 +193,20 @@ class _$_WeatherTodayModel implements _WeatherTodayModel {
 }
 
 abstract class _WeatherTodayModel implements WeatherTodayModel {
-  const factory _WeatherTodayModel({num temp, int id, String cityName}) =
-      _$_WeatherTodayModel;
+  const factory _WeatherTodayModel(
+      {List<WeatherByCityCondition> weather,
+      WeatherByCityTemperature main,
+      String name}) = _$_WeatherTodayModel;
 
   factory _WeatherTodayModel.fromJson(Map<String, dynamic> json) =
       _$_WeatherTodayModel.fromJson;
 
   @override
-  num get temp;
+  List<WeatherByCityCondition> get weather;
   @override
-  int get id;
+  WeatherByCityTemperature get main;
   @override
-  String get cityName;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$WeatherTodayModelCopyWith<_WeatherTodayModel> get copyWith;

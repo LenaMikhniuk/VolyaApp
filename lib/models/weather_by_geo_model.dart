@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_serializable/json_serializable.dart';
+
 import 'package:volyaApp/models/weather_by_geo_temperature.dart';
 import 'package:volyaApp/models/weather_geo_condition.dart';
 
