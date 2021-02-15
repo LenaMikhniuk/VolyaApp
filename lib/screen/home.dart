@@ -4,7 +4,7 @@ import 'package:volyaApp/screen/fairytales/fairytale_screen.dart';
 import 'package:volyaApp/screen/tabs/music_screen.dart';
 import 'package:volyaApp/screen/tabs/photo_gallery_screen.dart';
 import 'package:volyaApp/screen/tabs/video_screen.dart';
-import 'package:volyaApp/screen/tabs/weather_screen.dart';
+import 'package:volyaApp/screen/tabs/weather_screen/weather_screen.dart';
 
 import 'package:volyaApp/shared.dart';
 

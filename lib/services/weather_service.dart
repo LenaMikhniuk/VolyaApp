@@ -1,6 +1,6 @@
 import 'package:volyaApp/models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/forecast_city_items.dart';
-import 'package:volyaApp/models/weather_by_geo_model.dart';
+
 import 'package:volyaApp/models/weather_today.dart';
 import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/services/networkRequest.dart';
@@ -31,9 +31,8 @@ class WeatherService {
 
   static Future<ForecastByCity> getCityForecast(String cityName) async {
     NetWorkRequest netWorkRequest = NetWorkRequest(
-        '$openForecastMapUrl ?q=$cityName&appid=$apiKey&units=metric');
+        '$openForecastMapUrl?q=$cityName&appid=$apiKey&units=metric');
     var forecastData = await netWorkRequest.getData();
-    print(forecastData);
     final cityResult = ForecastByCity.fromJson(forecastData);
     List<ForecastByCityItems> filteredCityResult = [];
     for (var index = 0; index < cityResult.list.length; index++) {
@@ -59,65 +58,5 @@ class WeatherService {
       }
     }
     return ForecastByCity(list: filteredResult);
-  }
-
-  static String getWeatherIcon(int condition) {
-    if (condition < 300) {
-      return '🌩';
-    } else if (condition < 400) {
-      return '🌧';
-    } else if (condition < 600) {
-      return '☔️';
-    } else if (condition < 700) {
-      return '☃️';
-    } else if (condition < 800) {
-      return '🌫';
-    } else if (condition == 800) {
-      return '☀️';
-    } else if (condition <= 804) {
-      return '☁️';
-    } else {
-      return '🤷‍';
-    }
-  }
-
-  static String getWeatherImage(int condition, num temp) {
-    print('condition - $condition');
-    print('temp - $temp');
-    if (condition < 300) {
-      return 'assets/images/thun.jpg';
-    } else if (condition < 600 && temp < 18) {
-      return 'assets/images/rain cold.jpg';
-    } else if (condition < 600 && temp >= 18) {
-      return 'assets/images/rain warm.jpg';
-    } else if (condition < 700) {
-      return 'assets/images/weatherSnow.jpg';
-    } else if (condition < 800 && temp < 8) {
-      return 'assets/images/fog_cold.jpeg';
-    } else if (condition < 800 && temp >= 8) {
-      return 'assets/images/fog_warm.jpeg';
-    } else if (condition == 800 && temp < 8 && temp > 2) {
-      return 'assets/images/cold.jpeg';
-    } else if (condition == 800 && temp <= 2) {
-      return 'assets/images/winter sun.jpg';
-    } else if (condition == 800 && temp >= 8 && temp < 15) {
-      return 'assets/images/8_15_sun.jpg';
-    } else if (condition == 800 && temp >= 15 && temp < 20) {
-      return 'assets/images/16_20_sun.jpg';
-    } else if (condition == 800 && temp >= 20) {
-      return 'assets/images/21_sun.jpg';
-    } else if (condition <= 804 && temp <= 2) {
-      return 'assets/images/cloud_winter.jpeg';
-    } else if (condition <= 804 && temp < 8 && temp > 2) {
-      return 'assets/images/cold.jpeg';
-    } else if (condition <= 804 && temp >= 8 && temp < 16) {
-      return 'assets/images/8_15_cloud.jpg';
-    } else if (condition <= 804 && temp >= 16 && temp < 20) {
-      return 'assets/images/16_20_cloud.jpeg';
-    } else if (condition <= 804 && temp >= 20) {
-      return 'assets/images/21_cloud.jpg';
-    } else {
-      return 'assets/images/scale_1200.jpg';
-    }
   }
 }

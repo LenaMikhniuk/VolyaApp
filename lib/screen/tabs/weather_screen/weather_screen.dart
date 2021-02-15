@@ -4,8 +4,10 @@ import 'package:volyaApp/models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/weather_today.dart';
 
 import 'package:volyaApp/screen/city_screen.dart';
+import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
 import 'package:volyaApp/services/weather_service.dart';
 import 'package:volyaApp/shared.dart';
+import 'package:volyaApp/util/weather_utils.dart';
 
 class WeatherScreen extends StatefulWidget {
   @override
@@ -24,7 +26,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void initState() {
     super.initState();
     initialWeater();
-    //initialForecast();
+    initialForecast();
   }
 
   void initialWeater() async {
@@ -46,16 +48,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
       }
       num temp = weatherData.main.temp;
       temperature = temp.toInt();
-
       var condition = weatherData.weather[0].id;
-      weatherImageName = WeatherService.getWeatherImage(condition, temp);
+      weatherIcon = WeatherUtils.getWeatherIcon(condition);
+      weatherImageName = WeatherUtils.getWeatherImage(condition, temp);
       cityName = weatherData.name;
     });
   }
 
   void updateForecastWidget(ForecastByCity forecastData) {
     setState(() {
-      print(temperature);
       forecastThreeDays = forecastData;
     });
   }
@@ -92,10 +93,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
               // temperature
               textContainer(
-                '${temperature ?? '...'} °C',
+                '${temperature ?? '...'}  °C' + '  ${weatherIcon ?? ''}',
                 FontsStyles.weatherData,
               ),
-              Expanded(child: weatherColumn()),
+              Expanded(
+                  child: ForcastWidget(forecastThreeDays: forecastThreeDays)),
             ],
           ),
         ],
@@ -105,7 +107,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   Widget _buildHeader(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25, right: 25, top: 25),
+      padding: const EdgeInsets.only(top: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -117,7 +119,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
               updateUI(weatherData);
             },
           ),
-          textContainer('${cityName ?? '...'}', FontsStyles.cityName),
+          Expanded(
+              child:
+                  textContainer('${cityName ?? '...'}', FontsStyles.cityName)),
           LocationButton(
             iconData: Icons.place,
             onPressed: () async {
@@ -130,9 +134,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 WeatherTodayModel weatherData =
                     await WeatherService.getWeatherByCity(typedName);
                 updateUI(weatherData);
-                // ForecastByCity forecastByCity =
-                //     await WeatherService.getCityForecast(typedName);
-                // updateForecastWidget(forecastByCity);
+                ForecastByCity forecastByCity =
+                    await WeatherService.getCityForecast(typedName);
+                updateForecastWidget(forecastByCity);
               }
             },
           ),
@@ -142,23 +146,29 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   Widget textContainer(String text, TextStyle style) {
-    double cwidth = MediaQuery.of(context).size.width * 0.5;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-            width: cwidth,
-            decoration: BoxDecoration(
-              color: AppColors.containerWeatherScreenColor.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(3),
-            ),
-            //child: Center(
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: style,
-            ) // ),
-            ),
+        Flexible(
+          child: Container(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              decoration: BoxDecoration(
+                color: AppColors.containerWeatherScreenColor.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.center,
+                      style: style,
+                    ),
+                  ),
+                ],
+              )),
+        ),
       ],
     );
   }
@@ -167,7 +177,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     return SingleChildScrollView(
       child: Column(
           children: forecastThreeDays == null
-              ? [Container()]
+              ? Container()
               : forecastThreeDays.list
                   // forecast by city???
                   .map((e) => Column(
@@ -211,13 +221,16 @@ class LocationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        iconData,
-        size: 40,
-        color: AppColors.iconButtonWeatherColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: IconButton(
+        icon: Icon(
+          iconData,
+          size: 40,
+          color: AppColors.iconButtonWeatherColor,
+        ),
+        onPressed: onPressed,
       ),
-      onPressed: onPressed,
     );
   }
 }
