@@ -4,6 +4,7 @@ import 'package:volyaApp/models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/weather_today.dart';
 
 import 'package:volyaApp/screen/city_screen.dart';
+import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
 import 'package:volyaApp/services/weather_service.dart';
 import 'package:volyaApp/shared.dart';
@@ -15,11 +16,12 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  int temperature;
-  String weatherIcon;
+  // int temperature;
+  // String weatherIcon;
   String weatherImageName;
-  String cityName;
-  String weatherMessage;
+  // String cityName;
+
+  WeatherTodayModel weatherTodayModel;
   ForecastByCity forecastThreeDays;
 
   @override
@@ -30,8 +32,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   void initialWeater() async {
-    final result = await WeatherService.getCurrentLocationWeather();
-    updateUI(result);
+    weatherTodayModel = await WeatherService.getCurrentLocationWeather();
+    setState(() {});
+    // updateUI(result);
   }
 
   void initialForecast() async {
@@ -39,19 +42,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
     updateForecastWidget(resultForecast);
   }
 
-  void updateUI(var weatherData) {
-    print(weatherData);
+  void updateUI(WeatherTodayModel weatherData) {
+    print(weatherTodayModel);
     setState(() {
+      weatherTodayModel = weatherData;
       if (weatherData == null) {
         Image.asset('assets/images/scale_1200.jpg');
         return;
       }
-      num temp = weatherData.main.temp;
-      temperature = temp.toInt();
-      var condition = weatherData.weather[0].id;
-      weatherIcon = WeatherUtils.getWeatherIcon(condition);
-      weatherImageName = WeatherUtils.getWeatherImage(condition, temp);
-      cityName = weatherData.name;
     });
   }
 
@@ -76,16 +74,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
       ),
       body: Stack(
         children: [
-          weatherImageName == null
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : Image.asset(
-                  weatherImageName,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
+          ImageFromWeatherTodayModel(
+            weatherImage: WeatherUtils.getWeatherImage(
+                weatherTodayModel?.weather?.first?.id,
+                weatherTodayModel?.main?.temp),
+            weatherToday: weatherTodayModel,
+          ),
+
+          //  Image.asset(
+          //     weatherImageName,
+          //     fit: BoxFit.cover,
+          //     width: double.infinity,
+          //     height: double.infinity,
+          //   ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -93,7 +94,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
               // temperature
               textContainer(
-                '${temperature ?? '...'}  °C' + '  ${weatherIcon ?? ''}',
+                '${weatherTodayModel?.main?.temp?.toInt() ?? '...'}  °C' +
+                    '  ${WeatherUtils.getWeatherIcon(weatherTodayModel?.weather?.first?.id) ?? ''}',
                 FontsStyles.weatherData,
               ),
               Expanded(
@@ -120,8 +122,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
             },
           ),
           Expanded(
-              child:
-                  textContainer('${cityName ?? '...'}', FontsStyles.cityName)),
+              child: textContainer(
+                  '${weatherTodayModel?.name ?? '...'}', FontsStyles.cityName)),
           LocationButton(
             iconData: Icons.place,
             onPressed: () async {
@@ -170,42 +172,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
               )),
         ),
       ],
-    );
-  }
-
-  Widget weatherColumn() {
-    return SingleChildScrollView(
-      child: Column(
-          children: forecastThreeDays == null
-              ? Container()
-              : forecastThreeDays.list
-                  // forecast by city???
-                  .map((e) => Column(
-                        children: [
-                          Text(e.toString()),
-                          Text(
-                            e.main.toString(),
-                          ),
-                        ],
-                      ))
-                  .skip(1)
-                  .toList()),
-    );
-  }
-
-  Container weatherBox(String weatherIcon) {
-    if (weatherIcon == null) {
-      return Container();
-    }
-    return Container(
-      color: AppColors.containerWeatherScreenColor.withOpacity(0.6),
-      width: 60,
-      height: 60,
-      child: Column(
-        children: [
-          Text('${temperature ?? '...'} °C' + weatherIcon),
-        ],
-      ),
     );
   }
 }

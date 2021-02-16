@@ -46,6 +46,11 @@ class FontsStyles {
     color: AppColors.cityName,
     fontSize: 35,
   );
+
+  static TextStyle forecastThreeDays = GoogleFonts.montserrat(
+    color: AppColors.weatherDataTextColor,
+    fontSize: 20,
+  );
 }
 
 class ButtonBoxDecoration {

@@ -1,5 +1,10 @@
+import 'package:flutter/material.dart';
+
 class WeatherUtils {
-  static String getWeatherIcon(int condition) {
+  static String getWeatherIcon(num condition) {
+    if (condition == null) {
+      return '';
+    }
     if (condition < 300) {
       return '🌩';
     } else if (condition < 400) {
@@ -20,6 +25,9 @@ class WeatherUtils {
   }
 
   static String getWeatherImage(int condition, num temp) {
+    if (condition == null) {
+      return 'assets/images/white.jpg';
+    }
     if (condition < 300) {
       return 'assets/images/thun.jpg';
     } else if (condition < 600 && temp < 18) {
