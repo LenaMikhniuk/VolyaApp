@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class CityModel {
   // final int sunrise;
   // final int sunset;

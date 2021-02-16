@@ -1,8 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:volyaApp/models/forecast_by_city_model.dart';
-
 import 'package:volyaApp/models/weather_today.dart';
-
 import 'package:volyaApp/screen/city_screen.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
@@ -16,11 +15,6 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  // int temperature;
-  // String weatherIcon;
-  String weatherImageName;
-  // String cityName;
-
   WeatherTodayModel weatherTodayModel;
   ForecastByCity forecastThreeDays;
 
@@ -33,36 +27,18 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   void initialWeater() async {
     weatherTodayModel = await WeatherService.getCurrentLocationWeather();
+
     setState(() {});
-    // updateUI(result);
   }
 
   void initialForecast() async {
-    final resultForecast = await WeatherService.getCurrentLocationForecast();
-    updateForecastWidget(resultForecast);
-  }
-
-  void updateUI(WeatherTodayModel weatherData) {
-    print(weatherTodayModel);
-    setState(() {
-      weatherTodayModel = weatherData;
-      if (weatherData == null) {
-        Image.asset('assets/images/scale_1200.jpg');
-        return;
-      }
-    });
-  }
-
-  void updateForecastWidget(ForecastByCity forecastData) {
-    setState(() {
-      forecastThreeDays = forecastData;
-    });
+    forecastThreeDays = await WeatherService.getCurrentLocationForecast();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.red,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -80,26 +56,26 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 weatherTodayModel?.main?.temp),
             weatherToday: weatherTodayModel,
           ),
-
-          //  Image.asset(
-          //     weatherImageName,
-          //     fit: BoxFit.cover,
-          //     width: double.infinity,
-          //     height: double.infinity,
-          //   ),
+          // isLoading
+          //     ? LoadingIndicator()
+          //     :
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               _buildHeader(context),
-
-              // temperature
               textContainer(
-                '${weatherTodayModel?.main?.temp?.toInt() ?? '...'}  °C' +
+                '${(weatherTodayModel?.main?.temp ?? 0) > 0 ? '+' : ''}${weatherTodayModel?.main?.temp?.toInt() ?? '...'}°C' +
                     '  ${WeatherUtils.getWeatherIcon(weatherTodayModel?.weather?.first?.id) ?? ''}',
                 FontsStyles.weatherData,
               ),
               Expanded(
-                  child: ForcastWidget(forecastThreeDays: forecastThreeDays)),
+                child: ForcastWidget(
+                  forecastThreeDays: forecastThreeDays,
+                  iconName: WeatherUtils.getWeatherIcon(
+                    forecastThreeDays?.list?.first?.weather?.first?.id,
+                  ),
+                ),
+              ),
             ],
           ),
         ],
@@ -114,31 +90,58 @@ class _WeatherScreenState extends State<WeatherScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           LocationButton(
-            iconData: Icons.near_me,
+            iconData: Icons.place,
             onPressed: () async {
-              var weatherData =
-                  await WeatherService.getCurrentLocationWeather();
-              updateUI(weatherData);
+              try {
+                weatherTodayModel =
+                    await WeatherService.getCurrentLocationWeather();
+                setState(() {});
+                forecastThreeDays =
+                    await WeatherService.getCurrentLocationForecast();
+                setState(() {});
+              } catch (error) {}
             },
           ),
           Expanded(
               child: textContainer(
                   '${weatherTodayModel?.name ?? '...'}', FontsStyles.cityName)),
           LocationButton(
-            iconData: Icons.place,
+            iconData: Icons.search,
             onPressed: () async {
               var typedName = await Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => CityScreen(),
                 ),
               );
+              setState(() {});
               if (typedName != null) {
-                WeatherTodayModel weatherData =
-                    await WeatherService.getWeatherByCity(typedName);
-                updateUI(weatherData);
-                ForecastByCity forecastByCity =
+                try {
+                  weatherTodayModel =
+                      await WeatherService.getWeatherByCity(typedName);
+                } catch (error) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('An error occured'),
+                        content: Text('Please enter a correct city name'),
+                        actions: [
+                          FlatButton(
+                              onPressed: Navigator.of(context).pop,
+                              child: Text(
+                                'Ok',
+                                style:
+                                    TextStyle(color: AppColors.errorTextColor),
+                              ))
+                        ],
+                      );
+                    },
+                  );
+                }
+                setState(() {});
+                forecastThreeDays =
                     await WeatherService.getCityForecast(typedName);
-                updateForecastWidget(forecastByCity);
+                setState(() {});
               }
             },
           ),
@@ -162,10 +165,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Flexible(
-                    child: Text(
+                    child: AutoSizeText(
                       text,
                       textAlign: TextAlign.center,
                       style: style,
+                      minFontSize: 18,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

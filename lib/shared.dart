@@ -25,12 +25,14 @@ class AppColors {
   static const Color weatherCityFlatButtonColor = Color(0xff2B244F);
   static const Color cityName = Color(0xffFAEBFF);
   static const Color containerWeatherScreenColor = Color(0xff6600ff);
+  static const Color borderSideForecastThreeDaysColor = Color(0xff64626D);
+  static const Color errorTextColor = Color(0xff6600ff);
 }
 
 class FontsStyles {
   static TextStyle appBar = GoogleFonts.overpass(
     color: AppColors.appBarMainTextCoor,
-    fontSize: 45,
+    fontSize: 40,
   );
   static TextStyle appBarFairytalesAudioPlayerScreen = GoogleFonts.montserrat(
     color: AppColors.appBarTextColorFairytaleScreen,
@@ -48,9 +50,9 @@ class FontsStyles {
   );
 
   static TextStyle forecastThreeDays = GoogleFonts.montserrat(
-    color: AppColors.weatherDataTextColor,
-    fontSize: 20,
-  );
+      color: AppColors.weatherDataTextColor,
+      fontSize: 20,
+      fontWeight: FontWeight.w500);
 }
 
 class ButtonBoxDecoration {

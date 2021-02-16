@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:volyaApp/models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/forecast_city_items.dart';
 
@@ -13,9 +15,14 @@ class WeatherService {
   static Future<WeatherTodayModel> getWeatherByCity(String cityName) async {
     NetWorkRequest netWorkRequest = NetWorkRequest(
         '$openWeatherMapUrl?q=$cityName&appid=$apiKey&units=metric');
-    var weatherData = await netWorkRequest.getData();
-    print(weatherData);
-    return WeatherTodayModel.fromJson(weatherData);
+    try {
+      var weatherData = await netWorkRequest.getData();
+      print(weatherData);
+      return WeatherTodayModel.fromJson(weatherData);
+    } catch (error) {
+      throw (error);
+      // throw (HttpException('Please enter a correct city name'));
+    }
   }
 
   static Future<WeatherTodayModel> getCurrentLocationWeather() async {
@@ -24,9 +31,14 @@ class WeatherService {
 
     NetWorkRequest netWorkRequest = NetWorkRequest(
         '$openWeatherMapUrl?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
-    var weatherData = await netWorkRequest.getData();
-    print(weatherData);
-    return WeatherTodayModel.fromJson(weatherData);
+    try {
+      var weatherData = await netWorkRequest.getData();
+      print(weatherData);
+      return WeatherTodayModel.fromJson(weatherData);
+    } catch (error) {
+      throw (HttpException(
+          'Something went wrong, please, check the connection to the internet'));
+    }
   }
 
   static Future<ForecastByCity> getCityForecast(String cityName) async {

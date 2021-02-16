@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:volyaApp/models/weather_city_condition.dart';
 import 'package:volyaApp/models/weather_today.dart';
 import 'package:volyaApp/util/weather_utils.dart';
 
