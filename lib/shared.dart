@@ -51,7 +51,7 @@ class FontsStyles {
 
   static TextStyle forecastThreeDays = GoogleFonts.montserrat(
       color: AppColors.weatherDataTextColor,
-      fontSize: 20,
+      fontSize: 30,
       fontWeight: FontWeight.w500);
 }
 

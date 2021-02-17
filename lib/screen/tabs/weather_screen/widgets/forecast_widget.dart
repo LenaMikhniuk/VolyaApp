@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:volyaApp/models/forecast_by_city_model.dart';
@@ -20,7 +21,7 @@ class ForcastWidget extends StatelessWidget {
             child: Column(
                 children: forecastThreeDays.list
                     .map((e) => Container(
-                          width: 50,
+                          width: 80,
                           margin: EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             border: buildBorder(),
@@ -33,15 +34,23 @@ class ForcastWidget extends StatelessWidget {
                                 DateTimeUtils.getDayFromDateTime(e.dt),
                                 style: FontsStyles.forecastThreeDays,
                               ),
-                              Text(
+                              AutoSizeText(
                                 '${(e?.main?.temp ?? 0) > 0 ? '+' : ''}'
                                 ' ${e?.main?.temp?.toStringAsFixed(0) ?? ''}°C',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                                maxLines: 1,
+                                minFontSize: 13,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              Text(WeatherUtils.getWeatherIcon(
-                                      e?.weather?.first?.id) ??
-                                  ''),
+                              Text(
+                                WeatherUtils.getWeatherIcon(
+                                        e?.weather?.first?.id) ??
+                                    '',
+                                style: TextStyle(fontSize: 40),
+                              ),
                             ],
                           ),
                         ))

@@ -5,6 +5,7 @@ import 'package:volyaApp/models/weather_today.dart';
 import 'package:volyaApp/screen/city_screen.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
+import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/services/weather_service.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/util/weather_utils.dart';
@@ -17,10 +18,13 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   WeatherTodayModel weatherTodayModel;
   ForecastByCity forecastThreeDays;
+  // bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
+
+    Location.determinePosition();
     initialWeater();
     initialForecast();
   }
@@ -56,9 +60,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 weatherTodayModel?.main?.temp),
             weatherToday: weatherTodayModel,
           ),
-          // isLoading
-          //     ? LoadingIndicator()
-          //     :
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
