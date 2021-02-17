@@ -27,6 +27,9 @@ class AppColors {
   static const Color containerWeatherScreenColor = Color(0xff6600ff);
   static const Color borderSideForecastThreeDaysColor = Color(0xff64626D);
   static const Color errorTextColor = Color(0xff6600ff);
+  static const Color circularIndicatorColor = Color(0xff6600ff);
+  static const Color hintSearchBarColor = Color(0xff6600ff);
+  static const Color iconSearchBarColor = Color(0xff6600ff);
 }
 
 class FontsStyles {
@@ -53,6 +56,16 @@ class FontsStyles {
       color: AppColors.weatherDataTextColor,
       fontSize: 30,
       fontWeight: FontWeight.w500);
+
+  static TextStyle hintName = GoogleFonts.raleway(
+    color: AppColors.hintSearchBarColor,
+    fontSize: 17,
+  );
+
+  static TextStyle selectedName = GoogleFonts.raleway(
+    color: AppColors.hintSearchBarColor,
+    fontSize: 23,
+  );
 }
 
 class ButtonBoxDecoration {

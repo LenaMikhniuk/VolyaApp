@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:volyaApp/models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/weather_today.dart';
-import 'package:volyaApp/screen/city_screen.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/searchBarScreen.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
@@ -41,7 +40,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       body: Stack(
         children: [
           weatherTodayModel == null
-              ? Center(child: CircularProgressIndicator())
+              ? buildCircularProgressIndicator()
               : ImageFromWeatherTodayModel(
                   weatherImage: WeatherUtils.getWeatherImage(
                       weatherTodayModel?.weather?.first?.id,
@@ -78,6 +77,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
         ],
       ),
     );
+  }
+
+  Center buildCircularProgressIndicator() {
+    return Center(
+        child: SizedBox(
+      height: 90,
+      width: 90,
+      child: CircularProgressIndicator(
+        strokeWidth: 5,
+        valueColor: AlwaysStoppedAnimation<Color>(
+            AppColors.circularIndicatorColor.withOpacity(0.5)),
+      ),
+    ));
   }
 
   Future<void> onChosenCity(String typedName) async {
@@ -127,7 +139,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       children: [
         Flexible(
           child: Container(
-              padding: EdgeInsets.only(left: 20, right: 20),
+              //padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
                 color: AppColors.containerWeatherScreenColor.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(3),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:volyaApp/shared.dart';
 
 class SearchBarScreen extends StatefulWidget {
   final VoidCallback onCurrentLocation;
@@ -71,17 +72,27 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
   @override
   Widget build(BuildContext context) {
     return FloatingSearchBar(
-      scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
+      queryStyle: FontsStyles.hintName,
+      iconColor: AppColors.iconSearchBarColor,
       controller: controller,
       transition: CircularFloatingSearchBarTransition(),
       physics: BouncingScrollPhysics(),
-      title: selectedTerm != null ? Text(selectedTerm) : null,
+      title: selectedTerm != null
+          ? Text(
+              selectedTerm,
+              style: FontsStyles.selectedName,
+            )
+          : null,
       hint: 'Enter a city name',
+      hintStyle: FontsStyles.hintName,
       actions: [
         FloatingSearchBarAction(
           showIfOpened: false,
           child: CircularButton(
-              icon: const Icon(Icons.place),
+              icon: const Icon(
+                Icons.place,
+                color: AppColors.iconSearchBarColor,
+              ),
               onPressed: () {
                 selectedTerm = null;
                 widget.onCurrentLocation();
@@ -118,13 +129,19 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                       'Start searching',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.caption,
+                      style: FontsStyles.hintName,
                     ),
                   );
                 } else if (filteredSearchHistory.isEmpty) {
                   return ListTile(
-                    title: Text(controller.query),
-                    leading: const Icon(Icons.search),
+                    title: Text(
+                      controller.query,
+                      style: FontsStyles.hintName,
+                    ),
+                    leading: const Icon(
+                      Icons.search,
+                      color: AppColors.iconSearchBarColor,
+                    ),
                     onTap: () {
                       setState(() {
                         addSearchTerm(controller.query);
@@ -144,10 +161,15 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                               term,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
+                              style: FontsStyles.hintName,
                             ),
-                            leading: const Icon(Icons.history),
+                            leading: const Icon(
+                              Icons.history,
+                              color: AppColors.iconSearchBarColor,
+                            ),
                             trailing: IconButton(
-                              icon: const Icon(Icons.clear),
+                              icon: const Icon(Icons.clear,
+                                  color: AppColors.iconSearchBarColor),
                               onPressed: () {
                                 setState(() {
                                   deleteSearchTerm(term);
@@ -172,9 +194,6 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
           ),
         );
       },
-      // body: SearchResultsListView(
-      //   searchTerm: selectedTerm,
-      // ),
     );
   }
 }
