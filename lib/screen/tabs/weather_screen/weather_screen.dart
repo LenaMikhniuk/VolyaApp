@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:volyaApp/models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/weather_today.dart';
 import 'package:volyaApp/screen/city_screen.dart';
+import 'package:volyaApp/screen/tabs/weather_screen/searchBarScreen.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
 import 'package:volyaApp/services/location.dart';
@@ -18,7 +19,7 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   WeatherTodayModel weatherTodayModel;
   ForecastByCity forecastThreeDays;
-  // bool isLoading = false;
+  SearchBarScreen searchBarScreen;
 
   @override
   void initState() {
@@ -26,16 +27,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
     Location.determinePosition();
     initialWeater();
-    initialForecast();
   }
 
   void initialWeater() async {
     weatherTodayModel = await WeatherService.getCurrentLocationWeather();
-
-    setState(() {});
-  }
-
-  void initialForecast() async {
     forecastThreeDays = await WeatherService.getCurrentLocationForecast();
     setState(() {});
   }
@@ -43,26 +38,22 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Weather',
-          style: FontsStyles.appBar,
-        ),
-        backgroundColor: AppColors.appBarMainColor,
-        shadowColor: AppColors.appBarShadowColor,
-      ),
       body: Stack(
         children: [
-          ImageFromWeatherTodayModel(
-            weatherImage: WeatherUtils.getWeatherImage(
-                weatherTodayModel?.weather?.first?.id,
-                weatherTodayModel?.main?.temp),
-            weatherToday: weatherTodayModel,
-          ),
+          weatherTodayModel == null
+              ? Center(child: CircularProgressIndicator())
+              : ImageFromWeatherTodayModel(
+                  weatherImage: WeatherUtils.getWeatherImage(
+                      weatherTodayModel?.weather?.first?.id,
+                      weatherTodayModel?.main?.temp),
+                  weatherToday: weatherTodayModel,
+                ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              SizedBox(
+                height: 100,
+              ),
               _buildHeader(context),
               textContainer(
                 '${(weatherTodayModel?.main?.temp ?? 0) > 0 ? '+' : ''}${weatherTodayModel?.main?.temp?.toInt() ?? '...'}°C' +
@@ -79,9 +70,41 @@ class _WeatherScreenState extends State<WeatherScreen> {
               ),
             ],
           ),
+          SearchBarScreen(onCurrentLocation: () {
+            initialWeater();
+          }, onChosenCity: (String typedName) async {
+            onChosenCity(typedName);
+          })
         ],
       ),
     );
+  }
+
+  Future<void> onChosenCity(String typedName) async {
+    try {
+      weatherTodayModel = await WeatherService.getWeatherByCity(typedName);
+      forecastThreeDays = await WeatherService.getCityForecast(typedName);
+      setState(() {});
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('An error occured'),
+            content: Text('Please enter a correct city name'),
+            actions: [
+              FlatButton(
+                onPressed: Navigator.of(context).pop,
+                child: Text(
+                  'Ok',
+                  style: TextStyle(color: AppColors.errorTextColor),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   Widget _buildHeader(BuildContext context) {
@@ -90,62 +113,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          LocationButton(
-            iconData: Icons.place,
-            onPressed: () async {
-              try {
-                weatherTodayModel =
-                    await WeatherService.getCurrentLocationWeather();
-                setState(() {});
-                forecastThreeDays =
-                    await WeatherService.getCurrentLocationForecast();
-                setState(() {});
-              } catch (error) {}
-            },
-          ),
           Expanded(
               child: textContainer(
                   '${weatherTodayModel?.name ?? '...'}', FontsStyles.cityName)),
-          LocationButton(
-            iconData: Icons.search,
-            onPressed: () async {
-              var typedName = await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => CityScreen(),
-                ),
-              );
-              setState(() {});
-              if (typedName != null) {
-                try {
-                  weatherTodayModel =
-                      await WeatherService.getWeatherByCity(typedName);
-                } catch (error) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('An error occured'),
-                        content: Text('Please enter a correct city name'),
-                        actions: [
-                          FlatButton(
-                              onPressed: Navigator.of(context).pop,
-                              child: Text(
-                                'Ok',
-                                style:
-                                    TextStyle(color: AppColors.errorTextColor),
-                              ))
-                        ],
-                      );
-                    },
-                  );
-                }
-                setState(() {});
-                forecastThreeDays =
-                    await WeatherService.getCityForecast(typedName);
-                setState(() {});
-              }
-            },
-          ),
         ],
       ),
     );

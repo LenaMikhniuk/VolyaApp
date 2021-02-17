@@ -26,6 +26,7 @@ dependencies:
   freezed: ^0.12.7
   json_serializable: ^3.5.1
   auto_size_text: ^2.1.0
+  material_floating_search_bar: ^0.2.6
 
  
   
