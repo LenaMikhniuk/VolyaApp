@@ -38,7 +38,7 @@ class ForcastWidget extends StatelessWidget {
                                 minFontSize: 10,
                               ),
                               AutoSizeText(
-                                WeatherUtils.getTempHumanFromNum(null),
+                                WeatherUtils.getTempHumanFromNum(e.main.temp),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
