@@ -38,8 +38,7 @@ class ForcastWidget extends StatelessWidget {
                                 minFontSize: 10,
                               ),
                               AutoSizeText(
-                                '${(e?.main?.temp ?? 0) > 0 ? '+' : ''}'
-                                ' ${e?.main?.temp?.toStringAsFixed(0) ?? ''}°C',
+                                WeatherUtils.getTempHumanFromNum(null),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,

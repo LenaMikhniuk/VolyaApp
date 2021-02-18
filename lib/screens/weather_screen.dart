@@ -58,8 +58,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
               ),
               _buildHeader(context),
               textContainer(
-                '${(weatherTodayModel?.main?.temp ?? 0) > 0 ? '+' : ''}${weatherTodayModel?.main?.temp?.toInt() ?? '...'}°C' +
-                    '  ${WeatherUtils.getWeatherIcon(weatherTodayModel?.weather?.first?.id) ?? ''}',
+                WeatherUtils.tempWithIcon(weatherTodayModel?.main?.temp,
+                    weatherTodayModel?.weather?.first?.id),
                 FontsStyles.weatherData,
               ),
               Expanded(

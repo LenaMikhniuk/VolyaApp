@@ -1,4 +1,16 @@
 class WeatherUtils {
+  static String tempWithIcon(num temp, num condition) {
+    return getTempHumanFromNum(temp) + ' ' + getWeatherIcon(condition);
+  }
+
+  static String getTempHumanFromNum(num temp) {
+    if (temp == null) {
+      return '...';
+    }
+    return '${(temp ?? 0) >= 1 ? '+' : ''}'
+        ' ${temp?.toStringAsFixed(0) ?? ''}°C';
+  }
+
   static String getWeatherIcon(num condition) {
     if (condition == null) {
       return '';
