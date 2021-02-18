@@ -4,8 +4,9 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-import 'package:volyaApp/models/fairytales.dart';
-import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
+import 'package:volyaApp/models/fairytales_models/fairytales.dart';
+import 'package:volyaApp/screens/fairytales/fairytales_audioplayer_screen.dart';
+
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/fairytales/fairytales_data.dart';
 

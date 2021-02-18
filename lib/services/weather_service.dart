@@ -1,9 +1,7 @@
 import 'dart:io';
-
-import 'package:volyaApp/models/forecast_by_city_model.dart';
-import 'package:volyaApp/models/forecast_city_items.dart';
-
-import 'package:volyaApp/models/weather_today.dart';
+import 'package:volyaApp/models/weather_models/forecast_by_city_model.dart';
+import 'package:volyaApp/models/weather_models/forecast_city_items.dart';
+import 'package:volyaApp/models/weather_models/weather_today.dart';
 import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/services/networkRequest.dart';
 

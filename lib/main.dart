@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:volyaApp/screen/tabs/music_screen.dart';
-import 'package:volyaApp/screen/home.dart';
+import 'package:volyaApp/screens/music_screen.dart';
+import 'package:volyaApp/screens/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

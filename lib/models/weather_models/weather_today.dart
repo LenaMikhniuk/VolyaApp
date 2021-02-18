@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:volyaApp/models/weather_by_city_temperature.dart';
-import 'package:volyaApp/models/weather_city_condition.dart';
+
+import 'package:volyaApp/models/weather_models/weather_by_city_temperature.dart';
+import 'package:volyaApp/models/weather_models/weather_city_condition.dart';
 
 part 'weather_today.freezed.dart';
 part 'weather_today.g.dart';

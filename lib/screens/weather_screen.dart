@@ -1,10 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:volyaApp/models/forecast_by_city_model.dart';
-import 'package:volyaApp/models/weather_today.dart';
-import 'package:volyaApp/screen/tabs/weather_screen/searchBarScreen.dart';
-import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
+
+import 'package:volyaApp/models/weather_models/forecast_by_city_model.dart';
+import 'package:volyaApp/models/weather_models/weather_today.dart';
 import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
+
+import 'package:volyaApp/screens/searchBarScreen.dart';
+import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
+
 import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/services/weather_service.dart';
 import 'package:volyaApp/shared.dart';

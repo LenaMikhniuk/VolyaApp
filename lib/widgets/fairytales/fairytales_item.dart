@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:volyaApp/models/fairytales.dart';
-import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
+import 'package:volyaApp/models/fairytales_models/fairytales.dart';
+import 'package:volyaApp/screens/fairytales/fairytales_audioplayer_screen.dart';
 
 class FairytalesItem extends StatelessWidget {
   final Fairytale fairytale;

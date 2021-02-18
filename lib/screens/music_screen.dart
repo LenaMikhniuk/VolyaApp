@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:volyaApp/data.dart';
 import 'package:volyaApp/widgets/music_box.dart';
 
-import '../../shared.dart';
+import '../shared.dart';
 
 class MusicScreen extends StatefulWidget {
   static const routeName = '/music_screen';

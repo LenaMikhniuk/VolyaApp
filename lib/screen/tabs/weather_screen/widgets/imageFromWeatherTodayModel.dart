@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:volyaApp/models/weather_today.dart';
+import 'package:volyaApp/models/weather_models/weather_today.dart';
+
 import 'package:volyaApp/util/weather_utils.dart';
 
 class ImageFromWeatherTodayModel extends StatelessWidget {

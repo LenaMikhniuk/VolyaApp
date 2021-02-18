@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:volyaApp/models/forecast_by_city_model.dart';
+
+import 'package:volyaApp/models/weather_models/forecast_by_city_model.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/util/date_tame_utils.dart';
 import 'package:volyaApp/util/weather_utils.dart';
@@ -21,7 +22,7 @@ class ForcastWidget extends StatelessWidget {
             child: Column(
                 children: forecastThreeDays.list
                     .map((e) => Container(
-                          width: 80,
+                          width: 60,
                           margin: EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             border: buildBorder(),
@@ -30,9 +31,11 @@ class ForcastWidget extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              Text(
+                              AutoSizeText(
                                 DateTimeUtils.getDayFromDateTime(e.dt),
                                 style: FontsStyles.forecastThreeDays,
+                                maxLines: 1,
+                                minFontSize: 10,
                               ),
                               AutoSizeText(
                                 '${(e?.main?.temp ?? 0) > 0 ? '+' : ''}'
@@ -49,7 +52,7 @@ class ForcastWidget extends StatelessWidget {
                                 WeatherUtils.getWeatherIcon(
                                         e?.weather?.first?.id) ??
                                     '',
-                                style: TextStyle(fontSize: 40),
+                                style: TextStyle(fontSize: 30),
                               ),
                             ],
                           ),
