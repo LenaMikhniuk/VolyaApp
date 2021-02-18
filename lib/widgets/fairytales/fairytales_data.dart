@@ -1,4 +1,4 @@
-import 'package:volyaApp/models/fairytales.dart';
+import 'package:volyaApp/models/fairytales_models/fairytales.dart';
 
 class FairytalesData {
   static const List<Fairytale> fairytales = [

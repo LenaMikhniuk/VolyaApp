@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volyaApp/screen/tabs/music_screen.dart';
+import 'package:volyaApp/screens/music_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override

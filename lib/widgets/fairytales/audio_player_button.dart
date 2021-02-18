@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:volyaApp/audioplayer/fairytales_history.dart';
 
-import 'package:volyaApp/models/fairytales.dart';
-import 'package:volyaApp/screen/fairytales/fairytales_audioplayer_screen.dart';
+import 'package:volyaApp/models/fairytales_models/fairytales.dart';
+import 'package:volyaApp/screens/fairytales/fairytales_audioplayer_screen.dart';
+
 import 'package:volyaApp/shared.dart';
 
 import 'package:volyaApp/widgets/fairytales/fairytales_data.dart';
@@ -66,10 +67,11 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Button(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              icon: Icons.skip_previous),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            icon: Icons.skip_previous,
+          ),
           SizedBox(
             width: 20,
           ),
@@ -105,7 +107,6 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
                 MaterialPageRoute(
                   builder: (context) => FairytalesAudioPlayerScreen(
                     fairytale: FairytalesData.fairytales[randomIndex],
-                    isGoingBack: false,
                   ),
                 ),
               );
@@ -150,14 +151,9 @@ class Button extends StatelessWidget {
       child: Container(
         height: 70,
         width: 70,
-        decoration: ButtonBoxDecoration.boxDecoration.copyWith(
-          color: AppColors.buttonColor,
-        ),
-        child: Icon(
-          icon,
-          size: 70,
-          color: AppColors.iconButtonColor,
-        ),
+        decoration: ButtonBoxDecoration.boxDecoration
+            .copyWith(color: AppColors.buttonColor),
+        child: Icon(icon, size: 70, color: AppColors.iconButtonColor),
       ),
     );
   }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:volyaApp/audioplayer/fairytales_history.dart';
-import 'package:volyaApp/screen/tabs/music_screen.dart';
-import 'package:volyaApp/screen/home.dart';
+import 'package:volyaApp/screens/music_screen.dart';
+import 'package:volyaApp/screens/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,16 +15,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FairytalesHistory(),
-      child: MaterialApp(
-        home: Home(),
-        routes: {
-          MusicScreen.routeName: (context) => MusicScreen(),
-          // FairytalesAudioPlayerScreen.routeName: (context) =>
-          //FairytalesAudioPlayerScreen(),
-        },
-      ),
+    return MaterialApp(
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('fr', 'FR'),
+      ],
+      home: Home(),
+      routes: {
+        MusicScreen.routeName: (context) => MusicScreen(),
+        // FairytalesAudioPlayerScreen.routeName: (context) =>
+        //FairytalesAudioPlayerScreen(),
+      },
     );
   }
 }

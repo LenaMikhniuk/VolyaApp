@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:volyaApp/screen/fairytales/fairytale_screen.dart';
-import 'package:volyaApp/screen/tabs/music_screen.dart';
-import 'package:volyaApp/screen/tabs/photo_gallery_screen.dart';
-import 'package:volyaApp/screen/tabs/video_screen.dart';
-import 'package:volyaApp/screen/tabs/weather_screen.dart';
+import 'package:volyaApp/screens/music_screen.dart';
+import 'package:volyaApp/screens/photo_gallery_screen.dart';
+import 'package:volyaApp/screens/video_screen.dart';
+
+import 'package:volyaApp/screens/weather_screen.dart';
+
 import 'package:volyaApp/shared.dart';
+
+import 'fairytales/fairytale_screen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -59,7 +62,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             backgroundColor: AppColors.bottomNavigationBarColor,
-            icon: Icon(Icons.beach_access),
+            icon: Icon(Icons.cloud_queue),
             label: 'Weather',
           ),
         ],

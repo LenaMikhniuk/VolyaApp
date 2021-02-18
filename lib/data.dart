@@ -1,4 +1,4 @@
-import 'models/music_container.dart';
+import 'models/music_models/music_container.dart';
 
 class Data {
   static const List<MusicContainer> musicContainers = [

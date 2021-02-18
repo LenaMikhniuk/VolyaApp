@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volyaApp/models/fairytales.dart';
+import 'package:volyaApp/models/fairytales_models/fairytales.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/fairytales/audio_player_button.dart';
 
@@ -30,6 +30,7 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
         iconTheme: IconThemeData(
           color: AppColors.appBarTextColorFairytaleScreen,
         ),
+        shadowColor: AppColors.appBarShadowColor,
         backgroundColor: AppColors.appBarFairytalesAudioPlayerScreen,
         title: FittedBox(
           fit: BoxFit.cover,

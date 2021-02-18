@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:volyaApp/data.dart';
 import 'package:volyaApp/widgets/music_box.dart';
 
-import '../../shared.dart';
+import '../shared.dart';
 
 class MusicScreen extends StatefulWidget {
   static const routeName = '/music_screen';
@@ -63,6 +63,7 @@ class _MusicScreenState extends State<MusicScreen> {
           child: Text('Music', style: FontsStyles.appBar),
         ),
         backgroundColor: AppColors.appBarMainColor,
+        shadowColor: AppColors.appBarShadowColor,
       ),
       body: Container(
         color: AppColors.bodyMainColor,
