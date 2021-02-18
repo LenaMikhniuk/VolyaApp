@@ -44,7 +44,7 @@ class ForcastWidget extends StatelessWidget {
                                   fontSize: 25,
                                 ),
                                 maxLines: 1,
-                                minFontSize: 13,
+                                minFontSize: 10,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
