@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
 import 'package:volyaApp/models/photo_screen_models/photo_model.dart';
 
@@ -14,8 +13,21 @@ class PhotoScreenItems extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: Colors.black,
-        child: Image.file(photoFile.image),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            offset: const Offset(0.0, 0.6),
+            blurRadius: 10.0,
+            spreadRadius: 1.0,
+          )
+        ]),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Image.file(
+            photoFile.image,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
