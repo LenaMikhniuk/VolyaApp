@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:volyaApp/screens/music_screen.dart';
-import 'package:volyaApp/screens/photo_gallery_screen.dart';
+import 'package:volyaApp/screens/fairytales/photos/photo_gallery_screen.dart';
 import 'package:volyaApp/screens/video_screen.dart';
 
 import 'package:volyaApp/screens/weather_screen.dart';

@@ -30,6 +30,8 @@ class AppColors {
   static const Color circularIndicatorColor = Color(0xff6600ff);
   static const Color hintSearchBarColor = Color(0xff6600ff);
   static const Color iconSearchBarColor = Color(0xff6600ff);
+  static const Color bodyPhotoScreenColor = Color(0xffffe6e6);
+  static const Color iconButtonPhotoScreenColor = Color(0xff6d6473);
 }
 
 class FontsStyles {

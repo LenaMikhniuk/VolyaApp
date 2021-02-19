@@ -7,7 +7,7 @@ class WeatherUtils {
     if (temp == null) {
       return '...';
     }
-    return '${(temp ?? 0) > 0.2 ? '+' : ''}'
+    return '${(temp ?? 0) > 0.5 ? '+' : ''}'
         ' ${temp?.toStringAsFixed(0) ?? ''}°C';
   }
 
