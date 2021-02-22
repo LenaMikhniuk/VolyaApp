@@ -6,12 +6,11 @@ import 'package:volyaApp/util/db_utils.dart';
 class PhotoScreenData {
   static Future<List<Photo>> getImages() async {
     final dataList = await DBUtils.getData('user_photos');
-    return dataList
-        .map(
-          (item) => Photo(
-            image: File(item['image']),
-          ),
-        )
-        .toList();
+    return dataList.map((item) {
+      return Photo(
+        image: File(item['image']),
+        id: item['id'],
+      );
+    }).toList();
   }
 }

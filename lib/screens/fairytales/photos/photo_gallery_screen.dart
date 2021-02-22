@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
 import 'package:volyaApp/data/photo_screen/photo_data.dart';
 import 'package:volyaApp/models/photo_screen_models/photo_model.dart';
@@ -22,7 +23,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
   Future getImage() async {
     final pickedFile = await picker.getImage(
       source: ImageSource.camera,
-      imageQuality: 50,
+      imageQuality: 100,
       maxWidth: 150,
     );
     if (pickedFile != null) {
@@ -37,7 +38,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
   Future getGalleryImage() async {
     final pickedFile = await picker.getImage(
       source: ImageSource.gallery,
-      imageQuality: 50,
+      imageQuality: 100,
       maxWidth: 150,
     );
     if (pickedFile != null) {
@@ -91,10 +92,42 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                       childAspectRatio: 3 / 2,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
-                  itemBuilder: (context, index) => PhotoScreenItems(
+                  itemBuilder: (context, index) => PhotoScreenItem(
                     photoFile: list[index],
                     onTap: () {
                       ImageViewer.navigate(context, list, index);
+                    },
+                    onDelete: () {
+                      showDialog(
+                        context: (context),
+                        builder: (context) => AlertDialog(
+                          title: Text(
+                            'Do you want to delete this photo?',
+                            style: FontsStyles.deleteAlertDialog,
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () async {
+                                Navigator.of(context).pop();
+                                await DBUtils.deleteById(list[index].id);
+                                setState(() {});
+                              },
+                              child: Text(
+                                'Yes',
+                                style: FontsStyles.deleteAlertDialog,
+                              ),
+                            ),
+                            TextButton(
+                                child: Text(
+                                  'No',
+                                  style: FontsStyles.deleteAlertDialog,
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                }),
+                          ],
+                        ),
+                      );
                     },
                   ),
                   itemCount: list.length,
@@ -115,15 +148,13 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
-              'Do you want use camera or pick a picture from the gallery?',
+              'Do you want to use the camera or pick a picture from the gallery?',
+              style: FontsStyles.pickAlertDialog,
             ),
             actions: [
               iconButton(
                 Icons.photo_camera,
                 getImage,
-              ),
-              SizedBox(
-                width: 25,
               ),
               iconButton(
                 Icons.photo_album,
@@ -139,7 +170,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
       onPressed: onPressed,
       icon: Icon(
         icon,
-        size: 40,
+        size: 30,
         color: AppColors.iconButtonPhotoScreenColor,
       ),
     );

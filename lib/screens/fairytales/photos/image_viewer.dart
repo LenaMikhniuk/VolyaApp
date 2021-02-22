@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+
 import 'package:volyaApp/models/photo_screen_models/photo_model.dart';
 
 class ImageViewer extends StatefulWidget {
@@ -32,17 +32,32 @@ class ImageViewer extends StatefulWidget {
 
 class _ImageViewerState extends State<ImageViewer> {
   Photo photoFile;
+  PageController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = PageController(
+      initialPage: widget.currentPhoto,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
         child: PageView.builder(
-          itemBuilder: (context, index) => Image.file(
-            widget.photos[widget.currentPhoto].image,
-            fit: BoxFit.cover,
-          ),
+          controller: controller,
+          itemBuilder: (context, index) {
+            print('index - $index');
+            return Image.file(widget.photos[index].image, fit: BoxFit.contain);
+          },
           itemCount: widget.photos.length,
         ),
       ),

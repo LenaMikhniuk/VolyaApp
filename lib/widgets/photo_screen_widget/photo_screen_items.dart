@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:volyaApp/models/photo_screen_models/photo_model.dart';
 
-class PhotoScreenItems extends StatelessWidget {
+class PhotoScreenItem extends StatelessWidget {
   final Photo photoFile;
   final VoidCallback onTap;
-  const PhotoScreenItems({Key key, this.photoFile, this.onTap})
+  final VoidCallback onDelete;
+
+  const PhotoScreenItem({Key key, this.photoFile, this.onTap, this.onDelete})
       : super(key: key);
 
   @override
@@ -23,9 +25,28 @@ class PhotoScreenItems extends StatelessWidget {
         ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
-          child: Image.file(
-            photoFile.image,
-            fit: BoxFit.cover,
+          child: Stack(
+            children: [
+              Image.file(
+                photoFile.image,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: IconButton(
+                    icon: Container(
+                      padding: EdgeInsets.all(5),
+                      color: Colors.black26,
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.red.shade200,
+                      ),
+                    ),
+                    onPressed: onDelete),
+              )
+            ],
           ),
         ),
       ),

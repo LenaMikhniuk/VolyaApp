@@ -2,6 +2,7 @@ import 'dart:io';
 
 class Photo {
   final File image;
+  final int id;
 
-  Photo({this.image});
+  Photo({this.id, this.image});
 }

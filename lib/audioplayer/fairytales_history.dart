@@ -16,7 +16,6 @@ class FairytalesHistory with ChangeNotifier {
   void addIndexToHistory(int index) {
     _history.add(index);
     //notifyListeners();
-    print(_history);
   }
 
   void removeIndexFromHistory() {

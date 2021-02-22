@@ -31,7 +31,8 @@ class AppColors {
   static const Color hintSearchBarColor = Color(0xff6600ff);
   static const Color iconSearchBarColor = Color(0xff6600ff);
   static const Color bodyPhotoScreenColor = Color(0xffffe6e6);
-  static const Color iconButtonPhotoScreenColor = Color(0xff6d6473);
+  static const Color iconButtonPhotoScreenColor = Color(0xff6600ff);
+  static const Color deleteTextColor = Color(0xff6600ff);
 }
 
 class FontsStyles {
@@ -67,6 +68,14 @@ class FontsStyles {
   static TextStyle selectedName = GoogleFonts.raleway(
     color: AppColors.hintSearchBarColor,
     fontSize: 23,
+  );
+  static TextStyle deleteAlertDialog = GoogleFonts.montserrat(
+    color: AppColors.deleteTextColor,
+    fontSize: 23,
+  );
+  static TextStyle pickAlertDialog = GoogleFonts.montserrat(
+    color: AppColors.deleteTextColor,
+    fontSize: 18,
   );
 }
 

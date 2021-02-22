@@ -35,7 +35,7 @@ class ForcastWidget extends StatelessWidget {
                                 DateTimeUtils.getDayFromDateTime(e.dt),
                                 style: FontsStyles.forecastThreeDays,
                                 maxLines: 1,
-                                minFontSize: 10,
+                                minFontSize: 9,
                               ),
                               AutoSizeText(
                                 WeatherUtils.getTempHumanFromNum(e.main.temp),
