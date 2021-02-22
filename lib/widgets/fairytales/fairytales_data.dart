@@ -80,7 +80,7 @@ class FairytalesData {
     Fairytale(
       title: 'Робин Гуд',
       image: 'assets/images_fairytales/robin.jpg',
-      sound: 'sounds_fairytales/robin.mp3',
+      sound: 'sounds_fairytales/gud.mp3',
     ),
     Fairytale(
       title: 'Золушка',

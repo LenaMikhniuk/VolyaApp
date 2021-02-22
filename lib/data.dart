@@ -31,10 +31,6 @@ class Data {
       sound: 'sounds/Picca.mp3',
     ),
     MusicContainer(
-      image: 'assets/images_data/vesna.jpg',
-      sound: 'sounds/vesna.mp3',
-    ),
-    MusicContainer(
       image: 'assets/images_data/trolls.jpg',
       sound: 'sounds/feeling.mp3',
     ),
@@ -43,16 +39,8 @@ class Data {
       sound: 'sounds/friends.mp3',
     ),
     MusicContainer(
-      image: 'assets/images_data/leto.jpg',
-      sound: 'sounds/leto.mp3',
-    ),
-    MusicContainer(
       image: 'assets/images_data/pap.jpg',
       sound: 'sounds/papamozhet.mp3',
-    ),
-    MusicContainer(
-      image: 'assets/images_data/lentochka.jpg',
-      sound: 'sounds/lentochka.mp3',
     ),
     MusicContainer(
       image: 'assets/images_data/avicii.jpg',
@@ -80,19 +68,19 @@ class Data {
     ),
     MusicContainer(
       image: 'assets/images_data/babyshark.jpg',
-      sound: 'sounds/37 Pinkfong - Baby Shark special.mp3',
+      sound: 'sounds/babyshark.mp3',
     ),
     MusicContainer(
       image: 'assets/images_data/kids.png',
-      sound: 'sounds/05 If You\'re Happy.mp3',
+      sound: 'sounds/happy.mp3',
     ),
     MusicContainer(
       image: 'assets/images_data/jingle.jpg',
-      sound: 'sounds/30 Jingle Bells.mp3',
+      sound: 'sounds/Jingle.mp3',
     ),
     MusicContainer(
       image: 'assets/images_data/hockey.jpg',
-      sound: 'sounds/18 The Hokey Pokey.mp3',
+      sound: 'sounds/Pokey.mp3',
     ),
   ];
 }
