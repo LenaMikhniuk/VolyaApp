@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'dart:io';
+
 import 'package:volyaApp/data/photo_screen/photo_data.dart';
 import 'package:volyaApp/models/photo_screen_models/photo_model.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/util/db_utils.dart';
 import 'package:volyaApp/widgets/photo_screen_widget/photo_screen_items.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart' as syspath;
 
 import 'image_viewer.dart';
 
