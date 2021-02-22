@@ -22,7 +22,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
 
     final pickedFile = await picker.getImage(
       source: ImageSource.camera,
-      imageQuality: 100,
+      imageQuality: 80,
       maxWidth: 150,
     );
 
