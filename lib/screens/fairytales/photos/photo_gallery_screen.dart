@@ -23,7 +23,6 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
     final pickedFile = await picker.getImage(
       source: ImageSource.camera,
       imageQuality: 80,
-      maxWidth: 150,
     );
 
     if (pickedFile != null) {
@@ -35,12 +34,12 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
   }
 
   Future getGalleryImage() async {
+    Navigator.of(context).pop();
     final pickedFile = await picker.getImage(
       source: ImageSource.gallery,
       imageQuality: 100,
-      maxWidth: 150,
     );
-    Navigator.of(context).pop();
+
     if (pickedFile != null) {
       DBUtils.insert('user_photos', {
         'image': pickedFile.path,

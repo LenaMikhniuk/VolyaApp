@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:volyaApp/screens/fairytales/fairytale_screen.dart';
+import 'package:volyaApp/screens/fairytales/fairytales_audioplayer_screen.dart';
 import 'package:volyaApp/screens/music_screen.dart';
 import 'package:volyaApp/screens/home.dart';
 
@@ -23,8 +25,9 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         MusicScreen.routeName: (context) => MusicScreen(),
-        // FairytalesAudioPlayerScreen.routeName: (context) =>
-        //FairytalesAudioPlayerScreen(),
+        FairytaleScreen.routeName: (context) => FairytaleScreen(),
+        FairytalesAudioPlayerScreen.routeName: (context) =>
+            FairytalesAudioPlayerScreen(),
       },
     );
   }

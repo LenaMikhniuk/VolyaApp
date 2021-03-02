@@ -34,4 +34,33 @@ class DBUtils {
     final db = await DBUtils.connect();
     return await db.delete(_tableName, where: 'id = ?', whereArgs: [id]);
   }
+
+  static const String _tableNameHistory = 'history_weather';
+  static Future<sql.Database> connectDb() async {
+    final dbPath = await sql.getDatabasesPath();
+    return sql.openDatabase(
+      path.join(dbPath, 'history.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          'CREATE TABLE $_tableNameHistory(id INTEGER PRIMARY KEY, title TEXT)',
+        );
+      },
+      version: 1,
+    );
+  }
+
+  static Future<int> insertHistory(
+      String table, Map<String, Object> data) async {
+    final db = await DBUtils.connect();
+    return db.insert(
+      table,
+      data,
+      conflictAlgorithm: sql.ConflictAlgorithm.replace,
+    );
+  }
+
+  static Future<List<Map<String, dynamic>>> getDataHistory(String table) async {
+    final db = await DBUtils.connect();
+    return db.query(table);
+  }
 }

@@ -3,6 +3,8 @@ import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/fairytales/fairytales_grid.dart';
 
 class FairytaleScreen extends StatelessWidget {
+  static const routeName = '/fairytaleScreen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

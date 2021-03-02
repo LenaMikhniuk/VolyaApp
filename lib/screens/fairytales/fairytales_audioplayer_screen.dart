@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:volyaApp/models/fairytales_models/fairytales.dart';
+import 'package:volyaApp/screens/fairytales/fairytale_screen.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/fairytales/audio_player_button.dart';
+import 'package:volyaApp/widgets/fairytales/fairytales_grid.dart';
+import 'package:volyaApp/widgets/fairytales/fairytales_item.dart';
 
 class FairytalesAudioPlayerScreen extends StatelessWidget {
+  static const routeName = '/fairytaileAudioPlayerScreen';
+
   final Fairytale fairytale;
   final bool isGoingBack;
 
@@ -39,6 +44,15 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
             style: FontsStyles.appBarFairytalesAudioPlayerScreen,
           ),
         ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                while (Navigator.canPop(context)) {
+                  Navigator.of(context).pop();
+                }
+              }),
+        ],
       ),
       body: Container(
         color: AppColors.audioplayerScreenMainColor,
