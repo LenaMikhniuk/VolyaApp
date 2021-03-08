@@ -5,6 +5,8 @@ import 'package:volyaApp/screens/fairytales/fairytales_audioplayer_screen.dart';
 import 'package:volyaApp/screens/music_screen.dart';
 import 'package:volyaApp/screens/home.dart';
 
+import 'screens/auth/auth_screen.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown]).then(
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', 'US'),
         const Locale('fr', 'FR'),
       ],
-      home: Home(),
+      home: AuthScreen(),
       routes: {
         MusicScreen.routeName: (context) => MusicScreen(),
         FairytaleScreen.routeName: (context) => FairytaleScreen(),
