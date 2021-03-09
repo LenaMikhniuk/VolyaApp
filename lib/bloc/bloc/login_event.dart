@@ -4,6 +4,5 @@ part 'login_event.freezed.dart';
 
 @freezed
 abstract class LoginEvent with _$LoginEvent {
-  const factory LoginEvent.login() = Login;
-  const factory LoginEvent.goToSignUp() = GoToSignUp;
+  const factory LoginEvent.checkIsLogggedIn() = CheckIsLogggedIn;
 }

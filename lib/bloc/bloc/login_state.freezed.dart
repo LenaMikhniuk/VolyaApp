@@ -19,8 +19,13 @@ class _$LoginStateTearOff {
   }
 
 // ignore: unused_element
-  Success success() {
-    return const Success();
+  Loading loading() {
+    return const Loading();
+  }
+
+// ignore: unused_element
+  Auth auth() {
+    return const Auth();
   }
 
 // ignore: unused_element
@@ -29,13 +34,8 @@ class _$LoginStateTearOff {
   }
 
 // ignore: unused_element
-  Loading loading() {
-    return const Loading();
-  }
-
-// ignore: unused_element
-  GoToSignUp goToSignUp() {
-    return const GoToSignUp();
+  UnAuth unAuth() {
+    return const UnAuth();
   }
 }
 
@@ -48,35 +48,35 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(),
-    @required TResult error(),
     @required TResult loading(),
-    @required TResult goToSignUp(),
+    @required TResult auth(),
+    @required TResult error(),
+    @required TResult unAuth(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(),
-    TResult error(),
     TResult loading(),
-    TResult goToSignUp(),
+    TResult auth(),
+    TResult error(),
+    TResult unAuth(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
-    @required TResult success(Success value),
-    @required TResult error(Error value),
     @required TResult loading(Loading value),
-    @required TResult goToSignUp(GoToSignUp value),
+    @required TResult auth(Auth value),
+    @required TResult error(Error value),
+    @required TResult unAuth(UnAuth value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
-    TResult success(Success value),
-    TResult error(Error value),
     TResult loading(Loading value),
-    TResult goToSignUp(GoToSignUp value),
+    TResult auth(Auth value),
+    TResult error(Error value),
+    TResult unAuth(UnAuth value),
     @required TResult orElse(),
   });
 }
@@ -134,16 +134,16 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(),
-    @required TResult error(),
     @required TResult loading(),
-    @required TResult goToSignUp(),
+    @required TResult auth(),
+    @required TResult error(),
+    @required TResult unAuth(),
   }) {
     assert(initial != null);
-    assert(success != null);
-    assert(error != null);
     assert(loading != null);
-    assert(goToSignUp != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
     return initial();
   }
 
@@ -151,10 +151,10 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(),
-    TResult error(),
     TResult loading(),
-    TResult goToSignUp(),
+    TResult auth(),
+    TResult error(),
+    TResult unAuth(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -168,16 +168,16 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
-    @required TResult success(Success value),
-    @required TResult error(Error value),
     @required TResult loading(Loading value),
-    @required TResult goToSignUp(GoToSignUp value),
+    @required TResult auth(Auth value),
+    @required TResult error(Error value),
+    @required TResult unAuth(UnAuth value),
   }) {
     assert(initial != null);
-    assert(success != null);
-    assert(error != null);
     assert(loading != null);
-    assert(goToSignUp != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
     return initial(this);
   }
 
@@ -185,10 +185,10 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
-    TResult success(Success value),
-    TResult error(Error value),
     TResult loading(Loading value),
-    TResult goToSignUp(GoToSignUp value),
+    TResult auth(Auth value),
+    TResult error(Error value),
+    TResult unAuth(UnAuth value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -201,218 +201,6 @@ class _$Initial implements Initial {
 
 abstract class Initial implements LoginState {
   const factory Initial() = _$Initial;
-}
-
-/// @nodoc
-abstract class $SuccessCopyWith<$Res> {
-  factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
-      _$SuccessCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$SuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $SuccessCopyWith<$Res> {
-  _$SuccessCopyWithImpl(Success _value, $Res Function(Success) _then)
-      : super(_value, (v) => _then(v as Success));
-
-  @override
-  Success get _value => super._value as Success;
-}
-
-/// @nodoc
-class _$Success implements Success {
-  const _$Success();
-
-  @override
-  String toString() {
-    return 'LoginState.success()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Success);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult success(),
-    @required TResult error(),
-    @required TResult loading(),
-    @required TResult goToSignUp(),
-  }) {
-    assert(initial != null);
-    assert(success != null);
-    assert(error != null);
-    assert(loading != null);
-    assert(goToSignUp != null);
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult success(),
-    TResult error(),
-    TResult loading(),
-    TResult goToSignUp(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult success(Success value),
-    @required TResult error(Error value),
-    @required TResult loading(Loading value),
-    @required TResult goToSignUp(GoToSignUp value),
-  }) {
-    assert(initial != null);
-    assert(success != null);
-    assert(error != null);
-    assert(loading != null);
-    assert(goToSignUp != null);
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult success(Success value),
-    TResult error(Error value),
-    TResult loading(Loading value),
-    TResult goToSignUp(GoToSignUp value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Success implements LoginState {
-  const factory Success() = _$Success;
-}
-
-/// @nodoc
-abstract class $ErrorCopyWith<$Res> {
-  factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
-      _$ErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $ErrorCopyWith<$Res> {
-  _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
-      : super(_value, (v) => _then(v as Error));
-
-  @override
-  Error get _value => super._value as Error;
-}
-
-/// @nodoc
-class _$Error implements Error {
-  const _$Error();
-
-  @override
-  String toString() {
-    return 'LoginState.error()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Error);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult success(),
-    @required TResult error(),
-    @required TResult loading(),
-    @required TResult goToSignUp(),
-  }) {
-    assert(initial != null);
-    assert(success != null);
-    assert(error != null);
-    assert(loading != null);
-    assert(goToSignUp != null);
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult success(),
-    TResult error(),
-    TResult loading(),
-    TResult goToSignUp(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(Initial value),
-    @required TResult success(Success value),
-    @required TResult error(Error value),
-    @required TResult loading(Loading value),
-    @required TResult goToSignUp(GoToSignUp value),
-  }) {
-    assert(initial != null);
-    assert(success != null);
-    assert(error != null);
-    assert(loading != null);
-    assert(goToSignUp != null);
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(Initial value),
-    TResult success(Success value),
-    TResult error(Error value),
-    TResult loading(Loading value),
-    TResult goToSignUp(GoToSignUp value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Error implements LoginState {
-  const factory Error() = _$Error;
 }
 
 /// @nodoc
@@ -452,16 +240,16 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(),
-    @required TResult error(),
     @required TResult loading(),
-    @required TResult goToSignUp(),
+    @required TResult auth(),
+    @required TResult error(),
+    @required TResult unAuth(),
   }) {
     assert(initial != null);
-    assert(success != null);
-    assert(error != null);
     assert(loading != null);
-    assert(goToSignUp != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
     return loading();
   }
 
@@ -469,10 +257,10 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(),
-    TResult error(),
     TResult loading(),
-    TResult goToSignUp(),
+    TResult auth(),
+    TResult error(),
+    TResult unAuth(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -486,16 +274,16 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
-    @required TResult success(Success value),
-    @required TResult error(Error value),
     @required TResult loading(Loading value),
-    @required TResult goToSignUp(GoToSignUp value),
+    @required TResult auth(Auth value),
+    @required TResult error(Error value),
+    @required TResult unAuth(UnAuth value),
   }) {
     assert(initial != null);
-    assert(success != null);
-    assert(error != null);
     assert(loading != null);
-    assert(goToSignUp != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
     return loading(this);
   }
 
@@ -503,10 +291,10 @@ class _$Loading implements Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
-    TResult success(Success value),
-    TResult error(Error value),
     TResult loading(Loading value),
-    TResult goToSignUp(GoToSignUp value),
+    TResult auth(Auth value),
+    TResult error(Error value),
+    TResult unAuth(UnAuth value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -522,34 +310,33 @@ abstract class Loading implements LoginState {
 }
 
 /// @nodoc
-abstract class $GoToSignUpCopyWith<$Res> {
-  factory $GoToSignUpCopyWith(
-          GoToSignUp value, $Res Function(GoToSignUp) then) =
-      _$GoToSignUpCopyWithImpl<$Res>;
+abstract class $AuthCopyWith<$Res> {
+  factory $AuthCopyWith(Auth value, $Res Function(Auth) then) =
+      _$AuthCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GoToSignUpCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $GoToSignUpCopyWith<$Res> {
-  _$GoToSignUpCopyWithImpl(GoToSignUp _value, $Res Function(GoToSignUp) _then)
-      : super(_value, (v) => _then(v as GoToSignUp));
+class _$AuthCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements $AuthCopyWith<$Res> {
+  _$AuthCopyWithImpl(Auth _value, $Res Function(Auth) _then)
+      : super(_value, (v) => _then(v as Auth));
 
   @override
-  GoToSignUp get _value => super._value as GoToSignUp;
+  Auth get _value => super._value as Auth;
 }
 
 /// @nodoc
-class _$GoToSignUp implements GoToSignUp {
-  const _$GoToSignUp();
+class _$Auth implements Auth {
+  const _$Auth();
 
   @override
   String toString() {
-    return 'LoginState.goToSignUp()';
+    return 'LoginState.auth()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GoToSignUp);
+    return identical(this, other) || (other is Auth);
   }
 
   @override
@@ -559,32 +346,32 @@ class _$GoToSignUp implements GoToSignUp {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult success(),
-    @required TResult error(),
     @required TResult loading(),
-    @required TResult goToSignUp(),
+    @required TResult auth(),
+    @required TResult error(),
+    @required TResult unAuth(),
   }) {
     assert(initial != null);
-    assert(success != null);
-    assert(error != null);
     assert(loading != null);
-    assert(goToSignUp != null);
-    return goToSignUp();
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
+    return auth();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult success(),
-    TResult error(),
     TResult loading(),
-    TResult goToSignUp(),
+    TResult auth(),
+    TResult error(),
+    TResult unAuth(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (goToSignUp != null) {
-      return goToSignUp();
+    if (auth != null) {
+      return auth();
     }
     return orElse();
   }
@@ -593,37 +380,249 @@ class _$GoToSignUp implements GoToSignUp {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(Initial value),
-    @required TResult success(Success value),
-    @required TResult error(Error value),
     @required TResult loading(Loading value),
-    @required TResult goToSignUp(GoToSignUp value),
+    @required TResult auth(Auth value),
+    @required TResult error(Error value),
+    @required TResult unAuth(UnAuth value),
   }) {
     assert(initial != null);
-    assert(success != null);
-    assert(error != null);
     assert(loading != null);
-    assert(goToSignUp != null);
-    return goToSignUp(this);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
+    return auth(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(Initial value),
-    TResult success(Success value),
-    TResult error(Error value),
     TResult loading(Loading value),
-    TResult goToSignUp(GoToSignUp value),
+    TResult auth(Auth value),
+    TResult error(Error value),
+    TResult unAuth(UnAuth value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (goToSignUp != null) {
-      return goToSignUp(this);
+    if (auth != null) {
+      return auth(this);
     }
     return orElse();
   }
 }
 
-abstract class GoToSignUp implements LoginState {
-  const factory GoToSignUp() = _$GoToSignUp;
+abstract class Auth implements LoginState {
+  const factory Auth() = _$Auth;
+}
+
+/// @nodoc
+abstract class $ErrorCopyWith<$Res> {
+  factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
+      _$ErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ErrorCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements $ErrorCopyWith<$Res> {
+  _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
+      : super(_value, (v) => _then(v as Error));
+
+  @override
+  Error get _value => super._value as Error;
+}
+
+/// @nodoc
+class _$Error implements Error {
+  const _$Error();
+
+  @override
+  String toString() {
+    return 'LoginState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Error);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult auth(),
+    @required TResult error(),
+    @required TResult unAuth(),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult auth(),
+    TResult error(),
+    TResult unAuth(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult loading(Loading value),
+    @required TResult auth(Auth value),
+    @required TResult error(Error value),
+    @required TResult unAuth(UnAuth value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult loading(Loading value),
+    TResult auth(Auth value),
+    TResult error(Error value),
+    TResult unAuth(UnAuth value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Error implements LoginState {
+  const factory Error() = _$Error;
+}
+
+/// @nodoc
+abstract class $UnAuthCopyWith<$Res> {
+  factory $UnAuthCopyWith(UnAuth value, $Res Function(UnAuth) then) =
+      _$UnAuthCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UnAuthCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements $UnAuthCopyWith<$Res> {
+  _$UnAuthCopyWithImpl(UnAuth _value, $Res Function(UnAuth) _then)
+      : super(_value, (v) => _then(v as UnAuth));
+
+  @override
+  UnAuth get _value => super._value as UnAuth;
+}
+
+/// @nodoc
+class _$UnAuth implements UnAuth {
+  const _$UnAuth();
+
+  @override
+  String toString() {
+    return 'LoginState.unAuth()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UnAuth);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult auth(),
+    @required TResult error(),
+    @required TResult unAuth(),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
+    return unAuth();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult auth(),
+    TResult error(),
+    TResult unAuth(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (unAuth != null) {
+      return unAuth();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult loading(Loading value),
+    @required TResult auth(Auth value),
+    @required TResult error(Error value),
+    @required TResult unAuth(UnAuth value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(auth != null);
+    assert(error != null);
+    assert(unAuth != null);
+    return unAuth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult loading(Loading value),
+    TResult auth(Auth value),
+    TResult error(Error value),
+    TResult unAuth(UnAuth value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (unAuth != null) {
+      return unAuth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnAuth implements LoginState {
+  const factory UnAuth() = _$UnAuth;
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1059670460450",
+    "project_id": "volyaapp",
+    "storage_bucket": "volyaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059670460450:android:d91826e18b5e4362c2627b",
+        "android_client_info": {
+          "package_name": "com.example.volyaApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059670460450-u06bfdlkiilgcr1f6ep38hl2sv0fu2gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxrmSpe8W7a_3ShCowBZn-tH_z86z_4LU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059670460450-u06bfdlkiilgcr1f6ep38hl2sv0fu2gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:volyaApp/bloc/bloc/login_event.dart';
 import 'package:volyaApp/bloc/bloc/login_state.dart';
 
 import '../home.dart';
+import '../home.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -13,54 +15,49 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  //FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BlocProvider<LoginBloc>(
-              create: (context) => LoginBloc(),
-              child: Center(
-                  child: Row(
-                children: [
-                  Builder(
-                    builder: (BuildContext context) => ElevatedButton(
-                        onPressed: () {
-                          BlocProvider.of<LoginBloc>(context)
-                              .add(LoginEvent.goToSignUp());
-                        },
-                        child: Text('sign up')),
-                  ),
-                  BlocConsumer<LoginBloc, LoginState>(
-                    listener: (context, state) {
-                      return state.maybeWhen(orElse: () {
-                        return;
-                      }, success: () {
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) => Home()));
-                        return;
-                      });
-                    },
-                    builder: (context, state) {
-                      return state.maybeWhen(orElse: () {
-                        return ElevatedButton(
-                            onPressed: () {
-                              BlocProvider.of<LoginBloc>(context)
-                                  .add(LoginEvent.login());
-                            },
-                            child: Text('Login'));
-                      }, loading: () {
-                        return ElevatedButton(
-                            onPressed: null, child: Text('Login'));
-                      });
-                    },
-                  ),
-                ],
-              )),
-            ),
-          ],
+      body: Container(
+        child: BlocProvider<LoginBloc>(
+          create: (context) => LoginBloc(),
+          child: BlocConsumer<LoginBloc, LoginState>(
+            listener: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  return;
+                },
+                auth: () {
+                  return Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ),
+                  );
+                },
+                unAuth: () {
+                  return Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ),
+                  );
+                },
+              );
+            },
+            builder: (context, state) {
+              return Center(
+                child: ElevatedButton(
+                  child: Icon(Icons.forward),
+                  onPressed: () {
+                    BlocProvider.of<LoginBloc>(context).add(
+                      LoginEvent.checkIsLogggedIn(),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

@@ -14,13 +14,8 @@ class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
 // ignore: unused_element
-  Login login() {
-    return const Login();
-  }
-
-// ignore: unused_element
-  GoToSignUp goToSignUp() {
-    return const GoToSignUp();
+  CheckIsLogggedIn checkIsLogggedIn() {
+    return const CheckIsLogggedIn();
   }
 }
 
@@ -32,24 +27,20 @@ const $LoginEvent = _$LoginEventTearOff();
 mixin _$LoginEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult login(),
-    @required TResult goToSignUp(),
+    @required TResult checkIsLogggedIn(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult login(),
-    TResult goToSignUp(),
+    TResult checkIsLogggedIn(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult login(Login value),
-    @required TResult goToSignUp(GoToSignUp value),
+    @required TResult checkIsLogggedIn(CheckIsLogggedIn value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult login(Login value),
-    TResult goToSignUp(GoToSignUp value),
+    TResult checkIsLogggedIn(CheckIsLogggedIn value),
     @required TResult orElse(),
   });
 }
@@ -71,33 +62,36 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $LoginCopyWith<$Res> {
-  factory $LoginCopyWith(Login value, $Res Function(Login) then) =
-      _$LoginCopyWithImpl<$Res>;
+abstract class $CheckIsLogggedInCopyWith<$Res> {
+  factory $CheckIsLogggedInCopyWith(
+          CheckIsLogggedIn value, $Res Function(CheckIsLogggedIn) then) =
+      _$CheckIsLogggedInCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
-    implements $LoginCopyWith<$Res> {
-  _$LoginCopyWithImpl(Login _value, $Res Function(Login) _then)
-      : super(_value, (v) => _then(v as Login));
+class _$CheckIsLogggedInCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $CheckIsLogggedInCopyWith<$Res> {
+  _$CheckIsLogggedInCopyWithImpl(
+      CheckIsLogggedIn _value, $Res Function(CheckIsLogggedIn) _then)
+      : super(_value, (v) => _then(v as CheckIsLogggedIn));
 
   @override
-  Login get _value => super._value as Login;
+  CheckIsLogggedIn get _value => super._value as CheckIsLogggedIn;
 }
 
 /// @nodoc
-class _$Login implements Login {
-  const _$Login();
+class _$CheckIsLogggedIn implements CheckIsLogggedIn {
+  const _$CheckIsLogggedIn();
 
   @override
   String toString() {
-    return 'LoginEvent.login()';
+    return 'LoginEvent.checkIsLogggedIn()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Login);
+    return identical(this, other) || (other is CheckIsLogggedIn);
   }
 
   @override
@@ -106,24 +100,21 @@ class _$Login implements Login {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult login(),
-    @required TResult goToSignUp(),
+    @required TResult checkIsLogggedIn(),
   }) {
-    assert(login != null);
-    assert(goToSignUp != null);
-    return login();
+    assert(checkIsLogggedIn != null);
+    return checkIsLogggedIn();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult login(),
-    TResult goToSignUp(),
+    TResult checkIsLogggedIn(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (login != null) {
-      return login();
+    if (checkIsLogggedIn != null) {
+      return checkIsLogggedIn();
     }
     return orElse();
   }
@@ -131,118 +122,26 @@ class _$Login implements Login {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult login(Login value),
-    @required TResult goToSignUp(GoToSignUp value),
+    @required TResult checkIsLogggedIn(CheckIsLogggedIn value),
   }) {
-    assert(login != null);
-    assert(goToSignUp != null);
-    return login(this);
+    assert(checkIsLogggedIn != null);
+    return checkIsLogggedIn(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult login(Login value),
-    TResult goToSignUp(GoToSignUp value),
+    TResult checkIsLogggedIn(CheckIsLogggedIn value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (login != null) {
-      return login(this);
+    if (checkIsLogggedIn != null) {
+      return checkIsLogggedIn(this);
     }
     return orElse();
   }
 }
 
-abstract class Login implements LoginEvent {
-  const factory Login() = _$Login;
-}
-
-/// @nodoc
-abstract class $GoToSignUpCopyWith<$Res> {
-  factory $GoToSignUpCopyWith(
-          GoToSignUp value, $Res Function(GoToSignUp) then) =
-      _$GoToSignUpCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GoToSignUpCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
-    implements $GoToSignUpCopyWith<$Res> {
-  _$GoToSignUpCopyWithImpl(GoToSignUp _value, $Res Function(GoToSignUp) _then)
-      : super(_value, (v) => _then(v as GoToSignUp));
-
-  @override
-  GoToSignUp get _value => super._value as GoToSignUp;
-}
-
-/// @nodoc
-class _$GoToSignUp implements GoToSignUp {
-  const _$GoToSignUp();
-
-  @override
-  String toString() {
-    return 'LoginEvent.goToSignUp()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GoToSignUp);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult login(),
-    @required TResult goToSignUp(),
-  }) {
-    assert(login != null);
-    assert(goToSignUp != null);
-    return goToSignUp();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult login(),
-    TResult goToSignUp(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (goToSignUp != null) {
-      return goToSignUp();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult login(Login value),
-    @required TResult goToSignUp(GoToSignUp value),
-  }) {
-    assert(login != null);
-    assert(goToSignUp != null);
-    return goToSignUp(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult login(Login value),
-    TResult goToSignUp(GoToSignUp value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (goToSignUp != null) {
-      return goToSignUp(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GoToSignUp implements LoginEvent {
-  const factory GoToSignUp() = _$GoToSignUp;
+abstract class CheckIsLogggedIn implements LoginEvent {
+  const factory CheckIsLogggedIn() = _$CheckIsLogggedIn;
 }
