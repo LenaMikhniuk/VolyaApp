@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:volyaApp/screens/music_screen.dart';
 import 'package:volyaApp/screens/fairytales/photos/photo_gallery_screen.dart';
-import 'package:volyaApp/screens/video_screen.dart';
 
 import 'package:volyaApp/screens/weather_screen.dart';
 
@@ -19,7 +18,6 @@ class _HomeState extends State<Home> {
   final List<Widget> _pages = [
     MusicScreen(),
     FairytaleScreen(),
-    VideoScreen(),
     PhotoGalleryScreen(),
     WeatherScreen(),
   ];
@@ -50,11 +48,11 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.book),
             label: 'Fairytales',
           ),
-          BottomNavigationBarItem(
-            backgroundColor: AppColors.bottomNavigationBarColor,
-            icon: Icon(Icons.video_library),
-            label: 'Video',
-          ),
+          // BottomNavigationBarItem(
+          //   backgroundColor: AppColors.bottomNavigationBarColor,
+          //   icon: Icon(Icons.video_library),
+          //   label: 'Video',
+          // ),
           BottomNavigationBarItem(
             backgroundColor: AppColors.bottomNavigationBarColor,
             icon: Icon(Icons.photo_camera),

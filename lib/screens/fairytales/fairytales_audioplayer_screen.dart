@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:volyaApp/models/fairytales_models/fairytales.dart';
-import 'package:volyaApp/screens/fairytales/fairytale_screen.dart';
+
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/widgets/fairytales/audio_player_button.dart';
-import 'package:volyaApp/widgets/fairytales/fairytales_grid.dart';
-import 'package:volyaApp/widgets/fairytales/fairytales_item.dart';
 
 class FairytalesAudioPlayerScreen extends StatelessWidget {
   static const routeName = '/fairytaileAudioPlayerScreen';
@@ -71,7 +69,7 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             AudioPlayerButtons(fairytale: fairytale, isGoingBack: isGoingBack),
           ],

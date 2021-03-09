@@ -113,7 +113,7 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
           ),
         ]),
         SizedBox(
-          height: 70,
+          height: 30,
         ),
         Slider(
             activeColor: AppColors.sliderActiveColor,
