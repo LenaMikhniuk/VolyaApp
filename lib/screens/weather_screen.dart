@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'package:volyaApp/models/weather_models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/weather_models/weather_today.dart';
-import 'package:volyaApp/screen/tabs/weather_screen/widgets/forecast_widget.dart';
+import 'package:volyaApp/widgets/weather_screen/forecast_widget.dart';
 
 import 'package:volyaApp/screens/searchBarScreen.dart';
-import 'package:volyaApp/screen/tabs/weather_screen/widgets/ImageFromWeatherTodayModel.dart';
+import 'package:volyaApp/widgets/weather_screen/imageFromWeatherTodayModel.dart';
 
 import 'package:volyaApp/services/location.dart';
 import 'package:volyaApp/services/weather_service.dart';
@@ -108,7 +108,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             title: Text('An error occured'),
             content: Text('Please enter a correct city name'),
             actions: [
-              FlatButton(
+              TextButton(
                 onPressed: Navigator.of(context).pop,
                 child: Text(
                   'Ok',
