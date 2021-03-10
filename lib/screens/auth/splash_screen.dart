@@ -5,25 +5,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volyaApp/bloc/bloc/login_bloc.dart';
 import 'package:volyaApp/bloc/bloc/login_event.dart';
 import 'package:volyaApp/bloc/bloc/login_state.dart';
+import 'package:volyaApp/screens/auth/login_screen.dart';
 
 import '../home.dart';
 import '../home.dart';
 
-class AuthScreen extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _AuthScreenState createState() => _AuthScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _AuthScreenState extends State<AuthScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   //FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(),
-          child: BlocConsumer<LoginBloc, LoginState>(
+        child: BlocProvider<AuthenticationLoginBloc>(
+          create: (context) => AuthenticationLoginBloc(),
+          child: BlocConsumer<AuthenticationLoginBloc, LoginState>(
             listener: (context, state) {
               return state.maybeWhen(
                 orElse: () {
@@ -39,7 +40,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 unAuth: () {
                   return Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => Home(),
+                      builder: (context) => AuthScreen(),
                     ),
                   );
                 },
@@ -50,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: ElevatedButton(
                   child: Icon(Icons.forward),
                   onPressed: () {
-                    BlocProvider.of<LoginBloc>(context).add(
+                    BlocProvider.of<AuthenticationLoginBloc>(context).add(
                       LoginEvent.checkIsLogggedIn(),
                     );
                   },

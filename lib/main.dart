@@ -6,7 +6,7 @@ import 'package:volyaApp/screens/fairytales/fairytales_audioplayer_screen.dart';
 import 'package:volyaApp/screens/music_screen.dart';
 import 'package:volyaApp/screens/home.dart';
 
-import 'screens/auth/auth_screen.dart';
+import 'screens/auth/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         const Locale('en', 'US'),
         const Locale('fr', 'FR'),
       ],
-      home: AuthScreen(),
+      home: SplashScreen(),
       routes: {
         MusicScreen.routeName: (context) => MusicScreen(),
         FairytaleScreen.routeName: (context) => FairytaleScreen(),

@@ -5,11 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:volyaApp/bloc/bloc/login_state.dart';
 import 'package:volyaApp/bloc/bloc/login_event.dart';
+import 'package:volyaApp/data/photo_screen/auth_screen/user_repository.dart';
 
-class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+class AuthenticationLoginBloc extends Bloc<LoginEvent, LoginState> {
+  AuthenticationLoginBloc() : super(LoginState.initial());
 
-  LoginBloc() : super(LoginState.initial());
+  UserRepository _userRepository = UserRepository();
 
   @override
   Stream<LoginState> mapEventToState(
@@ -19,12 +20,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         checkIsLogggedIn: () async* {
           yield LoginState.loading();
 
-          final currentUser = _firebaseAuth.currentUser;
-
-          if (currentUser != null) {
+          if (_userRepository.isSignedIn()) {
             yield LoginState.auth();
+            print('auth');
           } else {
             yield LoginState.unAuth();
+            print('unauth');
           }
         },
       );
