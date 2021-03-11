@@ -37,6 +37,7 @@ class AppColors {
   static const Color signUpScreenBackgroundColor = Color(0xff9fa8da);
   static const Color signUpButtonColor = Color(0xff2B244F);
   static const Color loginButtonColor = Color(0xff2B244F);
+  static const Color snackBarColor = Color(0xfffff2fe);
 }
 
 class FontsStyles {
@@ -93,6 +94,10 @@ class FontsStyles {
     fontSize: 17,
   );
   static TextStyle hintLogin = GoogleFonts.raleway(
+    fontSize: 17,
+  );
+  static TextStyle snackBarMessage = GoogleFonts.raleway(
+    color: AppColors.snackBarColor,
     fontSize: 17,
   );
 }
