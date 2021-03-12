@@ -32,6 +32,11 @@ class _$LoginStateTearOff {
   Error error() {
     return const Error();
   }
+
+// ignore: unused_element
+  LogOut logOut() {
+    return const LogOut();
+  }
 }
 
 /// @nodoc
@@ -46,6 +51,7 @@ mixin _$LoginState {
     @required TResult loading(),
     @required TResult success(),
     @required TResult error(),
+    @required TResult logOut(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -53,6 +59,7 @@ mixin _$LoginState {
     TResult loading(),
     TResult success(),
     TResult error(),
+    TResult logOut(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -61,6 +68,7 @@ mixin _$LoginState {
     @required TResult loading(Loading value),
     @required TResult success(Success value),
     @required TResult error(Error value),
+    @required TResult logOut(LogOut value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -68,6 +76,7 @@ mixin _$LoginState {
     TResult loading(Loading value),
     TResult success(Success value),
     TResult error(Error value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   });
 }
@@ -128,11 +137,13 @@ class _$Initial implements Initial {
     @required TResult loading(),
     @required TResult success(),
     @required TResult error(),
+    @required TResult logOut(),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return initial();
   }
 
@@ -143,6 +154,7 @@ class _$Initial implements Initial {
     TResult loading(),
     TResult success(),
     TResult error(),
+    TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -159,11 +171,13 @@ class _$Initial implements Initial {
     @required TResult loading(Loading value),
     @required TResult success(Success value),
     @required TResult error(Error value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return initial(this);
   }
 
@@ -174,6 +188,7 @@ class _$Initial implements Initial {
     TResult loading(Loading value),
     TResult success(Success value),
     TResult error(Error value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -228,11 +243,13 @@ class _$Loading implements Loading {
     @required TResult loading(),
     @required TResult success(),
     @required TResult error(),
+    @required TResult logOut(),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return loading();
   }
 
@@ -243,6 +260,7 @@ class _$Loading implements Loading {
     TResult loading(),
     TResult success(),
     TResult error(),
+    TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -259,11 +277,13 @@ class _$Loading implements Loading {
     @required TResult loading(Loading value),
     @required TResult success(Success value),
     @required TResult error(Error value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return loading(this);
   }
 
@@ -274,6 +294,7 @@ class _$Loading implements Loading {
     TResult loading(Loading value),
     TResult success(Success value),
     TResult error(Error value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -328,11 +349,13 @@ class _$Success implements Success {
     @required TResult loading(),
     @required TResult success(),
     @required TResult error(),
+    @required TResult logOut(),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return success();
   }
 
@@ -343,6 +366,7 @@ class _$Success implements Success {
     TResult loading(),
     TResult success(),
     TResult error(),
+    TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -359,11 +383,13 @@ class _$Success implements Success {
     @required TResult loading(Loading value),
     @required TResult success(Success value),
     @required TResult error(Error value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return success(this);
   }
 
@@ -374,6 +400,7 @@ class _$Success implements Success {
     TResult loading(Loading value),
     TResult success(Success value),
     TResult error(Error value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -428,11 +455,13 @@ class _$Error implements Error {
     @required TResult loading(),
     @required TResult success(),
     @required TResult error(),
+    @required TResult logOut(),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return error();
   }
 
@@ -443,6 +472,7 @@ class _$Error implements Error {
     TResult loading(),
     TResult success(),
     TResult error(),
+    TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -459,11 +489,13 @@ class _$Error implements Error {
     @required TResult loading(Loading value),
     @required TResult success(Success value),
     @required TResult error(Error value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(success != null);
     assert(error != null);
+    assert(logOut != null);
     return error(this);
   }
 
@@ -474,6 +506,7 @@ class _$Error implements Error {
     TResult loading(Loading value),
     TResult success(Success value),
     TResult error(Error value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -486,4 +519,110 @@ class _$Error implements Error {
 
 abstract class Error implements LoginState {
   const factory Error() = _$Error;
+}
+
+/// @nodoc
+abstract class $LogOutCopyWith<$Res> {
+  factory $LogOutCopyWith(LogOut value, $Res Function(LogOut) then) =
+      _$LogOutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LogOutCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+    implements $LogOutCopyWith<$Res> {
+  _$LogOutCopyWithImpl(LogOut _value, $Res Function(LogOut) _then)
+      : super(_value, (v) => _then(v as LogOut));
+
+  @override
+  LogOut get _value => super._value as LogOut;
+}
+
+/// @nodoc
+class _$LogOut implements LogOut {
+  const _$LogOut();
+
+  @override
+  String toString() {
+    return 'LoginState.logOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LogOut);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult success(),
+    @required TResult error(),
+    @required TResult logOut(),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(success != null);
+    assert(error != null);
+    assert(logOut != null);
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult success(),
+    TResult error(),
+    TResult logOut(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(Initial value),
+    @required TResult loading(Loading value),
+    @required TResult success(Success value),
+    @required TResult error(Error value),
+    @required TResult logOut(LogOut value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(success != null);
+    assert(error != null);
+    assert(logOut != null);
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(Initial value),
+    TResult loading(Loading value),
+    TResult success(Success value),
+    TResult error(Error value),
+    TResult logOut(LogOut value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogOut implements LoginState {
+  const factory LogOut() = _$LogOut;
 }

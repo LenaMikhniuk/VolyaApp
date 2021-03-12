@@ -15,31 +15,44 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) =>
-      event.when(loginWithEmail: (
-        String email,
-        String password,
-      ) async* {
-        yield LoginState.loading();
-        try {
-          await _userRepository.signInWithCredentials(email, password);
+      event.when(
+        loginWithEmail: (
+          String email,
+          String password,
+        ) async* {
+          yield LoginState.loading();
+          try {
+            await _userRepository.signInWithCredentials(email, password);
 
-          yield LoginState.success();
-        } catch (e) {
-          yield LoginState.error();
-          print('Error from catch $e');
-        }
-      }, signUp: (
-        String email,
-        String password,
-      ) async* {
-        yield LoginState.loading();
-        try {
-          await _userRepository.signUp(email: email, password: password);
+            yield LoginState.success();
+          } catch (e) {
+            yield LoginState.error();
+            print('Error from catch $e');
+          }
+        },
+        signUp: (
+          String email,
+          String password,
+        ) async* {
+          yield LoginState.loading();
+          try {
+            await _userRepository.signUp(email: email, password: password);
 
-          yield LoginState.success();
-        } catch (e) {
-          yield LoginState.error();
-          print('Error from catch $e');
-        }
-      });
+            yield LoginState.success();
+          } catch (e) {
+            yield LoginState.error();
+            print('Error from catch $e');
+          }
+        },
+        logOut: () async* {
+          yield LoginState.loading();
+          try {
+            await _userRepository.logOut();
+            yield LoginState.logOut();
+          } catch (e) {
+            yield LoginState.error();
+            print('Error from catch $e');
+          }
+        },
+      );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volyaApp/data/photo_screen/auth_screen/user_repository.dart';
+import 'package:volyaApp/screens/auth/log_out.dart';
 
 import 'package:volyaApp/screens/music_screen.dart';
 import 'package:volyaApp/screens/fairytales/photos/photo_gallery_screen.dart';
@@ -34,11 +35,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedPageValue],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          UserRepository().logOut();
-        },
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageValue,
         unselectedItemColor: AppColors.unselectedItemColor,

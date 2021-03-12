@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:volyaApp/models/weather_models/forecast_by_city_model.dart';
 import 'package:volyaApp/models/weather_models/weather_today.dart';
+import 'package:volyaApp/screens/auth/log_out.dart';
 import 'package:volyaApp/widgets/weather_screen/forecast_widget.dart';
 
 import 'package:volyaApp/screens/searchBarScreen.dart';
@@ -40,6 +41,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: LogOut(),
       body: Stack(
         children: [
           weatherTodayModel == null

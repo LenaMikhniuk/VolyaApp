@@ -5,6 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:volyaApp/data.dart';
+import 'package:volyaApp/screens/auth/log_out.dart';
 import 'package:volyaApp/widgets/music_box.dart';
 
 import '../shared.dart';
@@ -19,15 +20,6 @@ class _MusicScreenState extends State<MusicScreen> {
   AudioCache _audioCache;
   AudioPlayer _player = AudioPlayer();
   int currentIndex;
-
-  // void _next(){
-  //   if (_player.state != null) {
-  //     _player.play;
-  //   } else {
-  //     _currentAssetPosition++;
-  //     _open(_currentAssetPosition);
-  //   }
-  // }
 
   @override
   void initState() {
@@ -58,6 +50,7 @@ class _MusicScreenState extends State<MusicScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: LogOut(),
       appBar: AppBar(
         title: Center(
           child: Text('Music', style: FontsStyles.appBar),

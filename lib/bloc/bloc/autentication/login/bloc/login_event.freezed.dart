@@ -28,6 +28,11 @@ class _$LoginEventTearOff {
       password,
     );
   }
+
+// ignore: unused_element
+  LogOut logOut() {
+    return const LogOut();
+  }
 }
 
 /// @nodoc
@@ -36,34 +41,32 @@ const $LoginEvent = _$LoginEventTearOff();
 
 /// @nodoc
 mixin _$LoginEvent {
-  String get email;
-  String get password;
-
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loginWithEmail(String email, String password),
     @required TResult signUp(String email, String password),
+    @required TResult logOut(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithEmail(String email, String password),
     TResult signUp(String email, String password),
+    TResult logOut(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loginWithEmail(LoginWithEmail value),
     @required TResult signUp(SignUp value),
+    @required TResult logOut(LogOut value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loginWithEmail(LoginWithEmail value),
     TResult signUp(SignUp value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   });
-
-  @JsonKey(ignore: true)
-  $LoginEventCopyWith<LoginEvent> get copyWith;
 }
 
 /// @nodoc
@@ -71,7 +74,6 @@ abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res>;
-  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -81,26 +83,13 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   final LoginEvent _value;
   // ignore: unused_field
   final $Res Function(LoginEvent) _then;
-
-  @override
-  $Res call({
-    Object email = freezed,
-    Object password = freezed,
-  }) {
-    return _then(_value.copyWith(
-      email: email == freezed ? _value.email : email as String,
-      password: password == freezed ? _value.password : password as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $LoginWithEmailCopyWith<$Res>
-    implements $LoginEventCopyWith<$Res> {
+abstract class $LoginWithEmailCopyWith<$Res> {
   factory $LoginWithEmailCopyWith(
           LoginWithEmail value, $Res Function(LoginWithEmail) then) =
       _$LoginWithEmailCopyWithImpl<$Res>;
-  @override
   $Res call({String email, String password});
 }
 
@@ -169,9 +158,11 @@ class _$LoginWithEmail implements LoginWithEmail {
   TResult when<TResult extends Object>({
     @required TResult loginWithEmail(String email, String password),
     @required TResult signUp(String email, String password),
+    @required TResult logOut(),
   }) {
     assert(loginWithEmail != null);
     assert(signUp != null);
+    assert(logOut != null);
     return loginWithEmail(email, password);
   }
 
@@ -180,6 +171,7 @@ class _$LoginWithEmail implements LoginWithEmail {
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithEmail(String email, String password),
     TResult signUp(String email, String password),
+    TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -194,9 +186,11 @@ class _$LoginWithEmail implements LoginWithEmail {
   TResult map<TResult extends Object>({
     @required TResult loginWithEmail(LoginWithEmail value),
     @required TResult signUp(SignUp value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(loginWithEmail != null);
     assert(signUp != null);
+    assert(logOut != null);
     return loginWithEmail(this);
   }
 
@@ -205,6 +199,7 @@ class _$LoginWithEmail implements LoginWithEmail {
   TResult maybeMap<TResult extends Object>({
     TResult loginWithEmail(LoginWithEmail value),
     TResult signUp(SignUp value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -219,20 +214,16 @@ abstract class LoginWithEmail implements LoginEvent {
   const factory LoginWithEmail(String email, String password) =
       _$LoginWithEmail;
 
-  @override
   String get email;
-  @override
   String get password;
-  @override
   @JsonKey(ignore: true)
   $LoginWithEmailCopyWith<LoginWithEmail> get copyWith;
 }
 
 /// @nodoc
-abstract class $SignUpCopyWith<$Res> implements $LoginEventCopyWith<$Res> {
+abstract class $SignUpCopyWith<$Res> {
   factory $SignUpCopyWith(SignUp value, $Res Function(SignUp) then) =
       _$SignUpCopyWithImpl<$Res>;
-  @override
   $Res call({String email, String password});
 }
 
@@ -300,9 +291,11 @@ class _$SignUp implements SignUp {
   TResult when<TResult extends Object>({
     @required TResult loginWithEmail(String email, String password),
     @required TResult signUp(String email, String password),
+    @required TResult logOut(),
   }) {
     assert(loginWithEmail != null);
     assert(signUp != null);
+    assert(logOut != null);
     return signUp(email, password);
   }
 
@@ -311,6 +304,7 @@ class _$SignUp implements SignUp {
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithEmail(String email, String password),
     TResult signUp(String email, String password),
+    TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -325,9 +319,11 @@ class _$SignUp implements SignUp {
   TResult map<TResult extends Object>({
     @required TResult loginWithEmail(LoginWithEmail value),
     @required TResult signUp(SignUp value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(loginWithEmail != null);
     assert(signUp != null);
+    assert(logOut != null);
     return signUp(this);
   }
 
@@ -336,6 +332,7 @@ class _$SignUp implements SignUp {
   TResult maybeMap<TResult extends Object>({
     TResult loginWithEmail(LoginWithEmail value),
     TResult signUp(SignUp value),
+    TResult logOut(LogOut value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -349,11 +346,102 @@ class _$SignUp implements SignUp {
 abstract class SignUp implements LoginEvent {
   const factory SignUp(String email, String password) = _$SignUp;
 
-  @override
   String get email;
-  @override
   String get password;
-  @override
   @JsonKey(ignore: true)
   $SignUpCopyWith<SignUp> get copyWith;
+}
+
+/// @nodoc
+abstract class $LogOutCopyWith<$Res> {
+  factory $LogOutCopyWith(LogOut value, $Res Function(LogOut) then) =
+      _$LogOutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LogOutCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $LogOutCopyWith<$Res> {
+  _$LogOutCopyWithImpl(LogOut _value, $Res Function(LogOut) _then)
+      : super(_value, (v) => _then(v as LogOut));
+
+  @override
+  LogOut get _value => super._value as LogOut;
+}
+
+/// @nodoc
+class _$LogOut implements LogOut {
+  const _$LogOut();
+
+  @override
+  String toString() {
+    return 'LoginEvent.logOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LogOut);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult loginWithEmail(String email, String password),
+    @required TResult signUp(String email, String password),
+    @required TResult logOut(),
+  }) {
+    assert(loginWithEmail != null);
+    assert(signUp != null);
+    assert(logOut != null);
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithEmail(String email, String password),
+    TResult signUp(String email, String password),
+    TResult logOut(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult loginWithEmail(LoginWithEmail value),
+    @required TResult signUp(SignUp value),
+    @required TResult logOut(LogOut value),
+  }) {
+    assert(loginWithEmail != null);
+    assert(signUp != null);
+    assert(logOut != null);
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithEmail(LoginWithEmail value),
+    TResult signUp(SignUp value),
+    TResult logOut(LogOut value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogOut implements LoginEvent {
+  const factory LogOut() = _$LogOut;
 }

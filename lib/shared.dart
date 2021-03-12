@@ -36,6 +36,7 @@ class AppColors {
   static const Color loginScreenBackgroundColor = Color(0xff9fa8da);
   static const Color snackBarMessageColor = Color(0xffffe6e6);
   static const Color loginButtonColor = Color(0xff2B244F);
+  static const Color logOutButtonColor = Color(0xff2B244F);
 }
 
 class FontsStyles {
@@ -92,6 +93,11 @@ class FontsStyles {
     color: AppColors.cityName,
     fontSize: 35,
   );
+
+  static TextStyle logOutButton = GoogleFonts.montserrat(
+      color: AppColors.logOutButtonColor,
+      fontSize: 25,
+      fontWeight: FontWeight.w500);
 }
 
 class ButtonBoxDecoration {

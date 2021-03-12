@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:volyaApp/data/photo_screen/photo_data.dart';
 import 'package:volyaApp/models/photo_screen_models/photo_model.dart';
+import 'package:volyaApp/screens/auth/log_out.dart';
 import 'package:volyaApp/shared.dart';
 import 'package:volyaApp/util/db_utils.dart';
 import 'package:volyaApp/widgets/photo_screen_widget/photo_screen_items.dart';
@@ -52,6 +53,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: LogOut(),
       appBar: AppBar(
         title: FittedBox(
           fit: BoxFit.cover,
@@ -62,12 +64,10 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
         ),
         centerTitle: true,
         backgroundColor: AppColors.appBarMainColor,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add_a_photo),
-            onPressed: _pickImage,
-          ),
-        ],
+        leading: GestureDetector(
+          child: Icon(Icons.add_a_photo),
+          onTap: _pickImage,
+        ),
       ),
       body: FutureBuilder<List<Photo>>(
         future: PhotoScreenData.getImages(),
