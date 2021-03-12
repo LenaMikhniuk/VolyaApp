@@ -40,7 +40,7 @@ class LogOut extends StatelessWidget {
                   leading: Icon(
                     Icons.exit_to_app,
                     size: 25,
-                    color: AppColors.logOutButtonColor,
+                    color: AppColors.logOutButtonTextColor,
                   ),
                   title: Text(
                     'Log Out',

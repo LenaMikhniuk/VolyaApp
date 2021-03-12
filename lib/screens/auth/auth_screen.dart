@@ -60,7 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
           return Center(
             child: Card(
               elevation: 4,
-              shadowColor: AppColors.loginButtonColor,
+              shadowColor: AppColors.loginButtonTextColor,
               margin: EdgeInsets.all(20),
               child: SingleChildScrollView(
                 child: Padding(
@@ -74,7 +74,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             email = value;
                             setState(() {});
                           },
-                          style: FontsStyles.hintLogin,
+                          // style: FontsStyles.hintLogin,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             labelText: 'Email address',
@@ -85,14 +85,21 @@ class _AuthScreenState extends State<AuthScreen> {
                           onChanged: (value) {
                             password = value;
                           },
-                          style: FontsStyles.hintLogin,
+                          //style: FontsStyles.hintLogin,
                           decoration: InputDecoration(
                             labelText: 'Password',
                           ),
                           obscureText: true,
                           obscuringCharacter: '*',
                         ),
-                        TextButton(
+                        SizedBox(
+                          height: 30,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.loginButtonColor, // background
+                            onPrimary: Colors.white, // foreground
+                          ),
                           onPressed: () {
                             _bloc.add(isLoginForm
                                 ? LoginEvent.loginWithEmail(email, password)
@@ -106,7 +113,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        TextButton(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.loginInActiveButtonColor,
+                            onPrimary: Colors.white,
+                          ),
                           onPressed: () {
                             isLoginForm = !isLoginForm;
                             setState(() {});

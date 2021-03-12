@@ -35,8 +35,10 @@ class AppColors {
   static const Color deleteTextColor = Color(0xff6600ff);
   static const Color loginScreenBackgroundColor = Color(0xff9fa8da);
   static const Color snackBarMessageColor = Color(0xffffe6e6);
-  static const Color loginButtonColor = Color(0xff2B244F);
-  static const Color logOutButtonColor = Color(0xff2B244F);
+  static const Color loginButtonTextColor = Color(0xff2B244F);
+  static const Color logOutButtonTextColor = Color(0xff2B244F);
+  static const Color loginButtonColor = Color(0xff78c1f5);
+  static const Color loginInActiveButtonColor = Color(0xffcceaff);
 }
 
 class FontsStyles {
@@ -65,7 +67,7 @@ class FontsStyles {
       fontWeight: FontWeight.w500);
 
   static TextStyle hintName = GoogleFonts.raleway(
-    color: AppColors.hintSearchBarColor,
+    // color: AppColors.hintSearchBarColor,
     fontSize: 17,
   );
 
@@ -90,12 +92,12 @@ class FontsStyles {
     fontSize: 17,
   );
   static TextStyle loginButton = GoogleFonts.montserrat(
-    color: AppColors.cityName,
-    fontSize: 35,
+    color: AppColors.loginButtonTextColor,
+    fontSize: 20,
   );
 
   static TextStyle logOutButton = GoogleFonts.montserrat(
-      color: AppColors.logOutButtonColor,
+      color: AppColors.logOutButtonTextColor,
       fontSize: 25,
       fontWeight: FontWeight.w500);
 }
