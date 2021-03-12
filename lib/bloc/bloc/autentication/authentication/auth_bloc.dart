@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_state.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_event.dart';
@@ -9,8 +10,7 @@ import 'package:volyaApp/data/photo_screen/auth_screen/user_repository.dart';
 class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
   AuthenticationBloc() : super(AuthState.initial());
 
-  UserRepository _userRepository = UserRepository();
-
+  UserRepository userRepo = UserRepository();
   @override
   Stream<AuthState> mapEventToState(
     AuthEvent event,
@@ -18,14 +18,14 @@ class AuthenticationBloc extends Bloc<AuthEvent, AuthState> {
       event.when(
         checkIsAuthenticated: () async* {
           yield AuthState.loading();
-          await Future.delayed(Duration(seconds: 3));
-
-          if (_userRepository.isSignedIn()) {
-            yield AuthState.authenticated();
-            print('auth');
-          } else {
+          try {
+            final isLogin = await userRepo.isSignedIn();
+            yield isLogin
+                ? AuthState.authenticated()
+                : AuthState.unauthenticated();
+          } catch (e) {
             yield AuthState.unauthenticated();
-            print('unauth');
+            print(e);
           }
         },
       );

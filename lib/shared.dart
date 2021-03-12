@@ -33,6 +33,9 @@ class AppColors {
   static const Color bodyPhotoScreenColor = Color(0xffffe6e6);
   static const Color iconButtonPhotoScreenColor = Color(0xff6600ff);
   static const Color deleteTextColor = Color(0xff6600ff);
+  static const Color loginScreenBackgroundColor = Color(0xff9fa8da);
+  static const Color snackBarMessageColor = Color(0xffffe6e6);
+  static const Color loginButtonColor = Color(0xff2B244F);
 }
 
 class FontsStyles {
@@ -76,6 +79,18 @@ class FontsStyles {
   static TextStyle pickAlertDialog = GoogleFonts.montserrat(
     color: AppColors.deleteTextColor,
     fontSize: 18,
+  );
+  static TextStyle snackBarMessage = GoogleFonts.montserrat(
+    color: AppColors.snackBarMessageColor,
+    fontSize: 18,
+  );
+  static TextStyle hintLogin = GoogleFonts.raleway(
+    color: AppColors.hintSearchBarColor,
+    fontSize: 17,
+  );
+  static TextStyle loginButton = GoogleFonts.montserrat(
+    color: AppColors.cityName,
+    fontSize: 35,
   );
 }
 

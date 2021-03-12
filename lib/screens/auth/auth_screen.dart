@@ -113,7 +113,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           },
                           child: Text(
                             isLoginForm ? 'Create account' : 'Login',
-                            style: FontsStyles.signUpButton,
+                            style: FontsStyles.loginButton,
                           ),
                         )
                       ],

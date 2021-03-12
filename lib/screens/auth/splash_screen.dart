@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:volyaApp/bloc/bloc/autentication/authentication/authentication_bloc.dart';
+import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_bloc.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_event.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_state.dart';
 

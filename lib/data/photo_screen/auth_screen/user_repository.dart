@@ -18,12 +18,16 @@ class UserRepository {
     );
   }
 
-  bool isSignedIn() {
-    final currentUser = _firebaseAuth.currentUser;
-    return currentUser != null;
+  Future<void> logOut() async {
+    return await _firebaseAuth.signOut();
   }
 
-  Future<String> getUser() async {
-    return (_firebaseAuth.currentUser.email);
+  Future<bool> isSignedIn() async {
+    if (_firebaseAuth.currentUser == null) {
+      return false;
+    } else {
+      await _firebaseAuth.currentUser.reload();
+      return _firebaseAuth.currentUser != null;
+    }
   }
 }
