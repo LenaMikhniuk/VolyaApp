@@ -1,15 +1,18 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_event.dart';
 import 'package:volyaApp/bloc/bloc/autentication/login/bloc/login_event.dart';
 import 'package:volyaApp/bloc/bloc/autentication/login/bloc/login_state.dart';
 import 'package:volyaApp/data/photo_screen/auth_screen/user_repository.dart';
+import 'package:volyaApp/util/error_utils.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginState.initial());
   UserRepository _userRepository = UserRepository();
+  String message;
 
   @override
   Stream<LoginState> mapEventToState(
@@ -25,8 +28,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             await _userRepository.signInWithCredentials(email, password);
 
             yield LoginState.success();
+          } on FirebaseAuthException catch (e) {
+            final errorMessageHuman = ErrorUtils.getErrorMessage(e.message);
+            yield LoginState.error(errorMessageHuman);
+            print('Error from catch $e');
+            print(errorMessageHuman);
           } catch (e) {
-            yield LoginState.error();
+            final errorMessageHuman = ErrorUtils.getErrorMessage(e.toString());
+            yield LoginState.error(errorMessageHuman);
+            print(errorMessageHuman);
             print('Error from catch $e');
           }
         },
@@ -39,9 +49,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             await _userRepository.signUp(email: email, password: password);
 
             yield LoginState.success();
-          } catch (e) {
-            yield LoginState.error();
+          } on FirebaseAuthException catch (e) {
+            final errorMessageHuman = ErrorUtils.getErrorMessage(e.toString());
+            yield LoginState.error(errorMessageHuman);
             print('Error from catch $e');
+            print(errorMessageHuman);
+          } catch (e) {
+            final errorMessageHuman = ErrorUtils.getErrorMessage(e.toString());
+            yield LoginState.error(errorMessageHuman);
+            print('Error from catch $e');
+            print(errorMessageHuman);
           }
         },
         logOut: () async* {
@@ -49,9 +66,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           try {
             await _userRepository.logOut();
             yield LoginState.logOut();
-          } catch (e) {
-            yield LoginState.error();
+          } on FirebaseAuthException catch (e) {
+            final errorMessageHuman = ErrorUtils.getErrorMessage(e.toString());
+            yield LoginState.error(errorMessageHuman);
             print('Error from catch $e');
+          } catch (e) {
+            final errorMessageHuman = ErrorUtils.getErrorMessage(e.toString());
+            yield LoginState.error(errorMessageHuman);
           }
         },
       );

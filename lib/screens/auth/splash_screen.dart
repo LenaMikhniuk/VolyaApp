@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_bloc.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_event.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_state.dart';
+import 'package:volyaApp/util/error_utils.dart';
 
+import '../../shared.dart';
 import '../home.dart';
 import 'auth_screen.dart';
 
@@ -15,6 +17,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   AuthenticationBloc _authenticationBloc;
+  String message;
 
   @override
   void initState() {

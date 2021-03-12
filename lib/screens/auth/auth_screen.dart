@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:volyaApp/bloc/bloc/autentication/login/bloc/login_bloc.dart';
 import 'package:volyaApp/bloc/bloc/autentication/login/bloc/login_event.dart';
 import 'package:volyaApp/bloc/bloc/autentication/login/bloc/login_state.dart';
+import 'package:volyaApp/util/error_utils.dart';
 import '../../shared.dart';
 import '../home.dart';
 
@@ -41,14 +42,18 @@ class _AuthScreenState extends State<AuthScreen> {
                       builder: (context) => Home(),
                     ),
                   ),
-              error: () => ScaffoldMessenger.of(context).showSnackBar(
+              error: (errorMessage) =>
+                  ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Login Failure',
-                            style: FontsStyles.snackBarMessage,
+                          Flexible(
+                            child: Text(
+                              errorMessage,
+                              style: FontsStyles.snackBarMessage,
+                              overflow: TextOverflow.visible,
+                            ),
                           ),
                           Icon(Icons.error)
                         ],
@@ -85,7 +90,6 @@ class _AuthScreenState extends State<AuthScreen> {
                           onChanged: (value) {
                             password = value;
                           },
-                          //style: FontsStyles.hintLogin,
                           decoration: InputDecoration(
                             labelText: 'Password',
                           ),

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_state.dart';
 import 'package:volyaApp/bloc/bloc/autentication/authentication/auth_event.dart';

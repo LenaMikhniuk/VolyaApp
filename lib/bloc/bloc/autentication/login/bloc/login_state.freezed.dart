@@ -29,8 +29,10 @@ class _$LoginStateTearOff {
   }
 
 // ignore: unused_element
-  Error error() {
-    return const Error();
+  Error error(String message) {
+    return Error(
+      message,
+    );
   }
 
 // ignore: unused_element
@@ -50,7 +52,7 @@ mixin _$LoginState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult success(),
-    @required TResult error(),
+    @required TResult error(String message),
     @required TResult logOut(),
   });
   @optionalTypeArgs
@@ -58,7 +60,7 @@ mixin _$LoginState {
     TResult initial(),
     TResult loading(),
     TResult success(),
-    TResult error(),
+    TResult error(String message),
     TResult logOut(),
     @required TResult orElse(),
   });
@@ -136,7 +138,7 @@ class _$Initial implements Initial {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult success(),
-    @required TResult error(),
+    @required TResult error(String message),
     @required TResult logOut(),
   }) {
     assert(initial != null);
@@ -153,7 +155,7 @@ class _$Initial implements Initial {
     TResult initial(),
     TResult loading(),
     TResult success(),
-    TResult error(),
+    TResult error(String message),
     TResult logOut(),
     @required TResult orElse(),
   }) {
@@ -242,7 +244,7 @@ class _$Loading implements Loading {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult success(),
-    @required TResult error(),
+    @required TResult error(String message),
     @required TResult logOut(),
   }) {
     assert(initial != null);
@@ -259,7 +261,7 @@ class _$Loading implements Loading {
     TResult initial(),
     TResult loading(),
     TResult success(),
-    TResult error(),
+    TResult error(String message),
     TResult logOut(),
     @required TResult orElse(),
   }) {
@@ -348,7 +350,7 @@ class _$Success implements Success {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult success(),
-    @required TResult error(),
+    @required TResult error(String message),
     @required TResult logOut(),
   }) {
     assert(initial != null);
@@ -365,7 +367,7 @@ class _$Success implements Success {
     TResult initial(),
     TResult loading(),
     TResult success(),
-    TResult error(),
+    TResult error(String message),
     TResult logOut(),
     @required TResult orElse(),
   }) {
@@ -419,6 +421,7 @@ abstract class Success implements LoginState {
 abstract class $ErrorCopyWith<$Res> {
   factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
       _$ErrorCopyWithImpl<$Res>;
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -429,24 +432,45 @@ class _$ErrorCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   Error get _value => super._value as Error;
+
+  @override
+  $Res call({
+    Object message = freezed,
+  }) {
+    return _then(Error(
+      message == freezed ? _value.message : message as String,
+    ));
+  }
 }
 
 /// @nodoc
 class _$Error implements Error {
-  const _$Error();
+  const _$Error(this.message) : assert(message != null);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'LoginState.error()';
+    return 'LoginState.error(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Error);
+    return identical(this, other) ||
+        (other is Error &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorCopyWith<Error> get copyWith =>
+      _$ErrorCopyWithImpl<Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -454,7 +478,7 @@ class _$Error implements Error {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult success(),
-    @required TResult error(),
+    @required TResult error(String message),
     @required TResult logOut(),
   }) {
     assert(initial != null);
@@ -462,7 +486,7 @@ class _$Error implements Error {
     assert(success != null);
     assert(error != null);
     assert(logOut != null);
-    return error();
+    return error(message);
   }
 
   @override
@@ -471,13 +495,13 @@ class _$Error implements Error {
     TResult initial(),
     TResult loading(),
     TResult success(),
-    TResult error(),
+    TResult error(String message),
     TResult logOut(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (error != null) {
-      return error();
+      return error(message);
     }
     return orElse();
   }
@@ -518,7 +542,11 @@ class _$Error implements Error {
 }
 
 abstract class Error implements LoginState {
-  const factory Error() = _$Error;
+  const factory Error(String message) = _$Error;
+
+  String get message;
+  @JsonKey(ignore: true)
+  $ErrorCopyWith<Error> get copyWith;
 }
 
 /// @nodoc
@@ -560,7 +588,7 @@ class _$LogOut implements LogOut {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult success(),
-    @required TResult error(),
+    @required TResult error(String message),
     @required TResult logOut(),
   }) {
     assert(initial != null);
@@ -577,7 +605,7 @@ class _$LogOut implements LogOut {
     TResult initial(),
     TResult loading(),
     TResult success(),
-    TResult error(),
+    TResult error(String message),
     TResult logOut(),
     @required TResult orElse(),
   }) {
