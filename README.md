@@ -6,6 +6,7 @@ My first study flutter app.
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
+* [Contact](#contact)
 
 
 ## Technologies info
