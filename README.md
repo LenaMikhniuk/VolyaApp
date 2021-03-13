@@ -25,7 +25,7 @@ To run this project:
 
 ## Features
 List of features ready and TODOs for future development
-* Awesome feature 1
+* ![weather-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker.gif)
 * Awesome feature 2
 * Awesome feature 3
 
