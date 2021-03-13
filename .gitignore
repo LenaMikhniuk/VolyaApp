@@ -42,4 +42,5 @@ app.*.map.json
 
 assets/sounds/*.mp3
 assets/sounds/*.m4a
+assets/sounds_fairytales/*.mp3
 
