@@ -19,14 +19,6 @@ class Data {
       sound: 'sounds/snuffle.mp3',
     ),
     MusicContainer(
-      image: 'assets/images_data/papa.jpeg',
-      sound: 'sounds/papa.m4a',
-    ),
-    MusicContainer(
-      image: 'assets/images_data/Ola.jpg',
-      sound: 'sounds/song.m4a',
-    ),
-    MusicContainer(
       image: 'assets/images_data/picca.jpg',
       sound: 'sounds/Picca.mp3',
     ),
