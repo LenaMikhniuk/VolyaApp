@@ -37,31 +37,26 @@ class _HomeState extends State<Home> {
       body: _pages[_selectedPageValue],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageValue,
-        unselectedItemColor: AppColors.unselectedItemColor,
-        selectedItemColor: AppColors.selectedItemColor,
+        unselectedItemColor: AppColors.textColorLight,
+        selectedItemColor: AppColors.highlighterColor,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: AppColors.bottomNavigationBarColor,
+            backgroundColor: AppColors.primaryColor,
             icon: Icon(Icons.music_note),
             label: 'Music',
           ),
           BottomNavigationBarItem(
-            backgroundColor: AppColors.bottomNavigationBarColor,
+            backgroundColor: AppColors.primaryColor,
             icon: Icon(Icons.book),
             label: 'Fairytales',
           ),
-          // BottomNavigationBarItem(
-          //   backgroundColor: AppColors.bottomNavigationBarColor,
-          //   icon: Icon(Icons.video_library),
-          //   label: 'Video',
-          // ),
           BottomNavigationBarItem(
-            backgroundColor: AppColors.bottomNavigationBarColor,
+            backgroundColor: AppColors.primaryColor,
             icon: Icon(Icons.photo_camera),
             label: 'Photos',
           ),
           BottomNavigationBarItem(
-            backgroundColor: AppColors.bottomNavigationBarColor,
+            backgroundColor: AppColors.primaryColor,
             icon: Icon(Icons.cloud_queue),
             label: 'Weather',
           ),

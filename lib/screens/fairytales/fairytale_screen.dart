@@ -11,16 +11,20 @@ class FairytaleScreen extends StatelessWidget {
     return Scaffold(
       endDrawer: LogOut(),
       appBar: AppBar(
+        centerTitle: true,
         title: Center(
           child: Text(
             'Fairytales',
-            style: FontsStyles.appBar,
+            style: FontsStyles.baseStyleLight.copyWith(fontSize: 50),
           ),
         ),
-        backgroundColor: AppColors.appBarMainColor,
-        shadowColor: AppColors.appBarShadowColor,
+        backgroundColor: AppColors.primaryColor,
+        shadowColor: AppColors.backgroundColor,
       ),
-      body: Container(color: AppColors.bodyMainColor, child: FairytalesGrid()),
+      body: Container(
+        color: AppColors.backgroundColor,
+        child: FairytalesGrid(),
+      ),
     );
   }
 }

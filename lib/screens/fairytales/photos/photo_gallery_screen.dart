@@ -59,11 +59,11 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
           fit: BoxFit.cover,
           child: Text(
             'Photo Gallery',
-            style: FontsStyles.appBar,
+            style: FontsStyles.baseStyleLight,
           ),
         ),
         centerTitle: true,
-        backgroundColor: AppColors.appBarMainColor,
+        backgroundColor: AppColors.primaryColor,
         leading: GestureDetector(
           child: Icon(Icons.add_a_photo),
           onTap: _pickImage,
@@ -82,7 +82,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
               return Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: AppColors.bodyPhotoScreenColor,
+                color: AppColors.backgroundColor,
                 child: GridView.builder(
                   padding: EdgeInsets.all(10),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -101,7 +101,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                         builder: (context) => AlertDialog(
                           title: Text(
                             'Do you want to delete this photo?',
-                            style: FontsStyles.deleteAlertDialog,
+                            style: FontsStyles.baseStyleDark,
                           ),
                           actions: [
                             TextButton(
@@ -112,13 +112,13 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                               },
                               child: Text(
                                 'Yes',
-                                style: FontsStyles.deleteAlertDialog,
+                                style: FontsStyles.baseStyleDark,
                               ),
                             ),
                             TextButton(
                                 child: Text(
                                   'No',
-                                  style: FontsStyles.deleteAlertDialog,
+                                  style: FontsStyles.baseStyleDark,
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -147,7 +147,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
           return AlertDialog(
             title: Text(
               'Do you want to use the camera or pick a picture from the gallery?',
-              style: FontsStyles.pickAlertDialog,
+              style: FontsStyles.baseStyleDark,
             ),
             actions: [
               iconButton(
@@ -169,7 +169,7 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
       icon: Icon(
         icon,
         size: 30,
-        color: AppColors.iconButtonPhotoScreenColor,
+        color: AppColors.textColorDark,
       ),
     );
   }

@@ -31,15 +31,15 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: AppColors.appBarTextColorFairytaleScreen,
+          color: AppColors.textColorLight,
         ),
-        shadowColor: AppColors.appBarShadowColor,
-        backgroundColor: AppColors.appBarFairytalesAudioPlayerScreen,
+        shadowColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.primaryColor,
         title: FittedBox(
           fit: BoxFit.cover,
           child: Text(
             fairytale.title,
-            style: FontsStyles.appBarFairytalesAudioPlayerScreen,
+            style: FontsStyles.baseStyleLight.copyWith(fontSize: 30),
           ),
         ),
         actions: [
@@ -53,7 +53,7 @@ class FairytalesAudioPlayerScreen extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: AppColors.audioplayerScreenMainColor,
+        color: AppColors.primaryColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,

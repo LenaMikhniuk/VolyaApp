@@ -62,7 +62,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               textContainer(
                 WeatherUtils.tempWithIcon(weatherTodayModel?.main?.temp,
                     weatherTodayModel?.weather?.first?.id),
-                FontsStyles.weatherData,
+                FontsStyles.baseStyleDark,
               ),
               Expanded(
                 child: ForcastWidget(
@@ -92,7 +92,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       child: CircularProgressIndicator(
         strokeWidth: 5,
         valueColor: AlwaysStoppedAnimation<Color>(
-            AppColors.circularIndicatorColor.withOpacity(0.5)),
+            AppColors.secondaryColor.withOpacity(0.5)),
       ),
     ));
   }
@@ -114,7 +114,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                 onPressed: Navigator.of(context).pop,
                 child: Text(
                   'Ok',
-                  style: TextStyle(color: AppColors.errorTextColor),
+                  style: TextStyle(color: AppColors.textColorDark),
                 ),
               ),
             ],
@@ -131,8 +131,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-              child: textContainer(
-                  '${weatherTodayModel?.name ?? '...'}', FontsStyles.cityName)),
+              child: textContainer('${weatherTodayModel?.name ?? '...'}',
+                  FontsStyles.baseStyleDark)),
         ],
       ),
     );
@@ -144,26 +144,27 @@ class _WeatherScreenState extends State<WeatherScreen> {
       children: [
         Flexible(
           child: Container(
-              //padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                color: AppColors.containerWeatherScreenColor.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(3),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: AutoSizeText(
-                      text,
-                      textAlign: TextAlign.center,
-                      style: style,
-                      minFontSize: 18,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+            //padding: EdgeInsets.only(left: 20, right: 20),
+            decoration: BoxDecoration(
+              color: AppColors.secondaryColor.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(3),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: AutoSizeText(
+                    text,
+                    textAlign: TextAlign.center,
+                    style: FontsStyles.baseStyleLight,
+                    minFontSize: 35,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
@@ -187,7 +188,7 @@ class LocationButton extends StatelessWidget {
         icon: Icon(
           iconData,
           size: 40,
-          color: AppColors.iconButtonWeatherColor,
+          color: AppColors.secondaryColor,
         ),
         onPressed: onPressed,
       ),

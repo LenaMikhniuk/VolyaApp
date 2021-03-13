@@ -52,14 +52,16 @@ class _MusicScreenState extends State<MusicScreen> {
     return Scaffold(
       endDrawer: LogOut(),
       appBar: AppBar(
+        centerTitle: true,
         title: Center(
-          child: Text('Music', style: FontsStyles.appBar),
+          child: Text('Music',
+              style: FontsStyles.baseStyleLight.copyWith(fontSize: 50)),
         ),
-        backgroundColor: AppColors.appBarMainColor,
-        shadowColor: AppColors.appBarShadowColor,
+        backgroundColor: AppColors.primaryColor,
+        shadowColor: AppColors.primaryColor,
       ),
       body: Container(
-        color: AppColors.bodyMainColor,
+        color: AppColors.backgroundColor,
         child: GridView.builder(
           padding: EdgeInsets.all(10),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

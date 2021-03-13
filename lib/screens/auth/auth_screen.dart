@@ -29,7 +29,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.loginScreenBackgroundColor,
+      backgroundColor: AppColors.primaryColor,
       body: BlocProvider<LoginBloc>(
         create: (context) => _bloc,
         child: BlocConsumer<LoginBloc, LoginState>(listener: (context, state) {
@@ -51,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           Flexible(
                             child: Text(
                               errorMessage,
-                              style: FontsStyles.snackBarMessage,
+                              style: FontsStyles.baseStyleDark,
                               overflow: TextOverflow.visible,
                             ),
                           ),
@@ -65,7 +65,7 @@ class _AuthScreenState extends State<AuthScreen> {
           return Center(
             child: Card(
               elevation: 4,
-              shadowColor: AppColors.loginButtonTextColor,
+              shadowColor: AppColors.textColorDark,
               margin: EdgeInsets.all(20),
               child: SingleChildScrollView(
                 child: Padding(
@@ -79,11 +79,10 @@ class _AuthScreenState extends State<AuthScreen> {
                             email = value;
                             setState(() {});
                           },
-                          // style: FontsStyles.hintLogin,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             labelText: 'Email address',
-                            hintStyle: FontsStyles.hintName,
+                            hintStyle: FontsStyles.baseStyleDark,
                           ),
                         ),
                         TextFormField(
@@ -101,8 +100,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: AppColors.loginButtonColor, // background
-                            onPrimary: Colors.white, // foreground
+                            primary: AppColors.backgroundColor,
+                            onPrimary: Colors.white,
                           ),
                           onPressed: () {
                             _bloc.add(isLoginForm
@@ -111,24 +110,21 @@ class _AuthScreenState extends State<AuthScreen> {
                           },
                           child: Text(
                             isLoginForm ? 'Login' : 'Sign Up',
-                            style: FontsStyles.loginButton,
+                            style: FontsStyles.baseStyleDark,
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: AppColors.loginInActiveButtonColor,
-                            onPrimary: Colors.white,
-                          ),
+                        TextButton(
                           onPressed: () {
                             isLoginForm = !isLoginForm;
                             setState(() {});
                           },
                           child: Text(
                             isLoginForm ? 'Create account' : 'Login',
-                            style: FontsStyles.loginButton,
+                            style: FontsStyles.baseStyleDark
+                                .copyWith(fontSize: 15),
                           ),
                         )
                       ],

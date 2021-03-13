@@ -25,7 +25,7 @@ class MusicBox extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                  width: isSelected ? 3 : 0, color: AppColors.borderColor),
+                  width: isSelected ? 3 : 0, color: AppColors.highlighterColor),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),

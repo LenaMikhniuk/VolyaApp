@@ -116,8 +116,8 @@ class _AudioPlayerButtonsState extends State<AudioPlayerButtons> {
           height: 30,
         ),
         Slider(
-            activeColor: AppColors.sliderActiveColor,
-            inactiveColor: AppColors.sliderInActiveColor,
+            activeColor: AppColors.secondaryColor,
+            inactiveColor: AppColors.textColorLight,
             value: _position.inSeconds.toDouble(),
             min: 0.0,
             max: _duration.inSeconds.toDouble(),
@@ -150,8 +150,12 @@ class Button extends StatelessWidget {
         height: 70,
         width: 70,
         decoration: ButtonBoxDecoration.boxDecoration
-            .copyWith(color: AppColors.buttonColor),
-        child: Icon(icon, size: 70, color: AppColors.iconButtonColor),
+            .copyWith(color: AppColors.textColorLight),
+        child: Icon(
+          icon,
+          size: 70,
+          color: AppColors.secondaryColor,
+        ),
       ),
     );
   }

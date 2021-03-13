@@ -19,7 +19,6 @@ class FairytalesItem extends StatelessWidget {
           ),
         );
       },
-      //splashColor: AppColors.selectedItemColor,
       child: Hero(
         tag: fairytale.image,
         child: Container(

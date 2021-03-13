@@ -33,18 +33,18 @@ class LogOut extends StatelessWidget {
               children: [
                 AppBar(
                   automaticallyImplyLeading: false,
-                  backgroundColor: AppColors.appBarMainColor,
+                  backgroundColor: AppColors.primaryColor,
                 ),
                 Divider(),
                 ListTile(
                   leading: Icon(
                     Icons.exit_to_app,
                     size: 25,
-                    color: AppColors.logOutButtonTextColor,
+                    color: AppColors.textColorDark,
                   ),
                   title: Text(
                     'Log Out',
-                    style: FontsStyles.logOutButton,
+                    style: FontsStyles.baseStyleDark,
                   ),
                   onTap: () {
                     BlocProvider.of<LoginBloc>(context).add(

@@ -26,23 +26,19 @@ class ForcastWidget extends StatelessWidget {
                           margin: EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             border: buildBorder(),
-                            color: AppColors.containerWeatherScreenColor
-                                .withOpacity(0.4),
+                            color: AppColors.secondaryColor.withOpacity(0.4),
                           ),
                           child: Column(
                             children: [
                               AutoSizeText(
                                 DateTimeUtils.getDayFromDateTime(e.dt),
-                                style: FontsStyles.forecastThreeDays,
+                                style: FontsStyles.baseStyleLight,
                                 maxLines: 1,
                                 minFontSize: 9,
                               ),
                               AutoSizeText(
                                 WeatherUtils.getTempHumanFromNum(e.main.temp),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
+                                style: FontsStyles.baseStyleLight,
                                 maxLines: 1,
                                 minFontSize: 10,
                                 overflow: TextOverflow.ellipsis,
@@ -65,16 +61,16 @@ class ForcastWidget extends StatelessWidget {
   Border buildBorder() {
     return Border(
       top: BorderSide(
-        color: AppColors.borderSideForecastThreeDaysColor,
+        color: AppColors.textColorDark,
       ),
       left: BorderSide(
-        color: AppColors.borderSideForecastThreeDaysColor,
+        color: AppColors.textColorDark,
       ),
       right: BorderSide(
-        color: AppColors.borderSideForecastThreeDaysColor,
+        color: AppColors.textColorDark,
       ),
       bottom: BorderSide(
-        color: AppColors.borderSideForecastThreeDaysColor,
+        color: AppColors.textColorDark,
       ),
     );
   }

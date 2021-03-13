@@ -72,26 +72,26 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
   @override
   Widget build(BuildContext context) {
     return FloatingSearchBar(
-      queryStyle: FontsStyles.hintName,
-      iconColor: AppColors.iconSearchBarColor,
+      queryStyle: FontsStyles.baseStyleDark,
+      iconColor: AppColors.textColorDark,
       controller: controller,
       transition: CircularFloatingSearchBarTransition(),
       physics: BouncingScrollPhysics(),
       title: selectedTerm != null
           ? Text(
               selectedTerm,
-              style: FontsStyles.selectedName,
+              style: FontsStyles.baseStyleDark,
             )
           : null,
       hint: 'Enter a city name',
-      hintStyle: FontsStyles.hintName,
+      hintStyle: FontsStyles.baseStyleDark,
       actions: [
         FloatingSearchBarAction(
           showIfOpened: false,
           child: CircularButton(
               icon: const Icon(
                 Icons.place,
-                color: AppColors.iconSearchBarColor,
+                color: AppColors.textColorDark,
               ),
               onPressed: () {
                 selectedTerm = null;
@@ -129,18 +129,18 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                       'Start searching',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: FontsStyles.hintName,
+                      style: FontsStyles.baseStyleDark,
                     ),
                   );
                 } else if (filteredSearchHistory.isEmpty) {
                   return ListTile(
                     title: Text(
                       controller.query,
-                      style: FontsStyles.hintName,
+                      style: FontsStyles.baseStyleDark,
                     ),
                     leading: const Icon(
                       Icons.search,
-                      color: AppColors.iconSearchBarColor,
+                      color: AppColors.textColorDark,
                     ),
                     onTap: () {
                       setState(() {
@@ -161,15 +161,15 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                               term,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: FontsStyles.hintName,
+                              style: FontsStyles.baseStyleDark,
                             ),
                             leading: const Icon(
                               Icons.history,
-                              color: AppColors.iconSearchBarColor,
+                              color: AppColors.textColorDark,
                             ),
                             trailing: IconButton(
                               icon: const Icon(Icons.clear,
-                                  color: AppColors.iconSearchBarColor),
+                                  color: AppColors.textColorDark),
                               onPressed: () {
                                 setState(() {
                                   deleteSearchTerm(term);
