@@ -24,10 +24,10 @@ To run this project:
 
 
 ## Features
-List of features ready and TODOs for future development
-* ![weather-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker.gif)
 * Awesome feature 2
-* Awesome feature 3
+List of features ready and TODOs for future development
+ ![weather-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-resize.gif) ![login-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-3.gif) ![music-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-2.gif)
+
 
 
 
