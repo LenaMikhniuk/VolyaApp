@@ -24,16 +24,11 @@ To run this project:
 
 
 ## Features
-* Awesome feature 2
-List of features ready and TODOs for future development
- ![weather-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-resize.gif) ![login-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-3.gif) ![music-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-2.gif)
-
-
+ ![weather-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-resize.gif)   ![login-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-3.gif)    ![music-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-2.gif)
 
 
 ## Status
 Project is: _in progress_. 
-I am planning to add validation to the Authentication screen, refactor some code.
 
 
 ## Contact
