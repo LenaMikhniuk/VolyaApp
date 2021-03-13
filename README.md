@@ -1,6 +1,6 @@
-# volyaApp
+# volyaApp - App for kids.
 
-A new Flutter project.
+My first study Flutter project.
 
 ## Getting Started
 
