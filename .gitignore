@@ -40,5 +40,5 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-sounds/
-sounds_fairytales/
+assets/sounds/
+assets/sounds_fairytales/
