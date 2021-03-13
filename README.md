@@ -1,5 +1,9 @@
-# volyaApp
-My first study flutter app.
+# volyaApp - App for kids
+This is my study flutter project, where I practice new features.
+You can listen to music, fairytales, make photos and get a weather forecast.
+
+## Status
+Project is: _in progress_. 
 
 ## Table of contents
 * [Technologies info](#technologies_info)
@@ -10,11 +14,13 @@ My first study flutter app.
 
 
 ## Technologies info
-In this project, I am using the following packages:
-* Authentication with Firebase_auth, flutter_bloc, freezed
-* Getting data from website with http, geolocator
-* Converting data from JSON with freezed, json_serializable,
-* Storing data in database with sqflite, path
+In this project, I am using the following:
+* Authentication with Firebase, 
+* Bloc pattern with Flutter_bloc
+* Get data from Weather API with search and Geolocation
+* Use Freezed for data objects and serialization
+* Store photos data in database with Sqflite
+
 
 ## Setup
 To run this project:
@@ -25,10 +31,6 @@ To run this project:
 
 ## Features
  ![weather-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-resize.gif)   ![login-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-3.gif)    ![music-screen-gif](https://github.com/LenaMikhniuk/VolyaApp/blob/master/presentation/ezgif.com-gif-maker-2.gif)
-
-
-## Status
-Project is: _in progress_. 
 
 
 ## Contact
