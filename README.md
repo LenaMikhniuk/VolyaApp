@@ -34,4 +34,4 @@ To run this project:
 
 
 ## Contact
-Created by alenamikhniuk@icloud.com - feel free to contact me!
+Created by almikhniuk@gmail.com - feel free to contact me!
