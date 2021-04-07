@@ -34,6 +34,8 @@ dependencies:
   flutter_bloc:
   firebase_auth: ^0.20.1
   firebase_core: ^0.7.0
+  sembast: ^3.0.0+4
+  
 
   
 

@@ -41,7 +41,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      endDrawer: LogOut(),
+      // endDrawer: LogOut(),
       body: Stack(
         children: [
           weatherTodayModel == null

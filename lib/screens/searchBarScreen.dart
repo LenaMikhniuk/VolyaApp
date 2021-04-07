@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:volyaApp/data/city_data.dart';
 import 'package:volyaApp/shared.dart';
+import 'package:volyaApp/util/city_dao.dart';
+import 'package:volyaApp/util/db_weather_utils.dart';
 
 class SearchBarScreen extends StatefulWidget {
   final VoidCallback onCurrentLocation;
@@ -14,44 +17,26 @@ class SearchBarScreen extends StatefulWidget {
 }
 
 class _SearchBarScreenState extends State<SearchBarScreen> {
-  static const historyLength = 5;
-  List<String> _searchHistory = [];
-  List<String> filteredSearchHistory;
+  List<City> _searchHistory = [];
   String selectedTerm;
+  CityDao cityDao = CityDao();
 
-  List<String> filteredSearchTerms({
-    @required String filter,
-  }) {
-    if (filter != null && filter.isNotEmpty) {
-      return _searchHistory.reversed
-          .where((term) => term.startsWith(filter))
-          .toList();
-    } else {
-      return _searchHistory.reversed.toList();
-    }
+  void addSearchTerm(String term) async {
+    _searchHistory.insert(0, City(term));
+    await cityDao.insert(City(term));
+
+    getHistory();
   }
 
-  void addSearchTerm(String term) {
-    if (_searchHistory.contains(term)) {
-      putSearchTermFirst(term);
-      return;
-    }
-    _searchHistory.add(term);
-    if (_searchHistory.length > historyLength) {
-      _searchHistory.removeRange(0, _searchHistory.length - historyLength);
-    }
-
-    filteredSearchHistory = filteredSearchTerms(filter: null);
+  void deleteSearchTerm(City city) async {
+    _searchHistory.remove(city);
+    await cityDao.delete(city);
+    setState(() {});
   }
 
-  void deleteSearchTerm(String term) {
-    _searchHistory.removeWhere((t) => t == term);
-    filteredSearchHistory = filteredSearchTerms(filter: null);
-  }
-
-  void putSearchTermFirst(String term) {
-    deleteSearchTerm(term);
-    addSearchTerm(term);
+  Future<void> getHistory() async {
+    _searchHistory = await cityDao.getAllInstances();
+    setState(() {});
   }
 
   FloatingSearchBarController controller;
@@ -60,7 +45,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
   void initState() {
     super.initState();
     controller = FloatingSearchBarController();
-    filteredSearchHistory = filteredSearchTerms(filter: null);
+    getHistory();
   }
 
   @override
@@ -100,16 +85,12 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
         ),
         FloatingSearchBarAction.searchToClear(),
       ],
-      onQueryChanged: (query) {
-        setState(() {
-          filteredSearchHistory = filteredSearchTerms(filter: query);
-        });
-      },
       onSubmitted: (query) {
-        setState(() {
-          addSearchTerm(query);
-          selectedTerm = query;
-        });
+        addSearchTerm(query);
+        selectedTerm = query;
+        widget.onChosenCity(query);
+        setState(() {});
+
         controller.close();
       },
       builder: (context, transition) {
@@ -120,7 +101,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
             elevation: 4,
             child: Builder(
               builder: (context) {
-                if (filteredSearchHistory.isEmpty && controller.query.isEmpty) {
+                if (_searchHistory.isEmpty && controller.query.isEmpty) {
                   return Container(
                     height: 56,
                     width: double.infinity,
@@ -132,7 +113,7 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                       style: FontsStyles.baseStyleDark,
                     ),
                   );
-                } else if (filteredSearchHistory.isEmpty) {
+                } else if (_searchHistory.isEmpty) {
                   return ListTile(
                     title: Text(
                       controller.query,
@@ -154,11 +135,12 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                 } else {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: filteredSearchHistory
+                    children: _searchHistory.reversed
+                        .take(6)
                         .map(
-                          (term) => ListTile(
+                          (city) => ListTile(
                             title: Text(
-                              term,
+                              city.name,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: FontsStyles.baseStyleDark,
@@ -171,15 +153,12 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                               icon: const Icon(Icons.clear,
                                   color: AppColors.textColorDark),
                               onPressed: () {
-                                setState(() {
-                                  deleteSearchTerm(term);
-                                });
+                                deleteSearchTerm(city);
                               },
                             ),
                             onTap: () {
                               setState(() {
-                                putSearchTermFirst(term);
-                                selectedTerm = term;
+                                selectedTerm = city.name;
                                 widget.onChosenCity(selectedTerm);
                               });
                               controller.close();
